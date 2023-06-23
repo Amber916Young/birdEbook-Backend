@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet  author="bird"  id="1">
+        <createTable tableName="forum_user">
+            <column  name="id"  type="BIGINT" autoIncrement="true">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column  name="username"  type="VARCHAR(100)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="avatar_url"  type="VARCHAR(200)" />
+            <column  name="password"  type="VARCHAR(200)">
+                <constraints  nullable="false" />
+            </column>
+            <column  name="email"  type="VARCHAR(150)">
+                <constraints  nullable="false" />
+            </column>
+            <column name="status" type="VARCHAR(50)"/>
+            <column name="role" type="VARCHAR(50)"/>
+            <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
