@@ -27,19 +27,26 @@ public class BookController {
         return new ResponseEntity<>(bookMapper.toDTO(book), HttpStatus.OK);
     }
 
-//    @PutMapping(value = "/profile",produces = "application/json")
-//    public ResponseEntity<BookDTO> updateCompanyProfile(@Valid @RequestBody CompanyProfileDTO companyProfileDTO) {
-//        Book book = bookService.updateBookProfile(companyProfileDTO);
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @DeleteMapping(produces = "application/json")
+    public ResponseEntity<BookDTO> deleteBookAndChapters(@Valid @PathVariable("id") long id) {
+        bookService.deleteBookAndChapters(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
-//    @PostMapping(value = "/users", produces = "application/json")
-//    public ResponseEntity<CompanyUserDTO> addUserToCompany(@Valid @RequestBody CompanyUserDTO companyUserDTO) {
-//        return new ResponseEntity<>(companyUserMapper
-//                .toDTO(userService.createCompanyUser(
-//                        companyUserMapper.toEntity(companyUserDTO))),
-//                HttpStatus.OK);
-//    }
+
+    @PutMapping(produces = "application/json")
+    public ResponseEntity<BookDTO> updateCompanyProfile(@Valid @RequestBody BookDTO bookDTO) {
+        Book book = bookService.updateBookProfile(bookDTO);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping( produces = "application/json")
+    public ResponseEntity<?> addUserToCompany(@Valid @RequestBody BookDTO bookDTO) {
+        return new ResponseEntity<>(bookMapper
+                .toDTO(bookService.createBook(
+                        bookMapper.toEntity(bookDTO))),
+                HttpStatus.OK);
+    }
 
 }

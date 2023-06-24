@@ -5,6 +5,9 @@ import lombok.Data;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+/**
+ * @author birdyyoung
+ */
 @Data
 public class BookDTO {
     private Long id;
@@ -18,6 +21,8 @@ public class BookDTO {
     private long userId;
 
     private String description;
+    private String category;
+    private String tags;
 
     private BookStatus status;
 
