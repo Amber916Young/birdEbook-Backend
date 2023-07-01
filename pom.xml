@@ -8,12 +8,12 @@
 		<version>2.7.11</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.birdbook</groupId>
-	<artifactId>birdbook</artifactId>
+	<groupId>com.bird</groupId>
+	<artifactId>birdback</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>birdbook</name>
-	<description>dashboard of  ebook</description>
+	<name>birdback</name>
+	<description>dashboard of  witchwebsite</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
