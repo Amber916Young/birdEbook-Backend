@@ -10,9 +10,9 @@ spring:
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/birdbook?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/witchtalk?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: rootroot
+    password: Yyj188706
     hikari:
       data-source-properties:
         cachePrepStmts: true
@@ -30,7 +30,7 @@ spring:
       hibernate.cache.use_query_cache: false
 
 server:
-  port: 8080
+  port: 8888
 
 application:
 

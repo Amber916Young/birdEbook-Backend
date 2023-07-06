@@ -79,6 +79,7 @@ public class Book  implements Persistable<Long> {
     @ToString.Exclude
     private List<BookChapter> bookChapters;
 
+    @Override
     public boolean isNew() {
         return id == null;
     }

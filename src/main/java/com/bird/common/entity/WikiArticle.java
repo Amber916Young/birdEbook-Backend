@@ -1,5 +1,7 @@
 package com.bird.common.entity;
 
+import com.bird.common.enums.CategoryType;
+import com.bird.common.enums.WikiStatus;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,33 +12,50 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 
+/**
+ * @author birdyyoung
+ * @ClassName:WikiArticle
+ * @Description:
+ * @Date: 01/07/2023 18:46
+ * @Version: v1.0
+ */
 @Entity
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-public class BookChapter  implements Persistable<Long> {
+public class WikiArticle implements Persistable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @NotNull
-    @Column
-    private Long bookId;
 
     @NotNull
-    @Column
-    private Long chapterNumber;
+    @Size(min = 1, max = 100)
+    @Column(length = 100, nullable = false)
+    private String title;
 
     @NotNull
-    @Size(min = 1, max = 200)
-    @Column(length = 200, nullable = false)
-    private String chapterName;
+    @Size(min = 1, max = 100)
+    @Column(length = 100, nullable = false)
+    private CategoryType category;
+
+    @Column
+    private String desc;
+
+    @Column
+    private String tags;
 
     @NotNull
     @Column
     private String content;
+
+    @Column
+    private String wikiImageUrl;
+
+    @Column
+    private WikiStatus status;
 
     @Column
     @CreationTimestamp

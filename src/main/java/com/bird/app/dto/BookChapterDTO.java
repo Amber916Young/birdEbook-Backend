@@ -9,5 +9,4 @@ public class BookChapterDTO {
     private Long chapterNumber;
     private String chapterName;
     private String content;
-
 }

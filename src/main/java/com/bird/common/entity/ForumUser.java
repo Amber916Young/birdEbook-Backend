@@ -50,6 +50,7 @@ public class ForumUser implements Persistable<Long> {
     private String password;
 
 
+    @Override
     public boolean isNew() {
         return id == null;
     }
