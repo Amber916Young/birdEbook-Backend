@@ -20,13 +20,13 @@ import javax.validation.Valid;
 public class BookController {
 
 
-     private final BookMapper bookMapper;
+    private final BookMapper bookMapper;
     private final BookService bookService;
 
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<BookDTO> getBooksAndChapters() {
-        Book book  = bookService.getBooksAndChapters();
+        Book book = bookService.getBooksAndChapters();
         return new ResponseEntity<>(bookMapper.toDTO(book), HttpStatus.OK);
     }
 
@@ -44,7 +44,7 @@ public class BookController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping( produces = "application/json")
+    @PostMapping(produces = "application/json")
     public ResponseEntity<?> addUserToCompany(@Valid @RequestBody BookDTO bookDTO) {
         return new ResponseEntity<>(bookMapper
                 .toDTO(bookService.createBook(

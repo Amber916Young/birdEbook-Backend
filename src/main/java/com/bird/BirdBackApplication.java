@@ -3,6 +3,7 @@ package com.bird;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
@@ -10,6 +11,7 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
+@ComponentScan(basePackages = {"com.bird.app.mapper"})
 public class BirdBackApplication {
 
 	public static void main(String[] args) throws UnknownHostException {

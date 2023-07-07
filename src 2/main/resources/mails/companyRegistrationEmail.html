@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body class=""
+      style="background-color: #f6f6f6; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+<table border="0" cellpadding="0" cellspacing="0" class="body"
+       style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #f6f6f6;">
+    <tr>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
+        <td class="container"
+            style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 0; width: 100%;">
+            <div class="content"
+                 style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 0;">
+
+                <!-- START CENTERED WHITE CONTAINER -->
+                <table class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;      width: 100%;
+            margin: 1em auto;
+            text-align: center;">
+
+                    <!-- START MAIN CONTENT AREA -->
+                    <tr>
+                        <td class="wrapper"
+                            style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 5px 20px 5px 20px;">
+
+
+
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                New OrderIT App customer registration request received:
+                            </p>
+                            <br>
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Company Name:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;text-transform: capitalize;"
+                                        th:text="${company_name}"></span>
+                            </p>
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Company Address:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;text-transform: capitalize;"
+                                        th:text="${company_address}"></span>
+                            </p>
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Company Contact Name:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;text-transform: capitalize;"
+                                        th:text="${company_contact_name}"></span>
+                            </p>
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Company Contact Number:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;text-transform: capitalize;"
+                                        th:text="${company_contact_number}"></span>
+                            </p>
+
+
+
+                            <p style="margin-top:2em"> </p>
+
+                            <p style=" display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Business Owner Name:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;text-transform: capitalize;"
+                                        th:text="${owner_name}"></span>
+                            </p>
+
+
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Business Owner Contact Number:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;text-transform: capitalize;"
+                                        th:text="${contactNumber}"></span>
+                            </p>
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;width: 95%;margin: 0.2em auto;"
+                               class="subtitle">
+                                Business Owner Email Address:
+                                <span
+                                        class="company"
+                                        style="font-weight: 600;color: #000;"
+                                        th:text="${email}"></span>
+                            </p>
+
+
+
+
+
+
+
+
+
+
+                            <p style="display: block;text-align: left;color: #6E7B84;font-size: 1.1em;font-weight: 500;margin-top: 2em;width: 95%;margin: 2em auto;"
+                               class="expire">
+                                Yours sincerely,<br/>
+                                <span th:text="${company_name}"></span><br/>
+                            </p>
+
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- END MAIN CONTENT AREA -->
+                </table>
+                <div style="margin-top: 3em;" class="address-section">
+                    <div class="logo" style="width: max-content;margin: 0 auto;">
+                        <span class="title"
+                              style="font-size: 1em;font-weight: 300;color: #aeb1b2;vertical-align: middle;">Powered By</span>
+                        <div class="img-wrapper"
+                             style="width:150px; height: 50px;overflow: hidden;display: inline-block;vertical-align: middle;">
+                            <img alt="" src="https://prod-orderit.s3.eu-west-1.amazonaws.com/orderit-logo/logo-grey.png?v=1"
+                                 style="width: 100%;scale:1">
+                        </div>
+
+                    </div>
+                    <p class="address"
+                       style="font-size: .9em; display: block;text-align: center;font-weight: 550;color: #aeb1b2;margin-top: 2em;margin-bottom: 2em;">
+                        D6 ACE ENTERPRISE PARK, Dublin 22, D22 X0E2</p>
+                </div>
+                <!-- END CENTERED WHITE CONTAINER -->
+            </div>
+        </td>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
+    </tr>
+</table>
+</body>
+
+</html>

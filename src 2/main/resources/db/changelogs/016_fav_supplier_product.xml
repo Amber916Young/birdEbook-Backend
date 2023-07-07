@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="meng" id="16">
+        <addUniqueConstraint  tableName="favourite_product" constraintName="unique_product_fav" columnNames="company_id,supplier_product_id,supplier_id" >
+        </addUniqueConstraint>
+    </changeSet>
+</databaseChangeLog>

@@ -25,18 +25,12 @@ public class WikiActionService {
     @Autowired
     private WikiActionRepository wikiActionRepository;
 
-    // Create
-    public WikiAction createWikiAction(WikiActionDTO wikiActionDTO) {
-
-
-        WikiActionDTO createdWikiAction = wikiActionRepository.save(wikiActionDTO);
-        return createdWikiAction;
+    public WikiAction createWikiAction(WikiAction wikiAction) {
+        return  wikiActionRepository.save(wikiAction);
     }
 
-    // Read
-    public WikiActionDTO getWikiActionById(Long id) {
-        Optional<WikiActionDTO> optionalWikiAction = wikiActionRepository.findById(id);
-        return optionalWikiAction.orElse(null);
+    public WikiAction getWikiActionById(Long id) {
+        return wikiActionRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.WikiAction_Cannot_Found));
     }
 
 

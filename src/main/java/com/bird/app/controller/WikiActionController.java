@@ -32,22 +32,16 @@ public class WikiActionController {
     // Create
     @PostMapping(produces = "application/json")
     public ResponseEntity<WikiActionDTO> createWikiAction(@RequestBody WikiActionDTO wikiActionDTO) {
-        return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.createWikiAction(wikiActionDTO)), HttpStatus.CREATED);
+        return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.createWikiAction(wikiActionMapper.toEntity(wikiActionDTO))), HttpStatus.CREATED);
     }
 
-    // Read
-    @GetMapping(value = "/{id}",produces = "application/json")
+
+    @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<WikiActionDTO> getWikiActionById(@PathVariable("id") Long id) {
-        WikiActionDTO wikiActionDTO = wikiActionService.getWikiActionById(id);
-        if (wikiActionDTO != null) {
-            return ResponseEntity.ok(wikiActionDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.getWikiActionById(id)), HttpStatus.OK);
     }
 
 
-    // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteWikiAction(@PathVariable("id") Long id) {
         wikiActionService.deleteWikiAction(id);

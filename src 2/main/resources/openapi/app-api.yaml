@@ -1,0 +1,1450 @@
+openapi: 3.0.3
+info:
+  title: Order IT App API
+  description: |-
+    API for Order IT Application
+  contact:
+    email: info@mycloudpa.com
+  version: 1.0.0
+tags:
+  - name: auth
+    description: Everything about authentication
+  - name: favouriteSupplier
+    description: Operations about favourite supplier
+  - name: favouriteProduct
+    description: Operations about favourite product
+  - name: supplierOrder
+    description: Operations about supplierOrder
+  - name: supplier
+    description: Operations about supplier
+  - name: partner
+    description: Operations about partner
+  - name: profile
+    description: Operations about profile
+  - name: company
+    description: Operations about company
+  - name: public
+    description: Operations that is available to public
+  - name: admin
+    description: Operations that for internal user
+  - name: customProduct
+    description: Operations that allow companyUser manage their own custom produts
+  - name: fileSystem
+    description: Operations that allow upload files
+paths:
+
+  /api/files/upload/company-logos:
+    post:
+      tags:
+        - fileSystem
+      summary: upload company logo
+      description: upload company logo
+      operationId: companyLogoUpload
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+
+      responses:
+        '201':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Invalid status value
+
+
+  /api/files/upload/product-images:
+    post:
+      tags:
+        - fileSystem
+      summary: upload product image
+      description: upload product image
+      operationId: productImageUpload
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                oldUrl:
+                  type: string
+                  format: string
+      responses:
+        '201':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Invalid status value
+
+
+
+
+
+
+  /api/customProducts:
+    post:
+      tags:
+        - customProduct
+      summary: create a new customProduct
+      description: create a new customProduct
+      operationId: createCustomProduct
+      requestBody:
+        description: new custom product to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - customProduct
+      summary: update an existing Custom Product
+      description: update an existing Custom Product
+      operationId: updateCustomProduct
+      requestBody:
+        description: custom supplier to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Invalid status value
+
+
+  /api/customProducts/{id}:
+    delete:
+      tags:
+        - customProduct
+      summary: delete an existing Custom Product
+      description: delete an existing Custom Product
+      operationId: deleteCustomProduct
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: identifier of the Custom Product to be deleted
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/auth/login:
+    post:
+      tags:
+        - auth
+      summary: login to the application
+      description: login to the application
+      operationId: login
+      requestBody:
+        description: email and password
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginSuccess'
+        '400':
+          description: Bad request
+
+  /api/auth/forgotPassword:
+    post:
+      tags:
+        - auth
+      summary: trigger forget password flow and email user a reset password link
+      description: trigger forget password flow and email user a reset password link
+      operationId: forgetPassword
+      requestBody:
+        description: email
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+      responses:
+        '200':
+          description: Trigger forget password successful
+        '400':
+          description: Bad request
+
+  /api/auth/resetPassword:
+    post:
+      tags:
+        - auth
+      summary: reset password
+      description: reset password
+      operationId: resetPassword
+      requestBody:
+        description: new password and reset key
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+      responses:
+        '200':
+          description: Reset password successful
+        '400':
+          description: Bad request
+
+  /api/favouriteSuppliers:
+    post:
+      tags:
+        - favouriteSupplier
+      summary: create a new Favourite Supplier
+      description: create a new Favourite Supplier
+      operationId: createFavouriteSupplier
+      requestBody:
+        description: new favourite supplier to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavouriteSupplier'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavouriteSupplier'
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - favouriteSupplier
+      summary: update an existing Favourite Supplier
+      description: update an existing Favourite Supplier
+      operationId: updateFavouriteSupplier
+      requestBody:
+        description: favourite supplier to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavouriteSupplier'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavouriteSupplier'
+        '400':
+          description: Invalid status value
+
+  /api/favouriteSuppliers/request:
+    post:
+      tags:
+        - favouriteSupplier
+      summary: send registration request to a supplier
+      description: send registration request to a supplier
+      operationId: sendRegistrationRequest
+      requestBody:
+        description: registration request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavouriteSupplierRegistrationRequest'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+  /api/favouriteSuppliers/{supplierId}/request:
+    post:
+      tags:
+        - favouriteSupplier
+      summary: send registration request to a supplier
+      description: send registration request to a supplier
+      operationId: sendRegistrationRequestWithoutCompanyId
+      parameters:
+        - in: path
+          name: supplierId
+          schema:
+            type: number
+          required: true
+          description: identifier of the Favourite Product to be deleted
+
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+
+  /api/favouriteProducts:
+    post:
+      tags:
+        - favouriteProduct
+      summary: create a new Favourite Product
+      description: create a new Favourite Product
+      operationId: createFavouriteProduct
+      requestBody:
+        description: new favourite product to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavouriteProduct'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavouriteProduct'
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - favouriteProduct
+      summary: update an existing Favourite Product
+      description: update an existing Favourite Product
+      operationId: updateFavouriteProduct
+      requestBody:
+        description: favourite product to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavouriteProduct'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavouriteProduct'
+        '400':
+          description: Invalid status value
+
+  /api/favouriteProducts/{favouriteProductId}:
+    delete:
+      tags:
+        - favouriteProduct
+      summary: delete an existing Favourite Product
+      description: delete an existing Favourite Product
+      operationId: deleteFavouriteProduct
+      parameters:
+        - in: path
+          name: favouriteProductId
+          schema:
+            type: number
+          required: true
+          description: identifier of the Favourite Product to be deleted
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/suppliers:
+    get:
+      tags:
+        - supplier
+      summary: Get all suppliers
+      description: Get all suppliers without products
+      operationId: getSuppliers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                description: suppliers
+                items:
+                  $ref: '#/components/schemas/Supplier'
+        '400':
+          description: Invalid status value
+
+  /api/suppliers/{supplierId}/products:
+    get:
+      tags:
+        - supplier
+      summary: get all products for a given supplier
+      description: get all products for a given supplier
+      operationId: getSupplierProductsBySupplierId
+      parameters:
+        - in: path
+          name: supplierId
+          schema:
+            type: number
+          required: true
+          description: identifier of the Supplier
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupplierProduct'
+        '400':
+          description: Invalid status value
+
+  /api/supplierOrders:
+    get:
+      tags:
+        - supplierOrder
+      summary: Get all supplier orders
+      description: Get all supplier orders in any status(confirm, draft ...)
+      operationId: getSupplierOrders
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupplierOrder'
+        '400':
+          description: Invalid status value
+
+    post:
+      tags:
+        - supplierOrder
+      summary: create a new Supplier Order
+      description: create a new Supplier Order
+      operationId: createSupplierOrder
+      requestBody:
+        description: new supplier order to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierOrder'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierOrder'
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - supplierOrder
+      summary: update an existing Supplier Order
+      description: update an existing Supplier Order
+      operationId: updateSupplierOrder
+      requestBody:
+        description: supplier order to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierOrder'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierOrder'
+        '400':
+          description: Invalid status value
+
+  /api/supplierOrders/{supplierOrderId}:
+    delete:
+      tags:
+        - supplierOrder
+      summary: delete an existing Supplier Order
+      description: delete an existing Supplier Order
+      operationId: deleteSupplierOrder
+      parameters:
+        - in: path
+          name: supplierOrderId
+          schema:
+            type: number
+          required: true
+          description: identifier of the Supplier Order to be deleted
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+
+  /api/profile:
+    get:
+      tags:
+        - profile
+      summary: get profile of current user
+      description: get profile of current user
+      operationId: getProfile
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyUser'
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - profile
+      summary: update profile of current user
+      description: update profile of current user
+      operationId: updateProfile
+      requestBody:
+        description: profile to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+  /api/company:
+    get:
+      tags:
+        - company
+      summary: get company details and users
+      description: get company details and users
+      operationId: getCompany
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '400':
+          description: Invalid status value
+  /api/company/profile:
+    put:
+      tags:
+        - company
+      summary: update profile of a company
+      description: update profile of a company
+      operationId: updateCompanyProfile
+      requestBody:
+        description: company profile to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfile'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/company/users:
+    post:
+      tags:
+        - company
+      summary: add a new user to company
+      description: add a new user to company
+      operationId: addCompanyUser
+      requestBody:
+        description: company user to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyUser'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyUser'
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - company
+      summary: update profile of a company user
+      description: update profile of a company user
+      operationId: updateCompanyUser
+      requestBody:
+        description: company user to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyUserProfile'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/company/users/{userId}:
+    delete:
+      tags:
+        - company
+      summary: delete an existing company user
+      description: delete an existing company user
+      operationId: deleteCompanyUser
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: number
+          required: true
+          description: identifier of the company user to be deleted
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/public/supplierOrderConfirmation/emailApproval/{encodedSupplierOrderId}:
+    put:
+      tags:
+        - public
+      summary: confirm an Order
+      description: this is for supplier to confirm an Order
+      operationId: confirmOrderFromEmail
+      parameters:
+        - in: path
+          name: encodedSupplierOrderId
+          schema:
+            type: string
+          required: true
+          description: base64 encoded Identifier of the Order to be confirmed
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/public/register:
+    post:
+      tags:
+        - public
+      summary: register a company and a company owner
+      description: this is for user to register their business
+      operationId: registerCompany
+      requestBody:
+        description: company user to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registration'
+
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+
+
+
+  /api/public/supplierOrderConfirmation/emailRejection/{encodedSupplierOrderId}:
+    put:
+      tags:
+        - public
+      summary: reject an Order from email by a supplier
+      description: this is for email supplier to reject an Order
+      operationId: rejectOrderFromEmailSupplier
+      parameters:
+        - in: path
+          name: encodedSupplierOrderId
+          schema:
+            type: string
+          required: true
+          description: base64 encoded Identifier of the Order to be rejected
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/public/supplierOrderConfirmation/externalApproval:
+    put:
+      tags:
+        - public
+      summary: confirm an Order from an integrated supplier
+      description: this is for integrated supplier to confirm an Order
+      operationId: confirmOrderFromIntegratedSupplier
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: true
+          description: identifier of the Order to be confirmed
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: secure token
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+  /api/public/supplierOrderConfirmation/externalRejection:
+    put:
+      tags:
+        - public
+      summary: reject an Order from an integrated supplier
+      description: this is for integrated supplier to reject an Order
+      operationId: rejectOrderFromIntegratedSupplier
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: true
+          description: identifier of the Order to be rejected
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: secure token
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+
+
+  /api/public/supplierOrderConfirmation/externalApprovalWithUpdate:
+    put:
+      tags:
+        - public
+      summary: update and confirm an Order from an integrated supplier
+      description: this is for integrated supplier to update and confirm an Order
+      operationId: updateAndConfirmOrderFromIntegratedSupplier
+      parameters:
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: secure token
+      requestBody:
+        description: updated order
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CAFSupplierOrder'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+  /api/admin/companies/active/{companyUserEmail}:
+    put:
+      tags:
+        - admin
+      summary: internal user trigger the activation email
+      description: this is for internal user trigger the activation email of the owner when user register their business
+      operationId: activateOwnerEmail
+      parameters:
+        - in: path
+          name: companyUserEmail
+          schema:
+            type: string
+          required: true
+          description: companyUserEmail
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+
+
+
+
+components:
+  schemas:
+    Login:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    LoginSuccess:
+      required:
+        - jwt
+        - firstName
+        - lastName
+        - role
+        - contactNumber
+        - email
+      type: object
+      properties:
+        jwt:
+          type: string
+          description: generated jwt token
+        firstName:
+          type: string
+          description: firstName of the user
+        lastName:
+          type: string
+          description: lastName of the user
+        contactNumber:
+          type: string
+          description: contactNumber of the user
+        role:
+          type: string
+          description: role of the user
+          enum:
+            - ROLE_COMPANY_OWNER
+            - ROLE_COMPANY_ADMIN
+        email:
+          type: string
+          description: email of the user
+
+    ForgotPassword:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+
+    ResetPassword:
+      required:
+        - resetKey
+        - password
+      type: object
+      properties:
+        resetKey:
+          type: string
+        password:
+          type: string
+
+    CompanyProfile:
+      required:
+        - contactNumber
+      type: object
+      properties:
+        contactNumber:
+          type: string
+
+    UserProfile:
+      required:
+        - firstName
+        - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        contactNumber:
+          type: string
+
+    CompanyUserProfile:
+      required:
+        - userId
+        - firstName
+        - lastName
+        - role
+      type: object
+      properties:
+        userId:
+          type: number
+          description: id of the user
+        firstName:
+          type: string
+        lastName:
+          type: string
+        contactNumber:
+          type: string
+        role:
+          type: string
+
+    Supplier:
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Supplier
+        supplierName:
+          type: string
+          description: supplier name
+        description:
+          type: string
+          description: supplier description
+        cutOff:
+          type: string
+          description: date or time that the supplier stop taking new orders
+        supplierLogoUrl:
+          type: string
+          description: logo url for the Supplier
+        supplierEmail:
+          type: string
+          description: supplier email
+        contactNumber:
+          type: string
+          description: supplier contact number
+        addressLine1:
+          type: string
+          description: supplier address line1
+        addressLine2:
+          type: string
+          description: supplier address line2
+        addressLine3:
+          type: string
+          description: supplier address line3
+        deliveryDay:
+          type: string
+          description: on what days the supplier make delivery
+        minOrder:
+          type: string
+          description: min order amount
+        category:
+          type: string
+          description: supplier category
+        shopName:
+          type: string
+          description: supplier shopName
+        accountNumber:
+          type: string
+          description: supplier accountNumber
+        isIntegratedSupplier:
+          type: boolean
+          description: whether supplier is an integrated supplier or not
+        supplierProducts:
+          type: array
+          description: products the supplier sell
+          items:
+            $ref: '#/components/schemas/SupplierProduct'
+    SupplierProduct:
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Product
+        supplierId:
+          type: number
+          description: identifier of the Product's Supplier
+        productName:
+          type: string
+          description: product name
+        description:
+          type: string
+          description: product description
+        productImageUrl:
+          type: string
+          description: image url for the product
+        nickname:
+          type: string
+          description: nickname of the product
+        unit:
+          type: string
+          description: unit of the product
+        vat:
+          type: number
+          description: VAT of the Product
+        price:
+          type: number
+          description: unit price of the Product
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Product
+        favId:
+          type: number
+          description: identifier of the Fav Product
+
+        type:
+          type: string
+          enum: [CUSTOM,GENERAL ]
+          description: Product's type
+
+        companyId:
+          type: number
+          description: identifier of the Company
+        supplierId:
+          type: number
+          description: identifier of the Product's Supplier
+        productName:
+          type: string
+          description: product name
+        productCode:
+          type: string
+          description: product code
+        description:
+          type: string
+          description: product description
+        productImageUrl:
+          type: string
+          description: image url for the product
+        nickname:
+          type: string
+          description: nickname of the product
+        unit:
+          type: string
+          description: unit of the product
+        vat:
+          type: number
+          description: VAT of the Product
+        price:
+          type: number
+          description: unit price of the Product
+    Partner:
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Partner
+        partnerName:
+          type: string
+          description: partner name
+        description:
+          type: string
+          description: partner description
+        partnerLogoUrl:
+          type: string
+          description: logo url for the Partner
+        partnerEmail:
+          type: string
+          description: partner email
+        contactNumber:
+          type: string
+          description: partner contact number
+        addressLine1:
+          type: string
+          description: partner address line1
+        addressLine2:
+          type: string
+          description: partner address line2
+        addressLine3:
+          type: string
+          description: partner address line3
+        partnerProducts:
+          type: array
+          description: products the partner sell
+          items:
+            $ref: '#/components/schemas/PartnerProduct'
+    PartnerProduct:
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Product
+        partnerId:
+          type: number
+          description: identifier of the Product's Partner
+        productName:
+          type: string
+          description: product name
+        description:
+          type: string
+          description: product description
+        productImageUrl:
+          type: string
+          description: image url for the product
+        vat:
+          type: number
+          description: VAT of the Product
+        price:
+          type: number
+          description: unit price of the Product
+    FavouriteSupplier:
+      required:
+        - supplierId
+        - shopName
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Favourite Supplier
+        supplierId:
+          type: number
+          description: identifier of the Supplier linked to this Favourite
+        shopName:
+          type: string
+          description: name of the current Company in the Supplier
+        accountNumber:
+          type: string
+          description: account number of the current Company in the Supplier
+
+    FavouriteSupplierRegistrationRequest:
+      required:
+        - supplierId
+        - companyName
+        - companyEmail
+        - address
+      type: object
+      properties:
+        supplierId:
+          type: number
+          description: identifier of the supplier
+        companyName:
+          type: string
+          description: name of the Company
+        companyEmail:
+          type: string
+          description: Company contact email
+        address:
+          type: string
+          description: Company address
+
+
+    FavouriteProduct:
+      required:
+        - supplierId
+        - supplierProductId
+        - nickname
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the Favourite Product
+        supplierId:
+          type: number
+          description: identifier of the Supplier linked to this Favourite Product
+        supplierProductId:
+          type: number
+          description: identifier of the Supplier Product linked to this Favourite Product
+        nickname:
+          type: string
+          description: nickname / display name of the Favourite
+    SupplierOrder:
+      type: object
+      required:
+        - supplierId
+        - supplierName
+        - status
+        - totalVat
+        - totalPrice
+        - supplierOrderItems
+      properties:
+        id:
+          type: number
+          description: identifier of the Order
+        supplierId:
+          type: number
+          description: identifier of the Supplier linked to this Order
+        supplierName:
+          type: string
+          description: name of the Supplier linked to this Order
+        supplierLogoUrl:
+          type: string
+          description: logo url of the Supplier linked to this Order
+        status:
+          type: string
+          description: status of the order
+          enum:
+            - DRAFT
+            - SENT_TO_SUPPLIER
+            - CONFIRMED
+        createTime:
+          type: string
+          description: datetime when order is created, it is in ISO-8601 format, e.g. 2007-12-03T10:15:30+01:00
+        deliveryDate:
+          type: string
+          description: expected delivery date for the order, it is in ISO-8601 format, e.g. 2007-12-03
+        createdBy:
+          type: string
+          description: name of the user who created this Order
+        totalVat:
+          type: number
+          description: total VAT of this Order
+        totalPrice:
+          type: number
+          description: total price of this Order
+        supplierOrderItems:
+          type: array
+          description: items in this Order
+          items:
+            $ref: '#/components/schemas/SupplierOrderItem'
+    SupplierOrderItem:
+      type: object
+      required:
+        - supplierProductId
+        - supplierProductName
+        - nickname
+        - quantity
+        - vat
+        - price
+      properties:
+        id:
+          type: number
+          description: identifier of the OrderItem
+        supplierProductId:
+          type: number
+          description: identifier of the linked SupplierProduct
+        supplierProductName:
+          type: string
+          description: name of the linked SupplierProduct
+        nickname:
+          type: string
+          description: nickname of the linked Favourite
+        quantity:
+          type: number
+          description: quantity of the OrderItem
+        unit:
+          type: string
+          description: unit of the OrderItem
+        vat:
+          type: number
+          description: VAT of the OrderItem
+        price:
+          type: number
+          description: unit price of the OrderItem
+
+    CAFSupplierOrder:
+      type: object
+      required:
+        - id
+        - deliveryDate
+      properties:
+        id:
+          type: number
+          description: identifier of the Order
+        deliveryDate:
+          type: string
+          description: expected delivery date for the order, it is in ISO-8601 format, e.g. 2007-12-03
+        totalVat:
+          type: number
+          description: total VAT of this Order
+        totalPrice:
+          type: number
+          description: total price of this Order
+        supplierorderItems:
+          type: array
+          description: items in this Order
+          items:
+            $ref: '#/components/schemas/CAFSupplierOrderItem'
+
+    CAFSupplierOrderItem:
+      type: object
+      required:
+        - supplierProductId
+        - supplierProductName
+        - quantity
+        - vat
+        - price
+      properties:
+        supplierProductId:
+          type: number
+          description: identifier of the linked SupplierProduct
+        supplierProductName:
+          type: string
+          description: name of the linked SupplierProduct
+        quantity:
+          type: number
+          description: quantity of the OrderItem
+        vat:
+          type: number
+          description: VAT of the OrderItem
+        price:
+          type: number
+          description: unit price of the OrderItem
+
+    Registration:
+      type: object
+      required:
+        - company
+        - companyUser
+      properties:
+        company:
+          type: object
+          description: parameters of the Company
+          $ref: '#/components/schemas/CompanyRegister'
+        companyUser:
+          type: object
+          description: parameters of the CompanyUser
+          $ref: '#/components/schemas/CompanyUserRegister'
+
+
+    CompanyRegister:
+      type: object
+      required:
+        - companyName
+        - companyEmail
+        - addressLine1
+        - contactName
+        - contactNumber
+
+      properties:
+        id:
+          type: number
+          description: identifier of the Company
+        companyName:
+          type: string
+          description: name of the Company
+        companyEmail:
+          type: string
+          description: email of the Company
+        contactName:
+          type: string
+          description: contact name of the Company
+        contactNumber:
+          type: string
+          description: contact number of the Company
+        addressLine1:
+          type: string
+          description: Company address line1
+        addressLine2:
+          type: string
+          description: Company address line2
+        addressLine3:
+          type: string
+          description: Company address line3
+
+    CompanyUserRegister:
+      required:
+        - firstName
+        - lastName
+        - email
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the team member
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        contactNumber:
+          type: string
+
+
+    Company:
+      type: object
+      required:
+        - companyName
+        - companyEmail
+        - addressLine1
+
+      properties:
+        id:
+          type: number
+          description: identifier of the Company
+        companyLogoUrl:
+          type: number
+          description: logo url of the Company
+        companyName:
+          type: string
+          description: name of the Company
+
+        companyEmail:
+          type: string
+          description: email of the Company
+        contactName:
+          type: string
+          description: contact name of the Company
+        contactNumber:
+          type: string
+          description: contact number of the Company
+        addressLine1:
+          type: string
+          description: Company address line1
+        addressLine2:
+          type: string
+          description: Company address line2
+        addressLine3:
+          type: string
+          description: Company address line3
+        companyUsers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyUser'
+
+    CompanyUser:
+      required:
+        - firstName
+        - lastName
+        - email
+        - role
+      type: object
+      properties:
+        id:
+          type: number
+          description: identifier of the team member
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        contactNumber:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+          description: status of the team member
+          enum:
+            - ACTIVE
+            - INVITED

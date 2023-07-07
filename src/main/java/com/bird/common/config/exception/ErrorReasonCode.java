@@ -10,6 +10,7 @@ public enum ErrorReasonCode {
     Size_Limit_Exceeded, // max size of files to upload exceeds 10mb
     Server_Error, // unexpected server error
     WikiAction_Already_Delete,
+    WikiAction_Cannot_Found,
     Order_Cannot_Update,
     Order_Cannot_Found,
     User_Not_Found,
