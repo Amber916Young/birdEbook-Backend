@@ -26,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class WikiController {
-    private WikiArticleService wikiArticleService;
+    private final WikiArticleService wikiArticleService;
     private final WikiArticleMapper wikiArticleMapper;
 
 

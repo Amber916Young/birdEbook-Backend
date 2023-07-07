@@ -1,10 +1,13 @@
 package com.bird.app.controller;
 
 import com.bird.app.dto.WikiActionDTO;
+import com.bird.app.mapper.WikiActionMapper;
+import com.bird.app.mapper.WikiArticleMapper;
 import com.bird.app.service.WikiActionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,18 +26,17 @@ public class WikiActionController {
 
     private final WikiActionService wikiActionService;
 
-
+    private final WikiActionMapper wikiActionMapper;
 
 
     // Create
-    @PostMapping
+    @PostMapping(produces = "application/json")
     public ResponseEntity<WikiActionDTO> createWikiAction(@RequestBody WikiActionDTO wikiActionDTO) {
-        WikiActionDTO createdWikiAction = wikiActionService.createWikiAction(wikiActionDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdWikiAction);
+        return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.createWikiAction(wikiActionDTO)), HttpStatus.CREATED);
     }
 
     // Read
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<WikiActionDTO> getWikiActionById(@PathVariable("id") Long id) {
         WikiActionDTO wikiActionDTO = wikiActionService.getWikiActionById(id);
         if (wikiActionDTO != null) {
@@ -44,25 +46,11 @@ public class WikiActionController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<WikiActionDTO> updateWikiAction(@PathVariable("id") Long id,
-                                                          @RequestBody WikiActionDTO wikiActionDTO) {
-        WikiActionDTO updatedWikiAction = wikiActionService.updateWikiAction(id, wikiActionDTO);
-        if (updatedWikiAction != null) {
-            return ResponseEntity.ok(updatedWikiAction);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteWikiAction(@PathVariable("id") Long id) {
-        boolean deleted = wikiActionService.deleteWikiAction(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        wikiActionService.deleteWikiAction(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

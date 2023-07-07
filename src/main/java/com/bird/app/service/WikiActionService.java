@@ -1,6 +1,9 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.WikiActionDTO;
+import com.bird.common.config.exception.ErrorReasonCode;
+import com.bird.common.config.exception.NotFoundRequestException;
+import com.bird.common.entity.WikiAction;
 import com.bird.common.repository.WikiActionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +26,7 @@ public class WikiActionService {
     private WikiActionRepository wikiActionRepository;
 
     // Create
-    public WikiActionDTO createWikiAction(WikiActionDTO wikiActionDTO) {
+    public WikiAction createWikiAction(WikiActionDTO wikiActionDTO) {
 
 
         WikiActionDTO createdWikiAction = wikiActionRepository.save(wikiActionDTO);
@@ -36,31 +39,9 @@ public class WikiActionService {
         return optionalWikiAction.orElse(null);
     }
 
-    // Update
-    public WikiActionDTO updateWikiAction(Long id, WikiActionDTO wikiActionDTO) {
-        // Check if the WikiAction with the given id exists
-        Optional<WikiActionDTO> optionalExistingWikiAction = wikiActionRepository.findById(id);
-        if (optionalExistingWikiAction.isPresent()) {
-            // Perform any necessary validations or business logic
-            // ...
 
-            wikiActionDTO.setId(id);
-            WikiActionDTO updatedWikiAction = wikiActionRepository.save(wikiActionDTO);
-            return updatedWikiAction;
-        } else {
-            return null;
-        }
-    }
-
-    // Delete
-    public boolean deleteWikiAction(Long id) {
-        // Check if the WikiAction with the given id exists
-        Optional<WikiActionDTO> optionalExistingWikiAction = wikiActionRepository.findById(id);
-        if (optionalExistingWikiAction.isPresent()) {
-            wikiActionRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
+    public void deleteWikiAction(Long id) {
+        wikiActionRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.WikiAction_Already_Delete));
+        wikiActionRepository.deleteById(id);
     }
 }

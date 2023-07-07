@@ -9,13 +9,7 @@ public enum ErrorReasonCode {
     Invalid_Reset_Key, // the token for password reset is not valid
     Size_Limit_Exceeded, // max size of files to upload exceeds 10mb
     Server_Error, // unexpected server error
-    Favourite_Supplier_Not_Exist,
-    Favourite_Supplier_Already_Update,
-    Supplier_Not_Found,
-    Favourite_Product_Already_Exists,
-    Favourite_Product_Already_Delete,
-    Cannot_Modify_Owner,
-    Order_Already_Delete,
+    WikiAction_Already_Delete,
     Order_Cannot_Update,
     Order_Cannot_Found,
     User_Not_Found,
