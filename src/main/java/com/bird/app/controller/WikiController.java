@@ -1,13 +1,11 @@
 package com.bird.app.controller;
 
 import com.bird.app.dto.WikiArticleDTO;
-import com.bird.app.mapper.BookMapper;
 import com.bird.app.mapper.WikiArticleMapper;
 import com.bird.app.service.WikiArticleService;
 import com.bird.common.entity.WikiArticle;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,26 +37,26 @@ public class WikiController {
 
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<?> getAllWikiArticles() {
-        List<WikiArticle> articles = wikiArticleService.getAllWikiArticles();
+    public ResponseEntity< List<WikiArticleDTO> > getAllWikiArticleList() {
+        List<WikiArticle> articles = wikiArticleService.getAllWikiArticleList();
         return new ResponseEntity<>(wikiArticleMapper.toDTOList(articles),HttpStatus.OK);
     }
 
     // Read an article by ID
-    @GetMapping(name = "/{id}",produces = "application/json")
+    @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<WikiArticleDTO> getArticle(@PathVariable Long id) {
         return ResponseEntity.ok(wikiArticleMapper.toDTO(wikiArticleService.getArticleById(id)));
     }
 
     // Update an existing article
-    @PutMapping(name = "/{id}",produces = "application/json")
+    @PutMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<WikiArticleDTO> updateArticle(@PathVariable Long id, @RequestBody WikiArticleDTO wikiArticleDTO) {
         return ResponseEntity.ok(wikiArticleMapper.toDTO(wikiArticleService.updateArticleById(id,wikiArticleDTO)));
 
     }
 
     // Delete an article by ID
-    @DeleteMapping(name = "/{id}",produces = "application/json")
+    @DeleteMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
         wikiArticleService.deleteArticleById(id);
         return new ResponseEntity<>(HttpStatus.OK);

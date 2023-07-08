@@ -7,12 +7,12 @@ spring:
     multipart:
       maxFileSize: 5MB
       maxRequestSize: 10MB
-
+#Yyj188706
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/witchtalk?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: Yyj188706
+    password:  rootroot
     hikari:
       data-source-properties:
         cachePrepStmts: true
@@ -30,7 +30,7 @@ spring:
       hibernate.cache.use_query_cache: false
 
 server:
-  port: 8888
+  port: 8080
 
 application:
 

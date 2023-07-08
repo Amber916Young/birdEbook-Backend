@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @Version: v1.0
  */
 @RestController
-@RequestMapping("/api/wikis/actions")
+@RequestMapping("/api/wikiactions")
 @RequiredArgsConstructor
 @Slf4j
 public class WikiActionController {

@@ -18,11 +18,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @Slf4j
 public class BookController {
-
-
     private final BookMapper bookMapper;
     private final BookService bookService;
-
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<BookDTO> getBooksAndChapters() {
@@ -46,10 +43,7 @@ public class BookController {
 
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> addUserToCompany(@Valid @RequestBody BookDTO bookDTO) {
-        return new ResponseEntity<>(bookMapper
-                .toDTO(bookService.createBook(
-                        bookMapper.toEntity(bookDTO))),
-                HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.toDTO(bookService.createBook(bookMapper.toEntity(bookDTO))), HttpStatus.OK);
     }
 
 }

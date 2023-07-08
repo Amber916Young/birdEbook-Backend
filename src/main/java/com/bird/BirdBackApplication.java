@@ -11,7 +11,6 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
-@ComponentScan(basePackages = {"com.bird.app.mapper"})
 public class BirdBackApplication {
 
 	public static void main(String[] args) throws UnknownHostException {

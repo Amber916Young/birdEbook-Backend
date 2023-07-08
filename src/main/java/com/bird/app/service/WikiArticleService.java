@@ -44,7 +44,7 @@ public class WikiArticleService {
         wikiArticleRepository.deleteById(id);
     }
 
-    public List<WikiArticle> getAllWikiArticles() {
+    public List<WikiArticle> getAllWikiArticleList() {
         return wikiArticleRepository.findAll();
     }
 }
