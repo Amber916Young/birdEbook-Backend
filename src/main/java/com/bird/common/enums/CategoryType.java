@@ -5,7 +5,6 @@ package com.bird.common.enums;
  */
 
 public enum CategoryType {
-    SERIAL,
-    FINISH,
-    BREAK,
+    TYPE1,
+    TYPE2,
 }

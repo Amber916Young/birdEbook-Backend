@@ -39,7 +39,7 @@ public class WikiArticle implements Persistable<Long> {
     @NotNull
     @Size(min = 1, max = 100)
     @Column(length = 100, nullable = false)
-    private CategoryType category;
+    private String categoryType;
 
     @Column
     private String desc;
@@ -55,7 +55,7 @@ public class WikiArticle implements Persistable<Long> {
     private String wikiImageUrl;
 
     @Column
-    private WikiStatus status;
+    private String status;
 
     @Column
     @CreationTimestamp

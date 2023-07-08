@@ -1,6 +1,7 @@
 package com.bird.app.dto;
 
 import com.bird.common.enums.CategoryType;
+import com.bird.common.enums.WikiStatus;
 import lombok.Data;
 
 import java.time.ZonedDateTime;
@@ -16,10 +17,11 @@ import java.time.ZonedDateTime;
 public class WikiArticleDTO {
     private Long id;
     private String title;
-    private CategoryType category;
+    private String categoryType;
     private String tags;
     private String content;
     private String wikiImageUrl;
     private String desc;
+    private String status;
     private ZonedDateTime createTime;
 }

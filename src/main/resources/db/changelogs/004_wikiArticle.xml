@@ -12,7 +12,7 @@
             <column name="title" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="category" type="VARCHAR(100)">
+            <column name="category_type" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="desc" type="VARCHAR(500)"/>
