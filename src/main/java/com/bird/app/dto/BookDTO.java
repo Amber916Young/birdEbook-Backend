@@ -16,7 +16,7 @@ public class BookDTO {
 
     private String author;
 
-    private String avatar_url;
+    private String avatarUrl;
 
     private long userId;
 

@@ -31,12 +31,14 @@ public class WikiArticleService {
 
     public WikiArticle createArticle(WikiArticle wikiArticle) {
 
-
+        //TODO aad action to DB
+        wikiArticle.setUserId(-1L);
         return wikiArticleRepository.save(wikiArticle);
     }
 
     public WikiArticle getArticleById(Long id) {
-        return wikiArticleRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
+        return wikiArticleRepository.findById(id).orElseThrow(() ->
+                new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
     }
 
     public WikiArticle updateArticleById(Long id, WikiArticleDTO wikiArticleDTO) {

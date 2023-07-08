@@ -58,7 +58,8 @@ public class WikiController {
 
     // Update an existing article
     @PutMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<WikiArticleDTO> updateArticle(@PathVariable Long id, @RequestBody WikiArticleDTO wikiArticleDTO) {
+    public ResponseEntity<WikiArticleDTO> updateArticle(@PathVariable Long id,
+                                                        @RequestBody WikiArticleDTO wikiArticleDTO) {
         return ResponseEntity.ok(wikiArticleMapper.toDTO(wikiArticleService.updateArticleById(id, wikiArticleDTO)));
 
     }

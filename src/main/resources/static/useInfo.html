@@ -1,0 +1,439 @@
+
+<head>
+    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" type="text/css" href="privacy.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        .Hero{
+            display: none;
+        }
+        #content{
+            padding: 2rem;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .Pages-container {
+            max-width: auto;
+            white-space: revert;
+        }
+        #content  h2 {
+            color: #000;
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        .warpper {
+            padding: 2rem;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .warpper .tab {
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 0px 2px;
+            background: #32557f;
+            display: inline-block;
+            color: #fff;
+            border-radius: 3px 3px 0px 0px;
+            box-shadow: 0 0.5rem 0.8rem #00000080;
+        }
+
+       .warpper  .panels {
+            background: #fff;
+            box-shadow: 0 2rem 2rem #00000080;
+            min-height: 200px;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 3px;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+       .warpper    .panel {
+            display: none;
+            animation: fadein 0.8s;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+
+       .warpper      .radio {
+            display: none;
+        }
+
+        #one:checked ~ .panels #one-panel,
+        #two:checked ~ .panels #two-panel,
+        #three:checked ~ .panels #three-panel {
+            display: block;
+        }
+
+        #one:checked ~ .tabs #one-tab,
+        #two:checked ~ .tabs #two-tab,
+        #three:checked ~ .tabs #three-tab {
+            background: #fff;
+            color: #000;
+            border-top: 3px solid #32557f;
+        }
+
+
+
+       .warpper
+       div {
+            margin-bottom: 15px;
+
+        }
+
+       .warpper   .danger {
+            padding: 4px 12px;
+            background-color: #ffdddd;
+            border-left: 6px solid #f44336;
+        }
+
+
+       .warpper    .success {
+            background-color: #ddffdd;
+            border-left: 6px solid #04AA6D;
+        }
+
+       .warpper      .info {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+        }
+
+
+       .warpper    .warning {
+            background-color: #ffffcc;
+            border-left: 6px solid #ffeb3b;
+        }
+
+
+
+
+
+       .warpper     ol {
+            display: block;
+            margin-left: -10px;
+        }
+
+       .warpper       ol li {
+            display: block;
+            position: relative;
+        }
+
+       .warpper    ol li:not(:last-child) {
+            margin-bottom: 16px;
+        }
+
+       .warpper     ol li:before {
+            content: "";
+            position: absolute;
+            top: 1.2em;
+            left: -30px;
+            margin-top: -.9em;
+            background: linear-gradient(45deg, #f69ec4, #f9dd94);
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+        }
+
+       .warpper     ul {
+            counter-reset: index;
+            padding: 0;
+        }
+       .warpper     ul li {
+            counter-increment: index;
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            box-sizing: border-box;
+        }
+
+       .warpper     ul li::before {
+            content: counters(index, ".", decimal-leading-zero);
+            font-size: 1.5rem;
+            text-align: right;
+            font-weight: bold;
+            min-width: 50px;
+            padding-right: 12px;
+            font-variant-numeric: tabular-nums;
+            align-self: flex-start;
+            background-image: linear-gradient(to bottom, aquamarine, orangered);
+            background-attachment: fixed;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       .warpper     li + li {
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @use postcss-preset-env {
+            stage: 0;
+            autoprefixer: {
+                grid: true;
+            }
+            browsers: last 2 versions
+        }
+    </style>
+</head>
+<h2></h2>
+<div class="warpper">
+    <input class="radio" id="one" name="group" type="radio" checked>
+    <input class="radio" id="two" name="group" type="radio">
+    <input class="radio" id="three" name="group" type="radio">
+
+    <div class="tabs">
+        <label class="tab" id="one-tab" for="one">使用条例</label>
+        <label class="tab" id="two-tab" for="two">开发人员</label>
+        <label class="tab" id="three-tab" for="three">隐私协议</label>
+    </div>
+
+    <div class="panels">
+        <div class="panel" id="one-panel">
+            <div id="Home" class="tabcontent">
+
+                <div>
+                    <h3>一、总则</h3>
+                    <p>不断被炸号禁言举报的外部环境，是本论坛的诞生动机。我们的服务器设在非中国大陆地区，妳
+                        可以放心将这里当作妳的档案室，这里没有限流词，我们对女权媎妹永不禁言。
+                    </p>
+
+                    <p>
+                        🚫严禁：本论坛为全女论坛，严禁任何生理性别男性、社会性别男性、精神思想男性的雄性生物
+                        进入，一经发现立即封禁！也请所有媎妹发现有问题的账号，立即联系管理员！！
+                    </p>
+                    <p>
+                        版权问题：妳在本论坛的所有创作，版权均归妳所有。但论坛享有使用和传播的权利。如不想被
+                        传播使用，请在帖子内标注“限制传播”等字眼。
+                    </p>
+                </div>
+
+
+                <div>
+                    <h3> 二、注册、登录和邀请码</h3>
+                    <p>本论坛采用邀请制，妳可以向witchat@gmail.com发送申请邮件来获得邀请码。</p>
+                    <p>如果妳想邀请妳的朋友，可以向管理员私信申请。</p>
+                    <p>注意：请确保妳的朋友不会背刺本论坛。如果妳不确定她的立场，可以向她提问两个问题：</p>
+                    <ul >
+                        <li>
+                            怎么看待称呼已婚女性为“驴”？
+                        </li>
+                        <li>
+                            怎么看待“服美役”？
+                        </li>
+                    </ul>
+                    <p>如果以上答案都偏“否定态度“，那么请勿邀请。</p>
+
+
+                </div>
+
+
+                <div>
+                    <h3> 三、论坛各板块使用说明</h3>
+
+                    <div>
+                        <h4>3.1 【女权主义】板块</h4>
+
+                        <p>该板块为女权主义理论交流板块，下有”国际女权“、”爱女文字“、”母系社会“、”读书笔
+                            记“、”消费主义与商业化“等板块，在选择发布tag时，可以多选。</p>
+                        <p>如果妳有想要开辟的tag建议，可以私信管理员。</p>
+
+                    </div>
+
+                    <div>
+                        <h4>3.2 【女巫怪谈】板块</h4>
+
+                        <p>该板块为小说连载板块，主要为小说更新动态和作者动态。需要作者在小说后台完成内容上传
+                            后，在该板块发布一条更新动态。</p>
+
+                    </div>
+
+
+                    <div>
+                        <h4>3.3 【女权百科】板块</h4>
+
+                        <p>该板块为女权词典，妳可以在这里创建女权相关的专有名词、社会事件、相关人物等词条，在涉
+                            及有关内容时，需要给出引用来源。</p>
+
+                    </div>
+
+
+                    <div>
+                        <h4>3.4 【社会热点】板块</h4>
+
+                        <p>该板块为社会热点事件更新、讨论专区，妳可以在这里发布需要她人帮助或需要帮顶热度的帖子。</p>
+
+                    </div>
+
+
+                    <div>
+                        <h4>3.5 【自由聊天时间】板块</h4>
+
+                        <p>该板块为实时聊天室，每天5点清空所有内容，妳可以在这里不限主题的聊天，但如果遇到对你
+                            有帮助的内容，请及时保存。</p>
+
+                    </div>
+
+
+                    <div>
+                        <h4>3.6 【杂谈】板块</h4>
+
+                        <p>该板块可以讨论女权以外的议题，但希望妳可以输出对她人有长期价值的内容。</p>
+
+                    </div>
+
+
+                </div>
+                <div>
+                    <h3>四、允许的&禁止的</h3>
+                    <p>
+                        本论坛允许攻击精神男人，但禁止使用辱女词，被提醒仍使用者将被永久封禁！
+                    </p>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="panel" id="two-panel">
+            <div id="About" class="tabcontent">
+                <h3>开发人员</h3>
+                <p>感谢以下所有参与网站建设的媎妹，没有妳们就没有现在的网站 </p>
+                <p> 发起人&管理员：</p>
+                <p> 技术人员：</p>
+                <p>设计师：</p>
+                <p>
+                    如果妳已取得以下媎妹的信任，同样可以找她们获取邀请码：
+                </p>
+
+            </div>
+
+        </div>
+        <div class="panel" id="three-panel">
+            <div id="Contact" class="tabcontent">
+                <h3>隐私协议</h3>
+                <div class="danger">
+                    <p>注：该内容为AI生成，为一般性条款</p>
+                </div>
+                <h4> 女巫怪谈 隐私政策</h4>
+                <p>欢迎您访问我们的产品。</p>
+
+                <p>女巫怪谈（包括网站等产品提供的服务，以下简称“产品和服务”）是由 女巫 （以下简称“我们”）开发并运营的。 确保用户的数据安全和隐私保护是我们的首要任务，本隐私政策载明了
+                    您访问和使用我们的产品和服务时所收集的数据及其处理方式。
+                    <br/> <br/>
+                    请您在继续使用我们的产品前务必认真仔细阅读并确认充分理解本隐私政策全部规则和要点，一旦您选择使用，即视为您同意本隐私政策的全部内容，同意我们按其收集和使用您的相关信息。
+
+                    <br/><br/> 如您在在阅读过程中，对本政策有任何疑问，可联系我们的客服咨询， 请通过
+                    witchat@gmail.com 或产品中的反馈方式与我们取得联系。 如您不同意相关协议或其中的任何
+                    条款的，您应停止使用我们的产品和服务。</p>
+
+
+                <p>本隐私政策帮助您了解以下内容：</p>
+                <ul class="gradient-list">
+                    <li>我们如何收集和使用您的个人信息；</li>
+                    <li>我们如何存储和保护您的个人信息</li>
+                    <li>我们如何共享、转让、公开披露您的个人信息；</li>
+                    <li>我们如何使用 Cookie 和其他追踪技术；</li>
+                </ul>
+
+                <div>
+                    <h4>一、我们如何收集和使用您的个人信息</h4>
+                    <p>
+                        个人信息是指以电子或者其他方式记录的能够单独或者与其他信息， 结合识别特定自然人身份
+                        或者反映特定自然人活动情况的各种信息。 我们根据《中华人民共和国网络安全法》和《信息
+                        安全技术个人信息安全规范》（GB/T 35273-2017） 以及其它相关法律法规的要求，并严格
+                        遵循正当、合法、必要的原则， 出于您使用我们提供的服务和/或产品等过程中而收集和使用您
+                        的个人信息，包括但不限于电子邮箱地址等。
+                    </p>
+                    <p>为接受我们全面的产品服务，您应首先注册一个用户账号，我们将通过它记录相关的数据。 您
+                        所提供的所有信息均来自于您本人在注册时提供的数据。 您准备使用的账户名、密码、您本人
+                        的联系方式， 我们可能通过发短信或者邮件的方式来验证您的身份是否有效。</p>
+                </div>
+
+                <div>
+                    <h4>二、我们如何存储和保护您的个人信息</h4>
+
+                    <p>
+                        作为一般规则，我们仅在实现信息收集目的所需的时间内保留您的个人信息。 我们会在对于管
+                        理与您之间的关系严格必要的时间内保留您的个人信息 （例如，当您开立帐户，从我们的产品
+                        获取服务时）。 出于遵守法律义务或为证明某项权利或合同满足适用的诉讼时效要求的目的，
+                        我们可能需要在上述期限到期后保留您存档的个人信息，并且无法按您的要求删除。 当您的个
+                        人信息对于我们的法定义务或法定时效对应的目的或档案不再必要时， 我们确保将其完全删除
+                        或匿名化。 如果您确认不再使用我们的产品和服务，并按照要求主动注销了您的账户，所有信
+                        息将被完全删除。
+                    </p>
+
+                    <p>
+                        值得一提的是，为了加强对隐私数据的保护，我们在收集时就已对其进行了脱敏处理， 即使在
+                        我们自己的数据库中，也不会储存具有关联性的、明文的隐私数据。
+                    </p>
+                </div>
+
+                <div>
+                    <h4>三、我们如何共享、转让、公开披露您的个人信息</h4>
+                    <p>在管理我们的日常业务活动所需要时，为追求合法利益以更好地服务客户， 我们将合规且恰当
+                        的使用您的个人信息。出于对业务和各个方面的综合考虑， 我们仅自身使用这些数据，不与任
+                        何第三方分享。</p>
+
+
+                    <p>
+                        我们可能会根据法律法规规定，或按政府主管部门的强制性要求，对外共享您的个人信息。 在
+                        符合法律法规的前提下，当我们收到上述披露信息的请求时，我们会要求必须出具与之相应的法
+                        律文件，如传票或调查函。 我们坚信，对于要求我们提供的信息，应该在法律允许的范围内尽
+                        可能保持透明。
+                    </p>
+
+                    <p>
+                        在以下情形中，共享、转让、公开披露您的个人信息无需事先征得您的授权同意：
+                    </p>
+
+                    <ol>
+                        <li>与国家安全、国防安全直接相关的；</li>
+                        <li>与犯罪侦查、起诉、审判和判决执行等直接相关的；</li>
+                        <li>出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；</li>
+                        <li>您自行向社会公众公开的个人信息；</li>
+                        <li>从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道；</li>
+                        <li>根据个人信息主体要求签订和履行合同所必需的；</li>
+                        <li>用于维护所提供的产品或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；</li>
+                        <li>法律法规规定的其他情形。</li>
+                    </ol>
+
+                </div>
+
+
+                <div>
+                    <h4>四、我们如何使用 Cookie 和其他追踪技术</h4>
+                    <p>
+                        为确保产品正常运转，我们会在您的计算机或移动设备上存储名为 Cookie 的小数据文件。
+                        Cookie 通常包含标识符、产品名称以及一些号码和字符。
+                        借助于 Cookie，我们能够存储您的偏好或商品等数据，并用以判断注册用户是否已经登录， 提升服务和产品质量及优化用户体验。
+                    </p>
+
+                    <p>
+                        我们出于不同的目的使用各种Cookie，包括：严格必要型Cookie、性能Cookie、营销Cookie和
+                        功能Cookie。 某些Cookie可能由外部第三方提供，以向我们的产品提供其它功能。
+                        我们不会将Cookie 用于本政策所述目的之外的任何用途。您可根据自己的偏好管理或删除 Cookie。
+                        您可以清除计算机上或手机中保存的所有 Cookie，大部分网络浏览器都设有阻止或禁用 Cookie的功能，
+                        您可对浏览器进行配置。阻止或禁用 Cookie 功能后，可能影响您使用或不能充分使用我们的产品和服务。
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

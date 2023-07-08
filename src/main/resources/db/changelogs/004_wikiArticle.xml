@@ -15,11 +15,8 @@
             <column name="category_type" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="desc" type="VARCHAR(500)"/>
             <column name="wiki_image_url" type="VARCHAR(200)"/>
-
             <column name="description" type="VARCHAR(500)"/>
-
             <column name="tags" type="VARCHAR(200)"/>
 
             <column name="content" type="LONGTEXT">

@@ -21,7 +21,8 @@ public class WikiArticleDTO {
     private String tags;
     private String content;
     private String wikiImageUrl;
-    private String desc;
+    private String description;
     private String status;
+    private Long userId;
     private ZonedDateTime createTime;
 }

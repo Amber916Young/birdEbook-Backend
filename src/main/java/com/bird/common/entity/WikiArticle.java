@@ -42,7 +42,7 @@ public class WikiArticle implements Persistable<Long> {
     private String categoryType;
 
     @Column
-    private String desc;
+    private String description;
 
     @Column
     private String tags;
@@ -56,7 +56,8 @@ public class WikiArticle implements Persistable<Long> {
 
     @Column
     private String status;
-
+    @Column
+    private Long userId;
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;

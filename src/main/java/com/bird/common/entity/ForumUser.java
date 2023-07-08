@@ -29,7 +29,7 @@ public class ForumUser implements Persistable<Long> {
 
     @Size(min = 1, max = 200)
     @Column(length = 200)
-    private String avatar_url;
+    private String avatarUrl;
 
     @NotNull
     @Size(min = 1, max = 150)
