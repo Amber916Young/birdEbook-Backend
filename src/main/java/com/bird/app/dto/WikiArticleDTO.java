@@ -1,7 +1,4 @@
 package com.bird.app.dto;
-
-import com.bird.common.enums.CategoryType;
-import com.bird.common.enums.WikiStatus;
 import lombok.Data;
 
 import java.time.ZonedDateTime;

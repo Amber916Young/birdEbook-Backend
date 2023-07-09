@@ -41,8 +41,9 @@ public class WikiArticleService {
                 new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
     }
 
-    public WikiArticle updateArticleById(Long id, WikiArticleDTO wikiArticleDTO) {
-        WikiArticle wikiArticle = new WikiArticle();
+    public WikiArticle updateArticleById( WikiArticle wikiArticle) {
+        WikiArticle pre =  getArticleById(wikiArticle.getId());
+        wikiArticle.setUserId(pre.getUserId());
         return wikiArticleRepository.save(wikiArticle);
     }
 
