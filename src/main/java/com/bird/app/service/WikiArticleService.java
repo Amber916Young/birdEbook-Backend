@@ -4,7 +4,9 @@ import com.bird.app.dto.PageDTO;
 import com.bird.app.dto.WikiArticleDTO;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
+import com.bird.common.entity.WikiAction;
 import com.bird.common.entity.WikiArticle;
+import com.bird.common.enums.OperationType;
 import com.bird.common.repository.WikiArticleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,10 +32,18 @@ public class WikiArticleService {
     private final WikiActionService wikiActionService;
 
     public WikiArticle createArticle(WikiArticle wikiArticle) {
-
         //TODO aad action to DB
         wikiArticle.setUserId(-1L);
-        return wikiArticleRepository.save(wikiArticle);
+        WikiArticle newWiki =  wikiArticleRepository.save(wikiArticle);
+
+        WikiAction wikiAction = new WikiAction();
+        wikiAction.setWikiId(newWiki.getId());
+        wikiAction.setUserId(-1L);
+        wikiAction.setOperationType(OperationType.INSERT.name());
+        wikiAction.setUsername("testUser");
+        wikiActionService.createWikiAction(wikiAction);
+
+        return newWiki;
     }
 
     public WikiArticle getArticleById(Long id) {
@@ -44,10 +54,25 @@ public class WikiArticleService {
     public WikiArticle updateArticleById( WikiArticle wikiArticle) {
         WikiArticle pre =  getArticleById(wikiArticle.getId());
         wikiArticle.setUserId(pre.getUserId());
+
+        WikiAction wikiAction = new WikiAction();
+        wikiAction.setWikiId(wikiArticle.getId());
+        wikiAction.setUserId(-1L);
+        wikiAction.setOperationType(OperationType.UPDATE.name());
+        wikiAction.setUsername("testUser");
+        wikiActionService.createWikiAction(wikiAction);
+
         return wikiArticleRepository.save(wikiArticle);
     }
 
     public void deleteArticleById(Long id) {
+        WikiAction wikiAction = new WikiAction();
+        wikiAction.setWikiId(id);
+        wikiAction.setUserId(-1L);
+        wikiAction.setOperationType(OperationType.DELETE.name());
+        wikiAction.setUsername("testUser");
+        wikiActionService.createWikiAction(wikiAction);
+
         wikiArticleRepository.deleteById(id);
     }
 

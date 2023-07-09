@@ -43,7 +43,7 @@ public class WikiAction {
 
     @NotNull
     @Column
-    private OperationType  operationType;
+    private String   operationType;
 
 
     @Column
