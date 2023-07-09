@@ -23,5 +23,6 @@ public enum ErrorReasonCode {
     Company_Not_Verify,
     Invalid_Parameters,
     ACCESS_Denied,
+    Upload_Image_invalid,
     Not_File,
 }
