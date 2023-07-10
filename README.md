@@ -99,7 +99,9 @@ create a new DB: category_type
 
 #### Need
 
-分类管理category， 数结构
+分类管理category， tree结构
+<img width="256" alt="image" src="https://github.com/Amber916Young/birdEbook-Backend/assets/57694784/6ae81838-e15b-4c8f-9c09-85781f6f8ee9">
+
 
 
  
