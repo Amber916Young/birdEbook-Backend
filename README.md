@@ -95,5 +95,12 @@ imgur图床图片上传
 
 WikiArticle DB change, userid --> created_by
 
+create a new DB: category_type
+
+#### Need
+
+分类管理category， 数结构
+
+
  
 
