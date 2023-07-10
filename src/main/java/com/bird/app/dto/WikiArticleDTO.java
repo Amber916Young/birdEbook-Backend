@@ -20,6 +20,6 @@ public class WikiArticleDTO {
     private String wikiImageUrl;
     private String description;
     private String status;
-    private Long userId;
+    private String createdBy;
     private ZonedDateTime createTime;
 }

@@ -4,9 +4,12 @@ import com.bird.app.dto.WikiActionDTO;
 import com.bird.app.mapper.WikiActionMapper;
 import com.bird.app.mapper.WikiArticleMapper;
 import com.bird.app.service.WikiActionService;
+import com.bird.common.entity.WikiAction;
+import com.bird.common.entity.WikiArticle;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +38,15 @@ public class WikiActionController {
         return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.createWikiAction(wikiActionMapper.toEntity(wikiActionDTO))), HttpStatus.CREATED);
     }
 
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<?> getAllWikiArticleList(@RequestParam("pageNumber") int pageNumber,
+                                                   @RequestParam("pageSize") int pageSize,
+                                                   @RequestParam("queryStr") String queryStr) {
 
+
+        Page<WikiAction> articles = wikiActionService.getAllWikiActionList(pageNumber, pageSize, queryStr);
+        return new ResponseEntity<>(articles, HttpStatus.OK);
+    }
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<WikiActionDTO> getWikiActionById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.getWikiActionById(id)), HttpStatus.OK);

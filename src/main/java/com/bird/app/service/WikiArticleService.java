@@ -33,7 +33,7 @@ public class WikiArticleService {
 
     public WikiArticle createArticle(WikiArticle wikiArticle) {
         //TODO aad action to DB
-        wikiArticle.setUserId(-1L);
+        wikiArticle.setCreatedBy("testUser");
         WikiArticle newWiki =  wikiArticleRepository.save(wikiArticle);
 
         WikiAction wikiAction = new WikiAction();
@@ -53,7 +53,7 @@ public class WikiArticleService {
 
     public WikiArticle updateArticleById( WikiArticle wikiArticle) {
         WikiArticle pre =  getArticleById(wikiArticle.getId());
-        wikiArticle.setUserId(pre.getUserId());
+        wikiArticle.setCreatedBy(pre.getCreatedBy());
 
         WikiAction wikiAction = new WikiAction();
         wikiAction.setWikiId(wikiArticle.getId());

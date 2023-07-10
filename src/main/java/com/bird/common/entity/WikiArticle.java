@@ -56,8 +56,11 @@ public class WikiArticle implements Persistable<Long> {
 
     @Column
     private String status;
+
     @Column
-    private Long userId;
+    @NotNull
+    private String createdBy;
+
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
