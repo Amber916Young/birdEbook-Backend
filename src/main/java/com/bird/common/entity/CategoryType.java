@@ -42,6 +42,9 @@ public class CategoryType implements Persistable<Long> {
     private String icon;
 
     @Column
+    private String description;
+
+    @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
 

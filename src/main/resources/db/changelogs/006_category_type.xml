@@ -16,6 +16,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="icon" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(500)"/>
+
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
