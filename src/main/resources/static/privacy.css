@@ -169,10 +169,10 @@ li + li {
     border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-@use postcss-preset-env {
-    stage: 0;
-    autoprefixer: {
-        grid: true;
-    }
-    browsers: last 2 versions
-}
+/*@use postcss-preset-env {*/
+/*    stage: 0;*/
+/*    autoprefixer: {*/
+/*        grid: true;*/
+/*    }*/
+/*    browsers: last 2 versions*/
+/*}*/
