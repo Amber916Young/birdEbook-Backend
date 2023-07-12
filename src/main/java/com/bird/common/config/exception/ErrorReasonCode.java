@@ -11,7 +11,7 @@ public enum ErrorReasonCode {
     Server_Error, // unexpected server error
     WikiAction_Already_Delete,
     WikiAction_Cannot_Found,
-    Order_Cannot_Update,
+    Tags_Cannot_Found,
     Order_Cannot_Found,
     User_Not_Found,
     Company_Not_Found,

@@ -1,7 +1,5 @@
 package com.bird.common.entity;
 
-import com.bird.common.enums.CategoryType;
-import com.bird.common.enums.WikiStatus;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;

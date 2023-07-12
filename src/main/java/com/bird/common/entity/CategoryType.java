@@ -29,7 +29,6 @@ public class CategoryType implements Persistable<Long> {
     @Column
     private Long id;
 
-    @Id
     @Column
     private Long pid;
 

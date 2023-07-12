@@ -77,7 +77,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/actuator/health").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/**").permitAll()
-                .antMatchers("/api/wikiactions/**").permitAll()
                 .antMatchers("/api/unsubscribe").permitAll()
                 .anyRequest().authenticated();
 
