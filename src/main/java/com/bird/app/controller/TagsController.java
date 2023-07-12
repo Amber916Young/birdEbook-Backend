@@ -1,5 +1,9 @@
 package com.bird.app.controller;
 
+import com.bird.app.mapper.BookMapper;
+import com.bird.app.mapper.TagsMapper;
+import com.bird.app.service.BookService;
+import com.bird.app.service.TagsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,5 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class TagsController {
+
+    private final TagsMapper tagsMapper;
+    private final TagsService tagsService;
+
+
+
+
 
 }
