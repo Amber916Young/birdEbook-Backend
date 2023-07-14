@@ -54,7 +54,7 @@ public class WikiArticleService {
     public WikiArticle updateArticleById( WikiArticle wikiArticle) {
         WikiArticle pre =  getArticleById(wikiArticle.getId());
         wikiArticle.setCreatedBy(pre.getCreatedBy());
-
+        wikiArticle.setCreateTime(pre.getCreateTime());
         WikiAction wikiAction = new WikiAction();
         wikiAction.setWikiId(wikiArticle.getId());
         wikiAction.setUserId(-1L);

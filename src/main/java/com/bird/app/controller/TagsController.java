@@ -37,6 +37,11 @@ public class TagsController {
         return new ResponseEntity<>(tagsMapper.toDTO(tagsService.createTags(tagsMapper.toEntity(tagsDTO))), HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/all",produces = "application/json")
+    public ResponseEntity<?> getAllTagsListWithoutPage() {
+        return new ResponseEntity<>(tagsMapper.toDTOList(tagsService.getAllTagsListWithoutPage()), HttpStatus.OK);
+    }
+
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getAllTagsList(@RequestParam("pageNumber") int pageNumber,
                                                    @RequestParam("pageSize") int pageSize,

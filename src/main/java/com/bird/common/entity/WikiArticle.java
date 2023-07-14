@@ -53,7 +53,7 @@ public class WikiArticle implements Persistable<Long> {
     private String wikiImageUrl;
 
     @Column
-    private String status;
+    private boolean status;
 
     @Column
     @NotNull

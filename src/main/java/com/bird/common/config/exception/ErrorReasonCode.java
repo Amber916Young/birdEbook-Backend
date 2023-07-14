@@ -12,7 +12,7 @@ public enum ErrorReasonCode {
     WikiAction_Already_Delete,
     WikiAction_Cannot_Found,
     Tags_Cannot_Found,
-    Order_Cannot_Found,
+    Category_Cannot_Found,
     User_Not_Found,
     Company_Not_Found,
     Email_Send_Fail,

@@ -2,13 +2,14 @@ package com.bird.app.service;
 
 import com.bird.app.dto.CategoryTreeDTO;
 import com.bird.app.mapper.CategoryTypeMapper;
+import com.bird.common.config.exception.ErrorReasonCode;
+import com.bird.common.config.exception.NotFoundRequestException;
 import com.bird.common.entity.CategoryType;
+import com.bird.common.entity.Tags;
 import com.bird.common.repository.CategoryTypeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ public class CategoryTypeService {
     final CategoryTypeRepository categoryTypeRepository;
     final CategoryTypeMapper categoryTypeMapper;
 
-
     public List<CategoryTreeDTO> findAllCategoryAndChildren() {
         List<CategoryType> categoryTypes = categoryTypeRepository.findAll();
 
@@ -44,10 +44,8 @@ public class CategoryTypeService {
         categoryTypes.forEach(category -> {
             CategoryTreeDTO categoryDTO = categoryMap.get(category.getId());
             if (category.getPid() == 0) {
-                // Category is a root node
                 categoryTree.add(categoryDTO);
             } else {
-                // Category has a parent, add it as a child to the parent category
                 CategoryTreeDTO parentCategory = categoryMap.get(category.getPid());
                 if (parentCategory != null) {
                     parentCategory.getChildren().add(categoryDTO);
@@ -59,4 +57,19 @@ public class CategoryTypeService {
 
 
     }
+
+    public CategoryType createCategory(CategoryType categoryType) {
+        return categoryTypeRepository.save(categoryType);
+    }
+
+    public CategoryType updateCategory(CategoryType categoryType) {
+        CategoryType pre = getCategoryTypeById(categoryType.getId());
+        categoryType.setCreateTime(pre.getCreateTime());
+        return categoryTypeRepository.save(categoryType);
+    }
+
+    private CategoryType getCategoryTypeById(Long id) {
+        return categoryTypeRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.Category_Cannot_Found));
+    }
+
 }

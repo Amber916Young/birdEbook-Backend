@@ -1,5 +1,6 @@
 package com.bird.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -17,10 +18,9 @@ public class CategoryTreeDTO {
     private Long id;
     private String name;
     private Long pid;
-    private boolean open = true;
-    private boolean checked = false;
     private String icon;
     private String description;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<CategoryTreeDTO> children = new ArrayList<>();
 }
 

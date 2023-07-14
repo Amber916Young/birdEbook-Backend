@@ -31,10 +31,7 @@ public class CategoryType implements Persistable<Long> {
 
     @Column
     private Long pid;
-    @Column
-    private boolean open;
-    @Column
-    private boolean checked;
+
     @NotNull
     @Size(min = 1, max = 200)
     @Column(length = 200, nullable = false)

@@ -19,7 +19,7 @@ public class WikiArticleDTO {
     private String content;
     private String wikiImageUrl;
     private String description;
-    private String status;
+    private boolean status;
     private String createdBy;
     private ZonedDateTime createTime;
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @ClassName:TagsService
@@ -43,8 +44,9 @@ public class TagsService {
 
     public Tags getTagsById(Long id) {
         return tagsRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.Tags_Cannot_Found));
-
     }
+
+
     public void deleteTags(Long id) {
         tagsRepository.deleteById(id);
     }
@@ -54,5 +56,9 @@ public class TagsService {
         updateTag.setIcon(tags.getIcon());
         updateTag.setName(tags.getName());
         return tagsRepository.save(updateTag);
+    }
+
+    public List<Tags> getAllTagsListWithoutPage() {
+        return tagsRepository.findAll();
     }
 }
