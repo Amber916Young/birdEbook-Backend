@@ -44,7 +44,8 @@ public class WikiArticle implements Persistable<Long> {
 
     @Column
     private String tags;
-
+    @Column
+    private Long views;
     @NotNull
     @Column
     private String content;
