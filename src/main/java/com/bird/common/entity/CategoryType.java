@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * @ClassName:CategoryType
@@ -47,6 +50,10 @@ public class CategoryType implements Persistable<Long> {
     @CreationTimestamp
     private ZonedDateTime createTime;
 
+    @OneToMany(mappedBy = "cateId", cascade = ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<CategoryTypeUseLog> categoryTypeUseLogList;
     @Override
     public boolean isNew() {
         return id == null;

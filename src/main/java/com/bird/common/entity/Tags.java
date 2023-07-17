@@ -5,6 +5,10 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * @author birdyyoung
@@ -44,6 +48,9 @@ public class Tags {
     @CreationTimestamp
     private ZonedDateTime createTime;
 
-
+    @OneToMany(mappedBy = "tagId", cascade = ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<TagsUseLog> tagsUseLogList;
 
 }
