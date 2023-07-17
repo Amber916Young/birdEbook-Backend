@@ -31,7 +31,6 @@ public class TagsController {
 
     private final TagsMapper tagsMapper;
     private final TagsService tagsService;
-    private final TagsUseLogService tagsUseLogService;
 
     // Create
     @PostMapping(produces = "application/json")

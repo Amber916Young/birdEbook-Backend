@@ -15,6 +15,8 @@ public class WikiArticleDTO {
     private Long id;
     private String title;
     private String categoryType;
+    private String categoryTypeValue;
+    private String tagsValue;
     private String tags;
     private String content;
     private String wikiImageUrl;

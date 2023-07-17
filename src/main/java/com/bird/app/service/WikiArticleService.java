@@ -1,10 +1,7 @@
 package com.bird.app.service;
 
-import com.bird.app.dto.PageDTO;
-import com.bird.app.dto.WikiArticleDTO;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
-import com.bird.common.entity.WikiAction;
 import com.bird.common.entity.WikiArticle;
 import com.bird.common.enums.OperationType;
 import com.bird.common.repository.WikiArticleRepository;
@@ -13,11 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 /**
  * @author birdyyoung
@@ -30,18 +25,19 @@ public class WikiArticleService {
 
     private final WikiArticleRepository wikiArticleRepository;
     private final WikiActionService wikiActionService;
+    private final TagsUseLogService tagsUseLogService;
+    private final CategoryTypeUseLogService categoryTypeUseLogService;
 
     public WikiArticle createArticle(WikiArticle wikiArticle) {
-        //TODO aad action to DB
+        //TODO Get from session
         wikiArticle.setCreatedBy("testUser");
         WikiArticle newWiki =  wikiArticleRepository.save(wikiArticle);
 
-        WikiAction wikiAction = new WikiAction();
-        wikiAction.setWikiId(newWiki.getId());
-        wikiAction.setUserId(-1L);
-        wikiAction.setOperationType(OperationType.INSERT.name());
-        wikiAction.setUsername("testUser");
-        wikiActionService.createWikiAction(wikiAction);
+        Long articleId= newWiki.getId();
+
+        tagsUseLogService.createWikiTagsLog(articleId,wikiArticle.getTags());
+        categoryTypeUseLogService.createWikiCategoryTypeUseLog(articleId,wikiArticle.getCategoryType());
+        wikiActionService.createWikiActionByArticleId(articleId,OperationType.INSERT.name());
 
         return newWiki;
     }
@@ -52,27 +48,26 @@ public class WikiArticleService {
     }
 
     public WikiArticle updateArticleById( WikiArticle wikiArticle) {
-        WikiArticle pre =  getArticleById(wikiArticle.getId());
+        Long articleId= wikiArticle.getId();
+
+        WikiArticle pre =  getArticleById(articleId);
         wikiArticle.setCreatedBy(pre.getCreatedBy());
         wikiArticle.setCreateTime(pre.getCreateTime());
-        WikiAction wikiAction = new WikiAction();
-        wikiAction.setWikiId(wikiArticle.getId());
-        wikiAction.setUserId(-1L);
-        wikiAction.setOperationType(OperationType.UPDATE.name());
-        wikiAction.setUsername("testUser");
-        wikiActionService.createWikiAction(wikiAction);
+
+        tagsUseLogService.deleteTagsUseLogByArticleId(articleId);
+        categoryTypeUseLogService.deletecategoryTypeUseLogByArticleId(articleId);
+        tagsUseLogService.createWikiTagsLog(articleId,wikiArticle.getTags());
+        categoryTypeUseLogService.createWikiCategoryTypeUseLog(articleId,wikiArticle.getCategoryType());
+
+        wikiActionService.createWikiActionByArticleId(wikiArticle.getId(),OperationType.UPDATE.name());
 
         return wikiArticleRepository.save(wikiArticle);
     }
 
     public void deleteArticleById(Long id) {
-        WikiAction wikiAction = new WikiAction();
-        wikiAction.setWikiId(id);
-        wikiAction.setUserId(-1L);
-        wikiAction.setOperationType(OperationType.DELETE.name());
-        wikiAction.setUsername("testUser");
-        wikiActionService.createWikiAction(wikiAction);
-
+        wikiActionService.createWikiActionByArticleId(id,OperationType.DELETE.name());
+        tagsUseLogService.deleteTagsUseLogByArticleId(id);
+        categoryTypeUseLogService.deletecategoryTypeUseLogByArticleId(id);
         wikiArticleRepository.deleteById(id);
     }
 

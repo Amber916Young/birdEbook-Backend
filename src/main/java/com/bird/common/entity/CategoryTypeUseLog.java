@@ -31,7 +31,7 @@ public class CategoryTypeUseLog {
     @Column
     private Long cateId;
     @Column
-    private ArticleType articleType;
+    private String articleType;
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;

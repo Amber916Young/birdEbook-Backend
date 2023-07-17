@@ -31,6 +31,8 @@ public class TagsService {
     @Autowired
     private TagsRepository tagsRepository;
 
+    private final TagsUseLogService tagsUseLogService;
+
 
     public Page<Tags> getAllTagsList(int pageNumber, int pageSize, String queryStr) {
         int pageNo = pageNumber == 0 ? 0: pageNumber-1;

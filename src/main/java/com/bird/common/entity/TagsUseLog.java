@@ -31,7 +31,7 @@ public class TagsUseLog {
     @Column
     private Long tagId;
     @Column
-    private ArticleType articleType;
+    private String  articleType;
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
