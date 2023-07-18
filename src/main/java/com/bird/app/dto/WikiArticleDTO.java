@@ -22,7 +22,9 @@ public class WikiArticleDTO {
     private String wikiImageUrl;
     private String description;
     private Long views;
+    private Long favourite;
     private boolean status;
     private String createdBy;
     private ZonedDateTime createTime;
+    private ZonedDateTime modifyTime;
 }

@@ -31,7 +31,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="modify_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column  name="modify_time"  type="datetime">
+                <def
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
