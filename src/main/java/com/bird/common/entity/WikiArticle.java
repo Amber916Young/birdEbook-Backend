@@ -45,7 +45,15 @@ public class WikiArticle implements Persistable<Long> {
     @Column
     private String tags;
     @Column
-    private Long views;
+    private Long viewCount;
+
+    @Column
+    private Long diggCount;
+
+    @Column
+    private Long commentCount;
+    @Column
+    private Long collectCount;
     @NotNull
     @Column
     private String content;

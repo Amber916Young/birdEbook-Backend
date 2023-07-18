@@ -31,11 +31,11 @@
                 <constraints nullable="false"/>
             </column>
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column  name="modify_time"  type="datetime" defaultValueComputed="CURRENT_TIMESTAMP2" />
+            <column  name="modify_time"  type="datetime" defaultValue="CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" />
         </createTable>
 
         <modifySql dbms="mysql">
-            <regExpReplace replace="'CURRENT_TIMESTAMP2'" with="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
+            <regExpReplace replace="'CURRENT_TIMESTAMP'" with="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
             <append value=" engine innodb" />
         </modifySql>
     </changeSet>
