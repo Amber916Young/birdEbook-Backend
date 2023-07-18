@@ -63,6 +63,7 @@ public class WikiArticle implements Persistable<Long> {
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
+
     @Column
     @LastModifiedDate
     private ZonedDateTime modifyTime;
