@@ -1,17 +1,18 @@
 package com.bird.common.entity;
 
-import com.bird.common.enums.ArticleType;
+import com.bird.common.enums.OperationType;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
 /**
- * @ClassName:CategoryTypeUseLog
- * @Auther: yyj
+ * @author birdyyoung
+ * @ClassName:Logger
  * @Description:
- * @Date: 17/07/2023 16:31
+ * @Date: 01/07/2023 19:27
  * @Version: v1.0
  */
 
@@ -21,17 +22,30 @@ import java.time.ZonedDateTime;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-public class CategoryTypeUseLog {
+public class ArticleAction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
     @Column
+    @NotNull
+    private Long userId;
+
+    @Column
+    @NotNull
     private Long articleId;
+
+    @NotNull
     @Column
-    private Long cateId;
+    private String username;
+
+    @Enumerated(EnumType.STRING)
+    @NotNull
     @Column
-    private String articleType;
+    private OperationType   operationType;
+
+
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;

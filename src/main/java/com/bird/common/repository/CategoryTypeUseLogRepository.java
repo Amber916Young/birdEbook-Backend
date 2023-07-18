@@ -1,6 +1,6 @@
 package com.bird.common.repository;
 
-import com.bird.common.entity.CategoryTypeUseLog;
+import com.bird.common.entity.CategoryUseLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @Version: v1.0
  */
 @Repository
-public interface CategoryTypeUseLogRepository extends JpaRepository<CategoryTypeUseLog,Long> {
+public interface CategoryTypeUseLogRepository extends JpaRepository<CategoryUseLog,Long> {
 
     void deleteByArticleId(Long articleId);
 }

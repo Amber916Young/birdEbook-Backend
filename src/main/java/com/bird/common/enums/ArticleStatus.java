@@ -1,19 +1,19 @@
 package com.bird.common.enums;
 
 /**
- * @ClassName:ArticleType
- * @Auther: yyj
+ * @author birdyyoung
+ * @ClassName:WikiStatus
  * @Description:
- * @Date: 17/07/2023 16:42
+ * @Date: 06/07/2023 20:21
  * @Version: v1.0
  */
-public enum ArticleType {
-    WIKI("Wiki"),
-    BLOG("Blog");
+public enum ArticleStatus {
+    ACTIVE("Active"),
+    DEACTIVATE("Deactivate");
 
     private String label;
 
-    ArticleType(String label) {
+    ArticleStatus(String label) {
         this.label = label;
     }
 

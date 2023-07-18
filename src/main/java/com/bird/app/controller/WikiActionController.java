@@ -2,13 +2,10 @@ package com.bird.app.controller;
 
 import com.bird.app.dto.WikiActionDTO;
 import com.bird.app.mapper.WikiActionMapper;
-import com.bird.app.mapper.WikiArticleMapper;
 import com.bird.app.service.WikiActionService;
-import com.bird.common.entity.WikiAction;
-import com.bird.common.entity.WikiArticle;
+import com.bird.common.entity.ArticleAction;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +41,7 @@ public class WikiActionController {
                                                    @RequestParam("queryStr") String queryStr) {
 
 
-        Page<WikiAction> articles = wikiActionService.getAllWikiActionList(pageNumber, pageSize, queryStr);
+        Page<ArticleAction> articles = wikiActionService.getAllWikiActionList(pageNumber, pageSize, queryStr);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
     @GetMapping(value = "/{id}", produces = "application/json")

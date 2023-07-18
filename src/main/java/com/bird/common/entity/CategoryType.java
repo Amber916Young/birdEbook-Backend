@@ -53,7 +53,7 @@ public class CategoryType implements Persistable<Long> {
     @OneToMany(mappedBy = "cateId", cascade = ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<CategoryTypeUseLog> categoryTypeUseLogList;
+    private List<CategoryUseLog> categoryUseLogList;
     @Override
     public boolean isNew() {
         return id == null;

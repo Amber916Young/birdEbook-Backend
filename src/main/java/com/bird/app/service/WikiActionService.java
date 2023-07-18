@@ -1,10 +1,8 @@
 package com.bird.app.service;
 
-import com.bird.app.dto.WikiActionDTO;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
-import com.bird.common.entity.WikiAction;
-import com.bird.common.entity.WikiArticle;
+import com.bird.common.entity.ArticleAction;
 import com.bird.common.enums.OperationType;
 import com.bird.common.repository.WikiActionRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 /**
  * @author birdyyoung
@@ -30,19 +27,19 @@ public class WikiActionService {
     @Autowired
     private WikiActionRepository wikiActionRepository;
 
-    public WikiAction createWikiAction(WikiAction wikiAction) {
-        return  wikiActionRepository.save(wikiAction);
+    public ArticleAction createWikiAction(ArticleAction articleAction) {
+        return  wikiActionRepository.save(articleAction);
     }
-    public void createWikiActionByArticleId(Long articleId, String operation) {
-        WikiAction wikiAction = new WikiAction();
-        wikiAction.setWikiId(articleId);
-        wikiAction.setUserId(-1L);
-        wikiAction.setOperationType(operation);
-        wikiAction.setUsername("testUser");
-        wikiActionRepository.save(wikiAction);
+    public void createWikiActionByArticleId(Long articleId, OperationType operation) {
+        ArticleAction articleAction = new ArticleAction();
+        articleAction.setArticleId(articleId);
+        articleAction.setUserId(-1L);
+        articleAction.setOperationType(operation);
+        articleAction.setUsername("testUser");
+        wikiActionRepository.save(articleAction);
     }
 
-    public WikiAction getWikiActionById(Long id) {
+    public ArticleAction getWikiActionById(Long id) {
         return wikiActionRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.WikiAction_Cannot_Found));
     }
 
@@ -52,7 +49,7 @@ public class WikiActionService {
         wikiActionRepository.deleteById(id);
     }
 
-    public Page<WikiAction> getAllWikiActionList(int pageNumber, int pageSize, String queryStr) {
+    public Page<ArticleAction> getAllWikiActionList(int pageNumber, int pageSize, String queryStr) {
         int pageNo = pageNumber == 0 ? 0: pageNumber-1;
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         return wikiActionRepository.findAll(pageable);

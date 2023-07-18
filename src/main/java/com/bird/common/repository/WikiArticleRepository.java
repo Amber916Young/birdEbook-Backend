@@ -1,6 +1,6 @@
 package com.bird.common.repository;
 
-import com.bird.common.entity.WikiArticle;
+import com.bird.common.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @Version: v1.0
  */
 @Repository
-public interface WikiArticleRepository extends JpaRepository<WikiArticle, Long> {
+public interface WikiArticleRepository extends JpaRepository<Article, Long> {
 }

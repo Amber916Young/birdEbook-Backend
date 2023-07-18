@@ -1,20 +1,15 @@
 package com.bird.app.controller;
 
-import com.bird.app.dto.PageDTO;
 import com.bird.app.dto.WikiArticleDTO;
 import com.bird.app.mapper.WikiArticleMapper;
 import com.bird.app.service.WikiArticleService;
-import com.bird.common.entity.WikiArticle;
+import com.bird.common.entity.Article;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author birdyyoung
@@ -35,7 +30,7 @@ public class WikiController {
     // Create a new article
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createArticle(@RequestBody WikiArticleDTO wikiArticleDTO) {
-        WikiArticle article = wikiArticleService.createArticle(wikiArticleMapper.toEntity(wikiArticleDTO));
+        Article article = wikiArticleService.createArticle(wikiArticleMapper.toEntity(wikiArticleDTO));
         return new ResponseEntity<>(wikiArticleMapper.toDTO(article), HttpStatus.OK);
     }
 
@@ -46,7 +41,7 @@ public class WikiController {
                                                    @RequestParam("queryStr") String queryStr) {
 
 
-        Page<WikiArticle> articles = wikiArticleService.getAllWikiArticleList(pageNumber, pageSize, queryStr);
+        Page<Article> articles = wikiArticleService.getAllWikiArticleList(pageNumber, pageSize, queryStr);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 

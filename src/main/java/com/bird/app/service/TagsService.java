@@ -3,7 +3,6 @@ package com.bird.app.service;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
 import com.bird.common.entity.Tags;
-import com.bird.common.entity.WikiAction;
 import com.bird.common.repository.TagsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
