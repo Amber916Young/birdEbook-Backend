@@ -9,16 +9,28 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
+            <column name="cover_image" type="VARCHAR(300)"/>
             <column name="title" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="category_type" type="VARCHAR(100)">
+            <column name="article_type" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="cover_image" type="VARCHAR(300)"/>
             <column name="description" type="VARCHAR(500)"/>
-            <column name="tags" type="VARCHAR(200)"/>
-            <column name="views" type="BIGINT"/>
+            <column name="tag_ids" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="view_count" type="BIGINT"/>
+            <column name="digg_count" type="BIGINT"/>
+            <column name="comment_count" type="BIGINT"/>
+            <column name="collect_count" type="BIGINT"/>
+            <column name="version" type="BIGINT"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
 
             <column name="content" type="LONGTEXT">
                 <constraints nullable="false"/>
@@ -27,16 +39,17 @@
             <column name="created_by" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="status"  type="BIT(1)">
+            <column name="status" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column  name="modify_time"  type="datetime" defaultValue="CURRENT_TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" />
+            <column name="modify_time" type="datetime" defaultValue="CURRENT_TIMESTAMP"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
         </createTable>
 
         <modifySql dbms="mysql">
             <regExpReplace replace="'CURRENT_TIMESTAMP'" with="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
-            <append value=" engine innodb" />
+            <append value=" engine innodb"/>
         </modifySql>
     </changeSet>
 </databaseChangeLog>

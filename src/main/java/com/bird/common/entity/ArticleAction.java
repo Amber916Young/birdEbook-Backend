@@ -38,13 +38,12 @@ public class ArticleAction {
 
     @NotNull
     @Column
-    private String username;
+    private String createdBy;
 
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column
     private OperationType   operationType;
-
 
     @Column
     @CreationTimestamp

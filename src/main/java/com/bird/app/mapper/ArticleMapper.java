@@ -1,6 +1,6 @@
 package com.bird.app.mapper;
 
-import com.bird.app.dto.WikiArticleDTO;
+import com.bird.app.dto.ArticleDTO;
 import com.bird.common.entity.Article;
 import org.mapstruct.Mapper;
 
@@ -14,10 +14,10 @@ import java.util.List;
  * @Version: v1.0
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface WikiArticleMapper {
-    WikiArticleDTO toDTO(Article article);
+public interface ArticleMapper {
+    ArticleDTO toDTO(Article article);
 
-    Article toEntity(WikiArticleDTO wikiArticleDTO);
+    Article toEntity(ArticleDTO articleDTO);
 
-    List<WikiArticleDTO> toDTOList(List<Article> articles);
+    List<ArticleDTO> toDTOList(List<Article> articles);
 }

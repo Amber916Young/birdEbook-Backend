@@ -13,11 +13,11 @@ import java.time.ZonedDateTime;
  * @Version: v1.0
  */
 @Data
-public class WikiActionDTO {
+public class ArticleActionDTO {
     private Long id;
     private Long userId;
-    private Long wikiId;
-    private String username;
+    private Long articleId;
+    private String createdBy;
     private OperationType operationType;
     private ZonedDateTime createTime;
 }

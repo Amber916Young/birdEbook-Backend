@@ -1,8 +1,8 @@
 package com.bird.app.controller;
 
-import com.bird.app.dto.WikiArticleDTO;
-import com.bird.app.mapper.WikiArticleMapper;
-import com.bird.app.service.WikiArticleService;
+import com.bird.app.dto.ArticleDTO;
+import com.bird.app.mapper.ArticleMapper;
+import com.bird.app.service.ArticleService;
 import com.bird.common.entity.Article;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,16 +22,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/wikis")
 @RequiredArgsConstructor
 @Slf4j
-public class WikiController {
-    private final WikiArticleService wikiArticleService;
-    private final WikiArticleMapper wikiArticleMapper;
+public class ArticleController {
+    private final ArticleService articleService;
+    private final ArticleMapper articleMapper;
 
 
     // Create a new article
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createArticle(@RequestBody WikiArticleDTO wikiArticleDTO) {
-        Article article = wikiArticleService.createArticle(wikiArticleMapper.toEntity(wikiArticleDTO));
-        return new ResponseEntity<>(wikiArticleMapper.toDTO(article), HttpStatus.OK);
+    public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
+        Article article = articleService.createArticle(articleMapper.toEntity(articleDTO));
+        return new ResponseEntity<>(articleMapper.toDTO(article), HttpStatus.OK);
     }
 
 
@@ -41,27 +41,27 @@ public class WikiController {
                                                    @RequestParam("queryStr") String queryStr) {
 
 
-        Page<Article> articles = wikiArticleService.getAllWikiArticleList(pageNumber, pageSize, queryStr);
+        Page<Article> articles = articleService.getAllWikiArticleList(pageNumber, pageSize, queryStr);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
     // Read an article by ID
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<WikiArticleDTO> getArticle(@PathVariable Long id) {
-        return ResponseEntity.ok(wikiArticleMapper.toDTO(wikiArticleService.getArticleById(id)));
+    public ResponseEntity<ArticleDTO> getArticle(@PathVariable Long id) {
+        return ResponseEntity.ok(articleMapper.toDTO(articleService.getArticleById(id)));
     }
 
     // Update an existing article
     @PutMapping(produces = "application/json")
-    public ResponseEntity<WikiArticleDTO> updateArticle( @RequestBody WikiArticleDTO wikiArticleDTO) {
-        return ResponseEntity.ok(wikiArticleMapper.toDTO(wikiArticleService.updateArticleById( wikiArticleMapper.toEntity(wikiArticleDTO))));
+    public ResponseEntity<ArticleDTO> updateArticle(@RequestBody ArticleDTO articleDTO) {
+        return ResponseEntity.ok(articleMapper.toDTO(articleService.updateArticleById( articleMapper.toEntity(articleDTO))));
 
     }
 
     // Delete an article by ID
     @DeleteMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
-        wikiArticleService.deleteArticleById(id);
+        articleService.deleteArticleById(id);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }

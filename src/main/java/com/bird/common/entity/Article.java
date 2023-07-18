@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -101,17 +102,17 @@ public class Article implements Persistable<Long> {
     @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER, cascade = ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
+    private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
 
     @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER, cascade = ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<CategoryUseLog> categoryUseLogList = new ArrayList<>();
+    private Set<CategoryUseLog> categoryUseLogList = new HashSet<>();
 
     @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER, cascade = ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<ArticleAction> actionList = new ArrayList<>();
+    private Set<ArticleAction> actionList = new HashSet<>();
 
     @Override
     public boolean isNew() {

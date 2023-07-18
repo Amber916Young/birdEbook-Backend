@@ -4,7 +4,7 @@ import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
 import com.bird.common.entity.Article;
 import com.bird.common.enums.OperationType;
-import com.bird.common.repository.WikiArticleRepository;
+import com.bird.common.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -21,29 +21,29 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class WikiArticleService {
+public class ArticleService {
 
-    private final WikiArticleRepository wikiArticleRepository;
-    private final WikiActionService wikiActionService;
+    private final ArticleRepository articleRepository;
+    private final ArticleActionService articleActionService;
     private final TagsUseLogService tagsUseLogService;
     private final CategoryTypeUseLogService categoryTypeUseLogService;
 
     public Article createArticle(Article article) {
         //TODO Get from session
         article.setCreatedBy("testUser");
-        Article newWiki =  wikiArticleRepository.save(article);
+        Article newWiki =  articleRepository.save(article);
 
         Long articleId= newWiki.getId();
 
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
         categoryTypeUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
-        wikiActionService.createWikiActionByArticleId(articleId,OperationType.INSERT);
+        articleActionService.createWikiActionByArticleId(articleId,OperationType.INSERT);
 
         return newWiki;
     }
 
     public Article getArticleById(Long id) {
-        return wikiArticleRepository.findById(id).orElseThrow(() ->
+        return articleRepository.findById(id).orElseThrow(() ->
                 new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
     }
 
@@ -59,13 +59,13 @@ public class WikiArticleService {
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
         categoryTypeUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
 
-        wikiActionService.createWikiActionByArticleId(article.getId(),OperationType.UPDATE);
+        articleActionService.createWikiActionByArticleId(article.getId(),OperationType.UPDATE);
 
-        return wikiArticleRepository.save(article);
+        return articleRepository.save(article);
     }
 
     public void deleteArticleById(Long id) {
-        wikiArticleRepository.deleteById(id);
+        articleRepository.deleteById(id);
     }
 
     public Page<Article> getAllWikiArticleList(int pageNumber,
@@ -74,6 +74,6 @@ public class WikiArticleService {
 //        Sort sort = new Sort(Sort.Direction.ASC, "id");
         int pageNo = pageNumber == 0 ? 0: pageNumber-1;
         Pageable pageable = PageRequest.of(pageNo, pageSize);
-        return wikiArticleRepository.findAll(pageable);
+        return articleRepository.findAll(pageable);
     }
 }

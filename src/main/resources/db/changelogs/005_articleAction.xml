@@ -12,10 +12,10 @@
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="wiki_id" type="BIGINT">
+            <column name="article_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="username" type="VARCHAR(100)">
+            <column name="created_by" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="operation_type" type="VARCHAR(100)">

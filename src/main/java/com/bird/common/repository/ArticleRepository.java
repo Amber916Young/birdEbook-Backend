@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @Version: v1.0
  */
 @Repository
-public interface WikiArticleRepository extends JpaRepository<Article, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 }

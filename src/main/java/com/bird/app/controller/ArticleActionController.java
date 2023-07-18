@@ -1,8 +1,8 @@
 package com.bird.app.controller;
 
-import com.bird.app.dto.WikiActionDTO;
-import com.bird.app.mapper.WikiActionMapper;
-import com.bird.app.service.WikiActionService;
+import com.bird.app.dto.ArticleActionDTO;
+import com.bird.app.mapper.ArticleActionMapper;
+import com.bird.app.service.ArticleActionService;
 import com.bird.common.entity.ArticleAction;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,17 +22,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/wikiactions")
 @RequiredArgsConstructor
 @Slf4j
-public class WikiActionController {
+public class ArticleActionController {
 
-    private final WikiActionService wikiActionService;
+    private final ArticleActionService articleActionService;
 
-    private final WikiActionMapper wikiActionMapper;
+    private final ArticleActionMapper articleActionMapper;
 
 
     // Create
     @PostMapping(produces = "application/json")
-    public ResponseEntity<WikiActionDTO> createWikiAction(@RequestBody WikiActionDTO wikiActionDTO) {
-        return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.createWikiAction(wikiActionMapper.toEntity(wikiActionDTO))), HttpStatus.CREATED);
+    public ResponseEntity<ArticleActionDTO> createWikiAction(@RequestBody ArticleActionDTO articleActionDTO) {
+        return new ResponseEntity<>(articleActionMapper.toDTO(articleActionService.createWikiAction(articleActionMapper.toEntity(articleActionDTO))), HttpStatus.CREATED);
     }
 
     @GetMapping(produces = "application/json")
@@ -41,18 +41,18 @@ public class WikiActionController {
                                                    @RequestParam("queryStr") String queryStr) {
 
 
-        Page<ArticleAction> articles = wikiActionService.getAllWikiActionList(pageNumber, pageSize, queryStr);
+        Page<ArticleAction> articles = articleActionService.getAllWikiActionList(pageNumber, pageSize, queryStr);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<WikiActionDTO> getWikiActionById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(wikiActionMapper.toDTO(wikiActionService.getWikiActionById(id)), HttpStatus.OK);
+    public ResponseEntity<ArticleActionDTO> getWikiActionById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(articleActionMapper.toDTO(articleActionService.getWikiActionById(id)), HttpStatus.OK);
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteWikiAction(@PathVariable("id") Long id) {
-        wikiActionService.deleteWikiAction(id);
+        articleActionService.deleteWikiAction(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
