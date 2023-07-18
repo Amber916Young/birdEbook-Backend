@@ -6,6 +6,7 @@ import com.bird.app.mapper.BookMapper;
 import com.bird.app.mapper.TagsMapper;
 import com.bird.app.service.BookService;
 import com.bird.app.service.TagsService;
+import com.bird.app.service.TagsUseLogService;
 import com.bird.common.entity.Tags;
 import com.bird.common.entity.WikiAction;
 import lombok.RequiredArgsConstructor;
