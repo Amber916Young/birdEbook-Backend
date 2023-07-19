@@ -43,12 +43,10 @@ public class Article implements Persistable<Long> {
     @Size(min = 1, max = 100)
     @Column(length = 100, nullable = false)
     private String title;
-
     @NotNull
     @Column
     private Long categoryId;
 
-    @Column
     private String tagIds;
 
     @Column
@@ -104,12 +102,12 @@ public class Article implements Persistable<Long> {
     @ToString.Exclude
     private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
 
-    @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER, cascade = ALL)
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<CategoryUseLog> categoryUseLogList = new HashSet<>();
 
-    @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER, cascade = ALL)
+    @OneToMany(mappedBy = "articleId", fetch = FetchType.LAZY, cascade = ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<ArticleAction> actionList = new HashSet<>();

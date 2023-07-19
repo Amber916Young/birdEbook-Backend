@@ -1,11 +1,10 @@
 package com.bird.app.dto;
 
-import com.bird.common.entity.ArticleAction;
-import com.bird.common.entity.CategoryUseLog;
-import com.bird.common.entity.TagsUseLog;
+import com.bird.common.entity.*;
 import com.bird.common.enums.ArticleStatus;
 import com.bird.common.enums.ArticleType;
 import lombok.Data;
+
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,7 +25,11 @@ public class ArticleDTO {
 
     private String title;
 
+    private Category category;
+
     private Long categoryId;
+
+//    private Set<Tags> tags = new HashSet<>();
 
     private String tagIds;
 
@@ -58,11 +61,10 @@ public class ArticleDTO {
 
     private ZonedDateTime modifyTime;
 
-    private Set<TagsUseLog> tagsUseLogList =new HashSet<>();
+    private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
 
     private Set<CategoryUseLog> categoryUseLogList =new HashSet<>();
 
-    private Set<ArticleAction> actionList =new HashSet<>();
-    private CategoryTreeDTO category;
+    private Set<ArticleAction> actionList = new HashSet<>();
 
 }

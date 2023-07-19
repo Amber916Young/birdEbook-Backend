@@ -44,5 +44,6 @@ public class WebArticleService {
     //TODO
     public DetailPageDTO getArticleAndAllDetails(Long articleId) {
 
+        return null;
     }
 }

@@ -36,7 +36,7 @@ public class TagsUseLogService {
                 tagId -> {
                     TagsUseLog tagsUseLog = new TagsUseLog();
                     tagsUseLog.setArticleId(articleId);
-                    tagsUseLog.setArticleType(ArticleType.WIKI.name());
+                    tagsUseLog.setArticleType(ArticleType.WIKI);
                     tagsUseLog.setTagId(Long.valueOf(tagId));
                     logs.add(tagsUseLog);
                 }

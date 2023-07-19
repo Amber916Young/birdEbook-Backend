@@ -32,7 +32,7 @@ public class TagsUseLog {
     private Long tagId;
     @Column
     @Enumerated(EnumType.STRING)
-    private String  articleType;
+    private ArticleType  articleType;
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;

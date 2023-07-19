@@ -27,12 +27,15 @@ public class CategoryUseLog {
     @Column
     private Long id;
     @Column
-    private Long articleId;
-    @Column
     private Long cateId;
     @Column
     @Enumerated(EnumType.STRING)
     private ArticleType articleType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    private Article article;
+
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
