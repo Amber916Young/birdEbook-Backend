@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -75,7 +76,7 @@ public class ArticleService {
                                                String queryStr) {
 //        Sort = new Sort(Sort.Direction.ASC, "id");
         int pageNo = pageNumber == 0 ? 0: pageNumber-1;
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.DESC);
         if (queryStr != null && !queryStr.isEmpty()) {
             // Create a specification for the keyword query
             Specification<Article> keywordSpec = (root, query, criteriaBuilder) -> {

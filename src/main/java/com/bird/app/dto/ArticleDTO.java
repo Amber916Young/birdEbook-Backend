@@ -63,4 +63,6 @@ public class ArticleDTO {
     private Set<CategoryUseLog> categoryUseLogList =new HashSet<>();
 
     private Set<ArticleAction> actionList =new HashSet<>();
+    private CategoryTreeDTO category;
+
 }
