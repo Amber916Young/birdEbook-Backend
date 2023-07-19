@@ -1,6 +1,6 @@
 package com.bird.common.repository;
 
-import com.bird.common.entity.CategoryType;
+import com.bird.common.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 
-public interface CategoryTypeRepository extends JpaRepository<CategoryType, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }

@@ -1,12 +1,11 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.CategoryTreeDTO;
-import com.bird.app.mapper.CategoryTypeMapper;
+import com.bird.app.mapper.CategoryMapper;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
-import com.bird.common.entity.CategoryType;
-import com.bird.common.entity.Tags;
-import com.bird.common.repository.CategoryTypeRepository;
+import com.bird.common.entity.Category;
+import com.bird.common.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,20 +27,20 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class CategoryTypeService {
-    final CategoryTypeRepository categoryTypeRepository;
-    final CategoryTypeMapper categoryTypeMapper;
+public class CategoryService {
+    final CategoryRepository categoryRepository;
+    final CategoryMapper categoryMapper;
 
     public List<CategoryTreeDTO> findAllCategoryAndChildren() {
-        List<CategoryType> categoryTypes = categoryTypeRepository.findAll();
+        List<Category> categories = categoryRepository.findAll();
 
         Map<Long, CategoryTreeDTO> categoryMap = new HashMap<>();
-        categoryTypes.forEach(category -> {
-            categoryMap.put(category.getId(), categoryTypeMapper.toDTO(category));
+        categories.forEach(category -> {
+            categoryMap.put(category.getId(), categoryMapper.toDTO(category));
         });
         List<CategoryTreeDTO> categoryTree = new ArrayList<>();
 
-        categoryTypes.forEach(category -> {
+        categories.forEach(category -> {
             CategoryTreeDTO categoryDTO = categoryMap.get(category.getId());
             if (category.getPid() == 0) {
                 categoryTree.add(categoryDTO);
@@ -58,18 +57,18 @@ public class CategoryTypeService {
 
     }
 
-    public CategoryType createCategory(CategoryType categoryType) {
-        return categoryTypeRepository.save(categoryType);
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
     }
 
-    public CategoryType updateCategory(CategoryType categoryType) {
-        CategoryType pre = getCategoryTypeById(categoryType.getId());
-        categoryType.setCreateTime(pre.getCreateTime());
-        return categoryTypeRepository.save(categoryType);
+    public Category updateCategory(Category category) {
+        Category pre = getCategoryTypeById(category.getId());
+        category.setCreateTime(pre.getCreateTime());
+        return categoryRepository.save(category);
     }
 
-    private CategoryType getCategoryTypeById(Long id) {
-        return categoryTypeRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.Category_Cannot_Found));
+    private Category getCategoryTypeById(Long id) {
+        return categoryRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.Category_Cannot_Found));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.bird.common.entity;
 
+import com.bird.common.enums.ArticleType;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -30,7 +31,8 @@ public class CategoryUseLog {
     @Column
     private Long cateId;
     @Column
-    private String articleType;
+    @Enumerated(EnumType.STRING)
+    private ArticleType articleType;
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;

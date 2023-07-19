@@ -1,4 +1,4 @@
-package com.bird.app.controller;
+package com.bird.app.controller.web;
 
 import com.bird.common.entity.Tags;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.List;
  * @Version: v1.0
  */
 @RestController
-@RequestMapping("/api/web/category")
+@RequestMapping("/api/web/categories")
 @RequiredArgsConstructor
 @Slf4j
 public class WebCategoryController {

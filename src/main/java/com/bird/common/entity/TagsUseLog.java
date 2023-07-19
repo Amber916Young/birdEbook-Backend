@@ -31,6 +31,7 @@ public class TagsUseLog {
     @Column
     private Long tagId;
     @Column
+    @Enumerated(EnumType.STRING)
     private String  articleType;
     @Column
     @CreationTimestamp

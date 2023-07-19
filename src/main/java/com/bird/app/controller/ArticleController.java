@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @Version: v1.0
  */
 @RestController
-@RequestMapping("/api/wikis")
+@RequestMapping("/api/articles")
 @RequiredArgsConstructor
 @Slf4j
 public class ArticleController {
@@ -27,7 +27,6 @@ public class ArticleController {
     private final ArticleMapper articleMapper;
 
 
-    // Create a new article
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
         Article article = articleService.createArticle(articleMapper.toEntity(articleDTO));

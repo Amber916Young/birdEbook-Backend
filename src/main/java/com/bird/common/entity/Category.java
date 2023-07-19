@@ -26,7 +26,7 @@ import static javax.persistence.CascadeType.ALL;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-public class CategoryType implements Persistable<Long> {
+public class Category implements Persistable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column

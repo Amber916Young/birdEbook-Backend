@@ -25,8 +25,7 @@ import java.util.List;
 @Transactional
 @Slf4j
 public class TagsUseLogService {
-    @Autowired
-    private TagsUseLogRepository tagsUseLogRepository;
+    final private TagsUseLogRepository tagsUseLogRepository;
 
 
     public void createWikiTagsLog(Long articleId, String tags) {

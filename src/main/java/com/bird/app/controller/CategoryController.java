@@ -1,9 +1,8 @@
 package com.bird.app.controller;
 
-import com.bird.app.dto.BookDTO;
 import com.bird.app.dto.CategoryTreeDTO;
-import com.bird.app.mapper.CategoryTypeMapper;
-import com.bird.app.service.CategoryTypeService;
+import com.bird.app.mapper.CategoryMapper;
+import com.bird.app.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,14 +23,14 @@ import java.util.List;
 @RequestMapping("/api/categories")
 @RequiredArgsConstructor
 @Slf4j
-public class CategoryTypeController {
+public class CategoryController {
 
-    private final CategoryTypeMapper categoryTypeMapper;
-    private final CategoryTypeService categoryTypeService;
+    private final CategoryMapper categoryMapper;
+    private final CategoryService categoryService;
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getAllCategoryTree() {
-        List<CategoryTreeDTO>  categoryTreeDTOS = categoryTypeService.findAllCategoryAndChildren();
+        List<CategoryTreeDTO>  categoryTreeDTOS = categoryService.findAllCategoryAndChildren();
 
 
 
@@ -41,11 +39,11 @@ public class CategoryTypeController {
 
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> addCategory(@Valid @RequestBody CategoryTreeDTO categoryTreeDTO) {
-        return new ResponseEntity<>(categoryTypeMapper.toDTO(categoryTypeService.createCategory(categoryTypeMapper.toEntity(categoryTreeDTO))), HttpStatus.OK);
+        return new ResponseEntity<>(categoryMapper.toDTO(categoryService.createCategory(categoryMapper.toEntity(categoryTreeDTO))), HttpStatus.OK);
     }
     @PutMapping(produces = "application/json")
     public ResponseEntity<?> updateCategory(@Valid @RequestBody CategoryTreeDTO categoryTreeDTO) {
-        return new ResponseEntity<>(categoryTypeMapper.toDTO(categoryTypeService.updateCategory(categoryTypeMapper.toEntity(categoryTreeDTO))), HttpStatus.OK);
+        return new ResponseEntity<>(categoryMapper.toDTO(categoryService.updateCategory(categoryMapper.toEntity(categoryTreeDTO))), HttpStatus.OK);
     }
 
 }

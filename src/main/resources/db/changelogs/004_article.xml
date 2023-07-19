@@ -23,11 +23,11 @@
             <column name="category_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="view_count" type="BIGINT"/>
-            <column name="digg_count" type="BIGINT"/>
-            <column name="comment_count" type="BIGINT"/>
-            <column name="collect_count" type="BIGINT"/>
-            <column name="version" type="BIGINT"/>
+            <column name="view_count" type="BIGINT" defaultValue="0"/>
+            <column name="digg_count" type="BIGINT"  defaultValue="0" />
+            <column name="comment_count" type="BIGINT"  defaultValue="0" />
+            <column name="collect_count" type="BIGINT"  defaultValue="0" />
+            <column name="version" type="BIGINT"  defaultValue="1"/>
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>

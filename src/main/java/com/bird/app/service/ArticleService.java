@@ -26,20 +26,20 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
     private final ArticleActionService articleActionService;
     private final TagsUseLogService tagsUseLogService;
-    private final CategoryTypeUseLogService categoryTypeUseLogService;
+    private final CategoryUseLogService categoryUseLogService;
 
     public Article createArticle(Article article) {
         //TODO Get from session
         article.setCreatedBy("testUser");
-        Article newWiki =  articleRepository.save(article);
+        Article newArticle =  articleRepository.save(article);
 
-        Long articleId= newWiki.getId();
+        Long articleId= newArticle.getId();
 
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-        categoryTypeUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
+        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
         articleActionService.createWikiActionByArticleId(articleId,OperationType.INSERT);
 
-        return newWiki;
+        return newArticle;
     }
 
     public Article getArticleById(Long id) {
@@ -55,9 +55,9 @@ public class ArticleService {
         article.setCreateTime(pre.getCreateTime());
 
         tagsUseLogService.deleteTagsUseLogByArticleId(articleId);
-        categoryTypeUseLogService.deletecategoryTypeUseLogByArticleId(articleId);
+        categoryUseLogService.deletecategoryTypeUseLogByArticleId(articleId);
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-        categoryTypeUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
+        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
 
         articleActionService.createWikiActionByArticleId(article.getId(),OperationType.UPDATE);
 

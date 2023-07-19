@@ -20,14 +20,14 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class CategoryTypeUseLogService {
+public class CategoryUseLogService {
     private final CategoryTypeUseLogRepository categoryTypeUseLogRepository;
 
 
     public void createWikiCategoryTypeUseLog(Long articleId, Long categoryId) {
         CategoryUseLog categoryUseLog = new CategoryUseLog();
         categoryUseLog.setArticleId(articleId);
-        categoryUseLog.setArticleType(ArticleType.WIKI.name());
+        categoryUseLog.setArticleType(ArticleType.WIKI);
         categoryUseLog.setCateId(categoryId);
         categoryTypeUseLogRepository.save(categoryUseLog);
     }
