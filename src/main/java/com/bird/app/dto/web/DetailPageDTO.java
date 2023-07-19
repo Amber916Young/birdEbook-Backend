@@ -11,6 +11,7 @@ import java.util.Set;
 public class DetailPageDTO {
     private WebArticleDTO article;
     private Set<WebTagsDTO> tagsDTOSet = new HashSet<>();
-    private CategoryTreeDTO category;
+    private WebCategoryDTO category;
+    private CategoryTreeDTO categoryTree;
     private Set<ArticleAction> actionList = new HashSet<>();
 }
