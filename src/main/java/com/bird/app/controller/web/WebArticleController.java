@@ -1,5 +1,6 @@
 package com.bird.app.controller.web;
 
+import com.bird.app.dto.web.DetailPageDTO;
 import com.bird.app.dto.web.WebArticleDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.mapper.WebArticleMapper;
@@ -9,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/web/articles")
@@ -29,6 +27,13 @@ public class WebArticleController {
         Article article = webArticleService.createArticle(webArticleMapper.toEntity(webArticleDTO));
 
         return new ResponseEntity<>(article, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}",produces = "application/json")
+    public ResponseEntity<?> getArticleAndAllDetails(@PathVariable("id") Long articleId) {
+        DetailPageDTO detailPageDTO = webArticleService.getArticleAndAllDetails(articleId);
+
+        return new ResponseEntity<>(detailPageDTO, HttpStatus.OK);
     }
 
 

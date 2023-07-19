@@ -1,5 +1,6 @@
 package com.bird.app.service;
 
+import com.bird.app.dto.web.DetailPageDTO;
 import com.bird.common.entity.Article;
 import com.bird.common.repository.ArticleRepository;
 import com.bird.common.utils.SecurityUtil;
@@ -38,7 +39,10 @@ public class WebArticleService {
         categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
 
         return newArticle;
+    }
 
+    //TODO
+    public DetailPageDTO getArticleAndAllDetails(Long articleId) {
 
     }
 }
