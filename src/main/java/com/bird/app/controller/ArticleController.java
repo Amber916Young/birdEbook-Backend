@@ -35,12 +35,12 @@ public class ArticleController {
 
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<?> getAllWikiArticleList(@RequestParam("pageNumber") int pageNumber,
+    public ResponseEntity<?> getAllArticlesList(@RequestParam("pageNumber") int pageNumber,
                                                    @RequestParam("pageSize") int pageSize,
                                                    @RequestParam("queryStr") String queryStr) {
 
 
-        Page<Article> articles = articleService.getAllWikiArticleList(pageNumber, pageSize, queryStr);
+        Page<Article> articles = articleService.getAllArticlesList(pageNumber, pageSize, queryStr);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 

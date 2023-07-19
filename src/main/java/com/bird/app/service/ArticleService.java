@@ -10,8 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 
 /**
@@ -68,12 +70,31 @@ public class ArticleService {
         articleRepository.deleteById(id);
     }
 
-    public Page<Article> getAllWikiArticleList(int pageNumber,
+    public Page<Article> getAllArticlesList(int pageNumber,
                                                int pageSize,
                                                String queryStr) {
-//        Sort sort = new Sort(Sort.Direction.ASC, "id");
+//        Sort = new Sort(Sort.Direction.ASC, "id");
         int pageNo = pageNumber == 0 ? 0: pageNumber-1;
         Pageable pageable = PageRequest.of(pageNo, pageSize);
-        return articleRepository.findAll(pageable);
+        if (queryStr != null && !queryStr.isEmpty()) {
+            // Create a specification for the keyword query
+            Specification<Article> keywordSpec = (root, query, criteriaBuilder) -> {
+                Predicate predicate = criteriaBuilder.disjunction(); // Using 'or' operator
+
+                predicate = criteriaBuilder.or(
+                        criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), "%" + queryStr.toLowerCase() + "%"),
+                        criteriaBuilder.like(criteriaBuilder.lower(root.get("description")), "%" + queryStr.toLowerCase() + "%"),
+                        criteriaBuilder.like(criteriaBuilder.lower(root.get("articleType")), "%" + queryStr.toLowerCase() + "%"),
+                        criteriaBuilder.like(criteriaBuilder.lower(root.get("status")), "%" + queryStr.toLowerCase() + "%"),
+                        criteriaBuilder.like(criteriaBuilder.lower(root.get("createdBy")), "%" + queryStr.toLowerCase() + "%")
+                );
+
+                return predicate;
+            };
+            // Apply the keyword specification to the repository query
+            return articleRepository.findAll(keywordSpec, pageable);
+        } else {
+            return articleRepository.findAll(pageable);
+        }
     }
 }
