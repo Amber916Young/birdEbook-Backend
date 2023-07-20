@@ -145,6 +145,9 @@ NEW 🆕 Needs新的需求
 
 需要记录标签/分类的使用次数，可能需要新建立一个中间表来记录每篇文章的标签使用次数，如果tags表更新，删除，关联表也需要做同样的操作（？）
 
+###  20/07/2023
+文章表最终设计完成
+准备进行前端测试
 
 ## 参考
 https://github.com/HelloGitHub-Team/Hydra/tree/main/hydra/tests/data
