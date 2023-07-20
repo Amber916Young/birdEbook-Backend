@@ -1,6 +1,7 @@
 package com.bird.common.entity;
 
 import com.bird.common.enums.ArticleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -27,8 +28,6 @@ public class TagsUseLog {
     @Column
     private Long id;
     @Column
-    private Long articleId;
-    @Column
     private Long tagId;
     @Column
     @Enumerated(EnumType.STRING)
@@ -36,4 +35,10 @@ public class TagsUseLog {
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    private Article article;
 }

@@ -1,5 +1,6 @@
 package com.bird.app.service;
 
+import com.bird.common.entity.Article;
 import com.bird.common.entity.CategoryUseLog;
 import com.bird.common.enums.ArticleType;
 import com.bird.common.repository.CategoryTypeUseLogRepository;
@@ -24,10 +25,10 @@ public class CategoryUseLogService {
     private final CategoryTypeUseLogRepository categoryTypeUseLogRepository;
 
 
-    public void createWikiCategoryTypeUseLog(Long articleId, Long categoryId) {
+    public void createWikiCategoryTypeUseLog(Article article) {
         CategoryUseLog categoryUseLog = new CategoryUseLog();
         categoryUseLog.setArticleType(ArticleType.WIKI);
-        categoryUseLog.setCateId(categoryId);
+        categoryUseLog.setArticle(article);
         categoryTypeUseLogRepository.save(categoryUseLog);
     }
 

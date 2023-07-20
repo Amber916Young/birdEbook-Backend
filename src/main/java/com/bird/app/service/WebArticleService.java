@@ -36,7 +36,7 @@ public class WebArticleService {
         Long articleId= newArticle.getId();
 
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
+        categoryUseLogService.createWikiCategoryTypeUseLog(newArticle);
 
         return newArticle;
     }

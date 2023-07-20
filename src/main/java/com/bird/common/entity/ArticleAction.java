@@ -1,6 +1,7 @@
 package com.bird.common.entity;
 
 import com.bird.common.enums.OperationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -32,9 +33,12 @@ public class ArticleAction {
     @NotNull
     private Long userId;
 
-    @Column
-    @NotNull
-    private Long articleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    private Article article;
+
 
     @NotNull
     @Column

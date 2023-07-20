@@ -39,7 +39,7 @@ public class ArticleService {
         Long articleId= newArticle.getId();
 
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
+//        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
         articleActionService.createWikiActionByArticleId(articleId,OperationType.INSERT);
 
         return newArticle;
@@ -60,7 +60,7 @@ public class ArticleService {
         tagsUseLogService.deleteTagsUseLogByArticleId(articleId);
         categoryUseLogService.deletecategoryTypeUseLogByArticleId(articleId);
         tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
+//        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
 
         articleActionService.createWikiActionByArticleId(article.getId(),OperationType.UPDATE);
 

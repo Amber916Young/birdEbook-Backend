@@ -43,9 +43,6 @@ public class Article implements Persistable<Long> {
     @Size(min = 1, max = 100)
     @Column(length = 100, nullable = false)
     private String title;
-    @NotNull
-    @Column
-    private Long categoryId;
 
     private String tagIds;
 
@@ -96,18 +93,17 @@ public class Article implements Persistable<Long> {
     @LastModifiedDate
     private ZonedDateTime modifyTime;
 
-
-    @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER, cascade = ALL)
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = ALL)
+    @OneToOne(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<CategoryUseLog> categoryUseLogList = new HashSet<>();
+    private CategoryUseLog categoryUseLogList;
 
-    @OneToMany(mappedBy = "articleId", fetch = FetchType.LAZY, cascade = ALL)
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<ArticleAction> actionList = new HashSet<>();
