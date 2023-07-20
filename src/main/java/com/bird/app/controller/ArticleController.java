@@ -1,5 +1,6 @@
 package com.bird.app.controller;
 
+import com.bird.app.dto.DetailArticleDTO;
 import com.bird.app.dto.ArticleDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.service.ArticleService;
@@ -28,9 +29,9 @@ public class ArticleController {
 
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
-        Article article = articleService.createArticle(articleMapper.toEntity(articleDTO));
-        return new ResponseEntity<>(articleMapper.toDTO(article), HttpStatus.OK);
+    public ResponseEntity<?> createArticle(@RequestBody DetailArticleDTO detailArticleDTO) {
+        DetailArticleDTO article = articleService.createArticle(detailArticleDTO);
+        return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
 
@@ -52,8 +53,9 @@ public class ArticleController {
 
     // Update an existing article
     @PutMapping(produces = "application/json")
-    public ResponseEntity<ArticleDTO> updateArticle(@RequestBody ArticleDTO articleDTO) {
-        return ResponseEntity.ok(articleMapper.toDTO(articleService.updateArticleById( articleMapper.toEntity(articleDTO))));
+    public ResponseEntity<?> updateArticle(@RequestBody DetailArticleDTO detailArticleDTO) {
+        DetailArticleDTO article = articleService.updateArticleById(detailArticleDTO);
+        return ResponseEntity.ok(article);
 
     }
 

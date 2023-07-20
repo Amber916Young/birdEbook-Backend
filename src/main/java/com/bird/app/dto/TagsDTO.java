@@ -21,6 +21,4 @@ public class TagsDTO {
     private Long id;
     private String icon;
     private String name;
-    private Long cateId;
-    private ZonedDateTime createTime;
 }

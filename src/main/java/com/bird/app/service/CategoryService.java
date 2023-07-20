@@ -67,8 +67,9 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    private Category getCategoryTypeById(Long id) {
+    public Category getCategoryTypeById(Long id) {
         return categoryRepository.findById(id).orElseThrow(() -> new NotFoundRequestException(ErrorReasonCode.Category_Cannot_Found));
     }
+
 
 }

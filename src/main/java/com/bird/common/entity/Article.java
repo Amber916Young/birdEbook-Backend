@@ -97,8 +97,5 @@ public class Article{
     @EqualsAndHashCode.Exclude
     private CategoryUseLog categoryUseLog;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @EqualsAndHashCode.Exclude
-    private Set<ArticleAction> actionList = new HashSet<>();
 
 }

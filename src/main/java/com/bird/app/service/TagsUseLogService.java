@@ -25,7 +25,7 @@ import java.util.List;
 @Transactional
 @Slf4j
 public class TagsUseLogService {
-    final private TagsUseLogRepository tagsUseLogRepository;
+    private final TagsUseLogRepository tagsUseLogRepository;
 
 
     public void createWikiTagsLog(Long articleId, String tags) {
@@ -36,7 +36,6 @@ public class TagsUseLogService {
                 tagId -> {
                     TagsUseLog tagsUseLog = new TagsUseLog();
 //                    tagsUseLog.setArticle(articleId);
-                    tagsUseLog.setArticleType(ArticleType.WIKI);
                     tagsUseLog.setTagId(Long.valueOf(tagId));
                     logs.add(tagsUseLog);
                 }
@@ -47,7 +46,12 @@ public class TagsUseLogService {
 
     }
 
-    public void deleteTagsUseLogByArticleId(Long articleId) {
+    public void deleteAllTagsUseLogByArticleId(Long articleId) {
+        List<TagsUseLog> logs = tagsUseLogRepository.findByArticleId(articleId);
+
+        tagsUseLogRepository.deleteAllInBatch(logs);
+    }
+    private void deleteTagsUseLogByArticleId(Long articleId) {
         tagsUseLogRepository.deleteByArticleId(articleId);
     }
 }

@@ -17,9 +17,11 @@ import java.time.ZonedDateTime;
  */
 
 @Entity
-@Data
-@Table(name = "tags_use_log")
+@Getter
+@Setter
+@ToString
 @EqualsAndHashCode
+@NoArgsConstructor
 public class TagsUseLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +29,15 @@ public class TagsUseLog {
     private Long id;
     @Column
     private Long tagId;
-    @Column
-    @Enumerated(EnumType.STRING)
-    private ArticleType  articleType;
-    @Column
-    @CreationTimestamp
-    private ZonedDateTime createTime;
 
     @ManyToOne
     @JoinColumn(name = "article_id")
     @EqualsAndHashCode.Exclude
     @JsonIgnore
     private Article article;
+
+    @Column
+    @CreationTimestamp
+    private ZonedDateTime createTime;
+
 }

@@ -29,10 +29,6 @@ public class CategoryUseLog {
     private Long id;
     @Column
     private Long cateId;
-    @Column
-    @Enumerated(EnumType.STRING)
-    private ArticleType articleType;
-
     @OneToOne
     @JoinColumn(name = "article_id")
     @EqualsAndHashCode.Exclude

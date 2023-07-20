@@ -27,7 +27,6 @@ public class CategoryUseLogService {
 
     public void createWikiCategoryTypeUseLog(Article article) {
         CategoryUseLog categoryUseLog = new CategoryUseLog();
-        categoryUseLog.setArticleType(ArticleType.WIKI);
         categoryUseLog.setArticle(article);
         categoryTypeUseLogRepository.save(categoryUseLog);
     }
