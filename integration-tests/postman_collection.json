@@ -1,0 +1,1223 @@
+{
+	"info": {
+		"_postman_id": "5662c7ef-e9ec-4d35-aa81-437d26c48b3f",
+		"name": "birdbook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth - login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"var token = jsonData.jwt;",
+							"",
+							"console.log(token);",
+							"",
+							"postman.setEnvironmentVariable(\"jwt\", token);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"demo@orderit.ie\",\n    \"password\": \"password\"\n}\n//internal_admin@orderit.ie",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - forgetPass",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"yejia.yang@mycloudpa.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/forgotPassword",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"forgotPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - resetPassword",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"test\",\n    \"resetKey\" :\"1fAkxVpgm1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/resetPassword",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"resetPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supplier - get all suppliers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response body is correct\", function () {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/suppliers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"suppliers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supplier Product - get all products for given supplier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response body is correct\", function () {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/suppliers/${supplierId}/products",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"suppliers",
+						"${supplierId}",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavouriteSupplier-Registration",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"supplierId\": \"3\",\n    \"companyName\": \"testCompany\",\n    \"companyEmail\": \"info@mycloudpa.com\",\n    \"address\": \"address\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/favouriteSuppliers/request",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"favouriteSuppliers",
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavouriteSupplier-create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"var favouriteSuppliersId = jsonData.id;",
+							"",
+							"console.log(favouriteSuppliersId);",
+							"",
+							"postman.setEnvironmentVariable(\"favouriteSuppliersId\", favouriteSuppliersId);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"  pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"supplierId\": 2,\n  \"shopName\": \"test\",\n  \"accountNumber\": \"CH01\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/favouriteSuppliers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"favouriteSuppliers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavouriteSupplier-update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": {{favouriteSuppliersId}},\n  \"supplierId\": 1,\n  \"shopName\": \"helloShop\",\n  \"accountNumber\": \"12345\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/favouriteSuppliers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"favouriteSuppliers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavouriteProducts - create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"var favId = jsonData.id;",
+							"",
+							"console.log(favId);",
+							"",
+							"postman.setEnvironmentVariable(\"favId\", favId);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"  pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"supplierId\": \"1\",\n    \"supplierProductId\": \"2\",\n    \"nickname\": \"nickname\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/favouriteProducts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"favouriteProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavouriteProducts - update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": {{favId}},\n    \"supplierId\": \"1\",\n    \"supplierProductId\": \"2\",\n    \"nickname\": \"hello\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/favouriteProducts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"favouriteProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavouriteProducts - delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/favouriteProducts/{{favId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"favouriteProducts",
+						"{{favId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SupplierOrder - create",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"var supplierOrderId = jsonData.id;",
+							"",
+							"console.log(supplierOrderId);",
+							"",
+							"postman.setEnvironmentVariable(\"supplierOrderId\", supplierOrderId);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"  pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Response body is correct\", function () {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson).to.be.an(\"object\");",
+							"  pm.expect(responseJson.supplierOrderItems).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"supplierId\": 1,\n    \"supplierLogoUrl\": \"dddd\",\n    \"supplierName\": \"hello\",\n    \"status\": \"DRAFT\",\n    \"deliveryDate\": \"2023-01-23T00:00:00Z\",\n    \"totalVat\": 0,\n    \"totalPrice\": 0,\n    \"supplierOrderItems\": [\n        {\n            \"supplierProductId\": 2,\n            \"supplierProductName\": \"string\",\n            \"nickname\": \"string\",\n            \"quantity\": 0,\n            \"unit\": \"string\",\n            \"vat\": 0,\n            \"price\": 0\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/supplierOrders",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"supplierOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SupplierOrder - get all supplier orders",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/supplierOrders",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"supplierOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SupplierOrder - update order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response body is correct\", function () {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson).to.be.an(\"object\");",
+							"  pm.expect(responseJson.supplierOrderItems).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": {{supplierOrderId}},\n    \"status\": \"SENT_TO_SUPPLIER\",\n    \"supplierId\": 2,\n    \"supplierName\": \"testCompany2\",\n    \"deliveryDate\":\"\",\n    \"totalVat\": 12.50,\n    \"totalPrice\": 112.50,\n    \"supplierOrderItems\": [\n        {\n            \"supplierProductId\": 3,\n            \"supplierProductName\": \"banana\",\n            \"nickname\": \"lala banana\",\n            \"quantity\": 10.00,\n            \"vat\": 12.50,\n            \"price\": 10.00\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/supplierOrders",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"supplierOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SupplierOrder - delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/supplierOrders/{{supplierOrderId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"supplierOrders",
+						"{{supplierOrderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Public - confirm order by email",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/public/supplierOrderConfirmation/NA==",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"supplierOrderConfirmation",
+						"NA=="
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Public - Confirm Order by External Supplier",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/public/supplierOrderConfirmation/externalApproval?id={{supplierOrderId}}&token=aa5d758e764645a6bd677916eac773014b60125d9abf4838a348c50bad1810ac",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"supplierOrderConfirmation",
+						"externalApproval"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{supplierOrderId}}"
+						},
+						{
+							"key": "token",
+							"value": "aa5d758e764645a6bd677916eac773014b60125d9abf4838a348c50bad1810ac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company-get",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/company",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"company"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company- update profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"contactNumber\": \"23423\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/company/profile",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"company",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company- create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"var userId = jsonData.id;",
+							"",
+							"console.log(userId);",
+							"",
+							"postman.setEnvironmentVariable(\"userId\", userId);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Meng\",\n    \"lastName\": \"Qi\",\n    \"email\": \"meng.qi2@mycloudpa.com\",\n    \"role\": \"ROLE_COMPANY_ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/company/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"company",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company- update user profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": {{userId}},\n    \"firstName\": \"hello\",\n    \"lastName\": \"young\",\n    \"role\": \"ROLE_COMPANY_ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/company/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"company",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company - delete users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/company/users/{{userId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"company",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile- user update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"yejia2222\",\n    \"lastName\": \"yang\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/profile",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin API - create a company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"var companyId = jsonData.id;",
+							"",
+							"console.log(companyId);",
+							"",
+							"postman.setEnvironmentVariable(\"companyId\", companyId);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "companyName",
+							"value": "Yang Company",
+							"type": "text"
+						},
+						{
+							"key": "companyEmail",
+							"value": "yang.tong@mycloudpa.com",
+							"type": "text"
+						},
+						{
+							"key": "contactNumber",
+							"value": "1234567",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "{\"addressLine1\":\"111\",  \"addressLine2\":\"222\",  \"addressLine3\":\"3333\"}",
+							"type": "text"
+						},
+						{
+							"key": "contactName",
+							"value": "Yang Tong",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/admin/companies",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin API - create email verify template",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/admin/verify-email-templates",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"verify-email-templates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin API- create the owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Yang\",\n    \"lastName\": \"Tong\",\n    \"email\": \"yang.tong@mycloudpa.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/admin/companies/{{companyId}}/owners",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"companies",
+						"{{companyId}}",
+						"owners"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

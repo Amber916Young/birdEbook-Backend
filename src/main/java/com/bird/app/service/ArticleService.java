@@ -53,14 +53,13 @@ public class ArticleService {
         tagsUseLogService.deleteTagsUseLogByArticleId(articleId);
         categoryUseLogService.deleteCategoryTypeUseLogByArticleId(articleId);
 
-
         article.setCreatedBy(articleInDB.getCreatedBy());
         article.setUserId(articleInDB.getUserId());
+        article.getTagsUseLogList().forEach(item -> setupTagsUseLogs(articleInDB, item));
+        article.getCategoryUseLog().setArticle(articleInDB);
         article.setCreateTime(articleInDB.getCreateTime());
-        Article updatedArticle = articleRepository.save(article);
 
-//        updatedArticle.setTagsUseLogList(new HashSet<>(tagsUseLogService.findByArticleId(articleId)));
-        return updatedArticle;
+        return  articleRepository.save(article);
     }
 
     public void deleteArticleById(Long id) {

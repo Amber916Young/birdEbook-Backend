@@ -48,9 +48,5 @@ public class Tags {
     @CreationTimestamp
     private ZonedDateTime createTime;
 
-    @OneToMany(mappedBy = "tagId", cascade = ALL)
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<TagsUseLog> tagsUseLogList;
 
 }
