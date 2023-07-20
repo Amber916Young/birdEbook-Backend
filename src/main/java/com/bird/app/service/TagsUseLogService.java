@@ -35,7 +35,7 @@ public class TagsUseLogService {
         Arrays.stream(tagsStr).iterator().forEachRemaining(
                 tagId -> {
                     TagsUseLog tagsUseLog = new TagsUseLog();
-                    tagsUseLog.setArticleId(articleId);
+//                    tagsUseLog.setArticle(articleId);
                     tagsUseLog.setArticleType(ArticleType.WIKI);
                     tagsUseLog.setTagId(Long.valueOf(tagId));
                     logs.add(tagsUseLog);

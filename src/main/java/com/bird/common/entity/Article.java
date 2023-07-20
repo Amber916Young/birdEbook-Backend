@@ -44,8 +44,6 @@ public class Article implements Persistable<Long> {
     @Column(length = 100, nullable = false)
     private String title;
 
-    private String tagIds;
-
     @Column
     private String description;
 

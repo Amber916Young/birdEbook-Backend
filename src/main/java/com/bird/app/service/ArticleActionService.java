@@ -32,7 +32,7 @@ public class ArticleActionService {
     }
     public void createWikiActionByArticleId(Long articleId, OperationType operation) {
         ArticleAction articleAction = new ArticleAction();
-        articleAction.setArticleId(articleId);
+//        articleAction.setArticleId(articleId);
         articleAction.setUserId(-1L);
         articleAction.setOperationType(operation);
         articleAction.setCreatedBy("testUser");

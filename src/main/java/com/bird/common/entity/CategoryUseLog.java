@@ -33,7 +33,7 @@ public class CategoryUseLog {
     @Enumerated(EnumType.STRING)
     private ArticleType articleType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
     @EqualsAndHashCode.Exclude
     @JsonIgnore
