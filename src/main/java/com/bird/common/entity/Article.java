@@ -35,7 +35,7 @@ public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(min = 1, max = 100)
