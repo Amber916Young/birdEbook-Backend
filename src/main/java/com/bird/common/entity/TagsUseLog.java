@@ -1,6 +1,6 @@
 package com.bird.common.entity;
 
-import com.bird.common.enums.ArticleType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
