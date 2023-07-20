@@ -147,9 +147,13 @@ NEW 🆕 Needs新的需求
 
 ###  20/07/2023
 文章表最终设计完成
+更新DrawIO表
 准备进行前端测试
 
 ## 参考
+
+https://app.diagrams.net/#G1jdlX2asUS-BzBRTVPpXyiAmUvajC_YsE
+
 https://github.com/HelloGitHub-Team/Hydra/tree/main/hydra/tests/data
 
 https://codebeautify.org/online-json-editor/y235386d6
