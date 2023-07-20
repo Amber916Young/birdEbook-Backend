@@ -5,19 +5,18 @@ public enum LikeStatus {
     UNLIKED(0), // 未点赞
     LIKED(1);   // 已点赞
 
-    private final int value;
-
+    private int label;
     LikeStatus(int value) {
-        this.value = value;
+        this.label = value;
     }
 
     public int getValue() {
-        return value;
+        return label;
     }
 
     public static LikeStatus fromValue(int value) {
         for (LikeStatus status : LikeStatus.values()) {
-            if (status.value == value) {
+            if (status.label == value) {
                 return status;
             }
         }

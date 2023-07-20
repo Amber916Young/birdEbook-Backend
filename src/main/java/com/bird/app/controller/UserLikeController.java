@@ -14,9 +14,6 @@ public class UserLikeController {
 
     private final UserLikeService userLikeService;
 
-    public UserLikeController(UserLikeService userLikeService) {
-        this.userLikeService = userLikeService;
-    }
 
     @PostMapping
     public ResponseEntity<UserLikeDTO> saveOrUpdateUserLike(@RequestBody UserLikeDTO userLikeDTO) {

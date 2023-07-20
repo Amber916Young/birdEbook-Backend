@@ -1,7 +1,9 @@
 package com.bird.common.entity;
 
 
+import com.bird.common.enums.ArticleType;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -25,27 +27,22 @@ public class UserView {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long viewId;
+    private Long id;
 
     @NotNull
     @Column
-    // 用户ID
-    private long viewUId;
+    private Long userId;
 
     @NotNull
     @Column
-    // 浏览内容ID
-    private long ViewContentId;
+    private Long articleId;
 
     @NotNull
     @Column
-    //作品类型，1.维基百科，2.小说
-    private Integer contentType;
+    private ArticleType articleType;
 
-    @NotNull
-    @Column
-    // 浏览时间
-    private ZonedDateTime viewTime;
+    @CreationTimestamp
+    private ZonedDateTime createTime;
 
 }
 

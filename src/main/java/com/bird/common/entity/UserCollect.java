@@ -1,68 +1,57 @@
 package com.bird.common.entity;
 
-
-
+import com.bird.common.enums.ArticleType;
+import com.bird.common.enums.CollectType;
 import com.sun.istack.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 /*
 
 收藏表
  */
-
+@Entity
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
 public class UserCollect {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long collectId;
+    private Long id;
 
     @NotNull
     @Column
-    // 用户ID
-    private long collUserId;
-
+    private Long userId;
 
     @NotNull
     @Column
-    // 收藏夹名称
     private String collectName;
 
+    @NotNull
+    @Column
+    private Long articleId;
 
     @NotNull
     @Column
-    // 收藏作品ID
-    private long composeId;
+    private ArticleType articleType;
 
     @NotNull
     @Column
-    //收藏作品类型，1.维基百科，2.小说，3帖子
-    private Integer composeType;
+    private CollectType collectType;
 
-    @NotNull
-    @Column
-    // 收藏夹类型：0 - 公开，1 - 私密
-    private Integer collectType;
-
-    @NotNull
     @Column
     @CreationTimestamp
-    // 创建时间
-    private ZonedDateTime collectCreateTime;
+    private ZonedDateTime createTime;
 
-    @NotNull
     @Column
-    // 更新时间
-    private ZonedDateTime collectUpdateTime;
-    }
+    @CreationTimestamp
+    private ZonedDateTime modifyTime;
+}
 
 

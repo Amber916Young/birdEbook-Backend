@@ -1,8 +1,6 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.DetailArticleDTO;
-import com.bird.app.dto.TagsDTO;
-import com.bird.app.dto.web.DetailPageDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.mapper.CategoryMapper;
 import com.bird.app.mapper.TagsMapper;
@@ -145,7 +143,7 @@ public class ArticleService {
         }
     }
 
-    public DetailPageDTO getArticleAndAllDetails(Long articleId) {
+    public DetailArticleDTO getArticleAndAllDetails(Long articleId) {
 
         return null;
     }

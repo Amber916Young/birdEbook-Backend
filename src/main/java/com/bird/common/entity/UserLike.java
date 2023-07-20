@@ -1,5 +1,6 @@
 package com.bird.common.entity;
 
+import com.bird.common.enums.ArticleType;
 import com.bird.common.enums.LikeStatus;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,43 +25,30 @@ public class UserLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    //自增主键
-    private long likeId;
+    private Long id;
 
     @NotNull
     @Column
-    //点赞用户的id
-    private long likedByUserId ;
+    private Long userId;
 
     @NotNull
     @Column
-    //被点赞用户id
-    private long likedUserId;
+    private Long articleId;
 
     @NotNull
     @Column
-    //被点赞的作品的id
-    private long likeComposeId;
+    private ArticleType articleType;
 
     @NotNull
     @Column
-    //点赞作品的类型，1.评论点赞，2.帖子点赞
-    private Integer likeComposeType;
-
-    @NotNull
-    @Column
-    //点赞状态，0表示取消或者未点赞，1表示点赞
     private LikeStatus likeStatus;
 
-    @NotNull
     @Column
     @CreationTimestamp
-    //点赞时间
-    private ZonedDateTime likeCreateTime;
+    private ZonedDateTime createTime;
 
-    @NotNull
     @Column
-    //更新时间
-    private ZonedDateTime likeUpdateTime;
+    @CreationTimestamp
+    private ZonedDateTime modifyTime;
 
 }
