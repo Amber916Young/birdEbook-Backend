@@ -44,7 +44,7 @@ public class ArticleDTO {
     private Long userId;
     private ZonedDateTime createTime;
     private ZonedDateTime modifyTime;
-    private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
-    private CategoryUseLog categoryUseLogList;
+    private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
+    private CategoryUseLog categoryUseLog;
     private Set<ArticleAction> actionList = new HashSet<>();
 }

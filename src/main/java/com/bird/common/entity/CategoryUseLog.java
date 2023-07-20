@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 
 /**
  * @ClassName:CategoryTypeUseLog
- * @Auther: yyj
+ * @Author: yyj
  * @Description:
  * @Date: 17/07/2023 16:31
  * @Version: v1.0
@@ -33,7 +33,7 @@ public class CategoryUseLog {
     @Enumerated(EnumType.STRING)
     private ArticleType articleType;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "article_id")
     @EqualsAndHashCode.Exclude
     @JsonIgnore

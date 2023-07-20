@@ -28,16 +28,14 @@ import static javax.persistence.CascadeType.ALL;
  * @Version: v1.0
  */
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
+@Table(name = "article")
 @EqualsAndHashCode
-@NoArgsConstructor
-public class Article implements Persistable<Long> {
+public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
+    private long id;
 
     @NotNull
     @Size(min = 1, max = 100)
@@ -93,22 +91,14 @@ public class Article implements Persistable<Long> {
 
     @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
+    private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
 
     @OneToOne(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private CategoryUseLog categoryUseLogList;
+    private CategoryUseLog categoryUseLog;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
-    @ToString.Exclude
     private Set<ArticleAction> actionList = new HashSet<>();
-
-    @Override
-    public boolean isNew() {
-        return id == null;
-    }
 
 }

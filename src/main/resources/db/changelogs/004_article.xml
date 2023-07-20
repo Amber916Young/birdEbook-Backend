@@ -7,7 +7,7 @@
     <changeSet author="bird" id="4">
         <createTable tableName="article">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="cover_image" type="VARCHAR(300)"/>
             <column name="title" type="VARCHAR(100)">

@@ -1,16 +1,17 @@
 package com.bird.app.service;
 
+import com.bird.app.dto.web.DetailPageDTO;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
 import com.bird.common.entity.Article;
-import com.bird.common.enums.OperationType;
+import com.bird.common.entity.TagsUseLog;
 import com.bird.common.repository.ArticleRepository;
+import com.bird.common.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -32,45 +33,44 @@ public class ArticleService {
     private final CategoryUseLogService categoryUseLogService;
 
     public Article createArticle(Article article) {
-        //TODO Get from session
-        article.setCreatedBy("testUser");
-        Article newArticle =  articleRepository.save(article);
+        Long userId = -1L;
+//        SecurityUtil.getCurrentUserId() SecurityUtil.getCurrentUserLogin()
+        String username = "test";
 
-        Long articleId= newArticle.getId();
-
-        tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-//        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
-        articleActionService.createWikiActionByArticleId(articleId,OperationType.INSERT);
-
-        return newArticle;
+        article.getTagsUseLogList().forEach(item -> setupTagsUseLogs(article, item));
+        article.getCategoryUseLog().setArticle(article);
+        article.setCreatedBy(username);
+        article.setUserId(userId);
+        return articleRepository.save(article);
     }
 
-    public Article getArticleById(Long id) {
-        return articleRepository.findById(id).orElseThrow(() ->
-                new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
-    }
+
 
     public Article updateArticleById(Article article) {
         Long articleId= article.getId();
-
-        Article pre =  getArticleById(articleId);
-        article.setCreatedBy(pre.getCreatedBy());
-        article.setCreateTime(pre.getCreateTime());
+        Article articleInDB =getArticleById(articleId);
 
         tagsUseLogService.deleteTagsUseLogByArticleId(articleId);
-        categoryUseLogService.deletecategoryTypeUseLogByArticleId(articleId);
-        tagsUseLogService.createWikiTagsLog(articleId, article.getTagIds());
-//        categoryUseLogService.createWikiCategoryTypeUseLog(articleId, article.getCategoryId());
+        categoryUseLogService.deleteCategoryTypeUseLogByArticleId(articleId);
 
-        articleActionService.createWikiActionByArticleId(article.getId(),OperationType.UPDATE);
 
-        return articleRepository.save(article);
+        article.setCreatedBy(articleInDB.getCreatedBy());
+        article.setUserId(articleInDB.getUserId());
+        article.setCreateTime(articleInDB.getCreateTime());
+        Article updatedArticle = articleRepository.save(article);
+
+//        updatedArticle.setTagsUseLogList(new HashSet<>(tagsUseLogService.findByArticleId(articleId)));
+        return updatedArticle;
     }
 
     public void deleteArticleById(Long id) {
         articleRepository.deleteById(id);
     }
 
+    public Article getArticleById(Long id) {
+        return articleRepository.findById(id).orElseThrow(() ->
+                new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
+    }
     public Page<Article> getAllArticlesList(int pageNumber,
                                                int pageSize,
                                                String queryStr) {
@@ -97,5 +97,15 @@ public class ArticleService {
         } else {
             return articleRepository.findAll(pageable);
         }
+    }
+    public DetailPageDTO getArticleAndAllDetails(Long articleId) {
+
+        return null;
+    }
+
+
+    private void setupTagsUseLogs(Article article, TagsUseLog item) {
+        item.setArticle(article);
+        item.setArticleType(article.getArticleType());
     }
 }

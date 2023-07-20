@@ -7,7 +7,7 @@
     <changeSet author="bird" id="8">
         <createTable tableName="category_use_log">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="cate_id" type="BIGINT"/>
             <column name="article_id" type="BIGINT"/>
@@ -15,5 +15,11 @@
 
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="article_id"
+                                 baseTableName="category_use_log"
+                                 constraintName="fk_category_use_log_article_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="article"/>
     </changeSet>
 </databaseChangeLog>

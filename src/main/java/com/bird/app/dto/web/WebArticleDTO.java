@@ -8,7 +8,9 @@ import com.bird.common.enums.ArticleType;
 import lombok.Data;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -29,7 +31,7 @@ public class WebArticleDTO {
     private Long userId;
     private ZonedDateTime createTime;
     private ZonedDateTime modifyTime;
-    private Set<TagsUseLog> tagsUseLogList = new HashSet<>();
-    private CategoryUseLog categoryUseLogList;
+    private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
+    private CategoryUseLog categoryUseLog;
     private Set<ArticleAction> actionList = new HashSet<>();
 }

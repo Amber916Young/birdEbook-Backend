@@ -17,11 +17,9 @@ import java.time.ZonedDateTime;
  */
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
+@Table(name = "tags_use_log")
 @EqualsAndHashCode
-@NoArgsConstructor
 public class TagsUseLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +34,7 @@ public class TagsUseLog {
     @CreationTimestamp
     private ZonedDateTime createTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "article_id")
     @EqualsAndHashCode.Exclude
     @JsonIgnore

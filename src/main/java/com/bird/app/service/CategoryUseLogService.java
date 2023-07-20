@@ -32,7 +32,7 @@ public class CategoryUseLogService {
         categoryTypeUseLogRepository.save(categoryUseLog);
     }
 
-    public void deletecategoryTypeUseLogByArticleId(Long articleId) {
+    public void deleteCategoryTypeUseLogByArticleId(Long articleId) {
         categoryTypeUseLogRepository.deleteByArticleId(articleId);
     }
 }

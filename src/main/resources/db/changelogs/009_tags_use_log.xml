@@ -7,12 +7,19 @@
     <changeSet author="bird" id="9">
         <createTable tableName="tags_use_log">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true" />
             </column>
             <column name="tag_id" type="BIGINT"/>
             <column name="article_id" type="BIGINT"/>
             <column name="article_type" type="VARCHAR(100)" />
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
+
+
+        <addForeignKeyConstraint baseColumnNames="article_id"
+                                 baseTableName="tags_use_log"
+                                 constraintName="fk_tags_use_log_article_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="article"/>
     </changeSet>
 </databaseChangeLog>
