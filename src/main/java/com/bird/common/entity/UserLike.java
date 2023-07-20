@@ -39,10 +39,6 @@ public class UserLike {
     @Column
     private ArticleType articleType;
 
-    @NotNull
-    @Column
-    private LikeStatus likeStatus;
-
     @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
