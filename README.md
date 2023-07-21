@@ -150,6 +150,14 @@ NEW 🆕 Needs新的需求
 更新DrawIO表
 准备进行前端测试
 
+###  21/07/2023
+有一些改动：
+
+新增文章只需要返回200
+更改文章也只需要返回200
+
+
+
 ## 参考
 
 https://app.diagrams.net/#G1jdlX2asUS-BzBRTVPpXyiAmUvajC_YsE
