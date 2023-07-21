@@ -1,15 +1,14 @@
 package com.bird.app.controller.web;
 
-import com.bird.common.entity.Tags;
+import com.bird.app.mapper.ArticleMapper;
+import com.bird.app.mapper.CategoryMapper;
+import com.bird.app.service.ArticleService;
+import com.bird.app.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author birdyyoung
@@ -23,6 +22,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class WebCategoryController {
+
+    private final CategoryMapper categoryMapper;
+    private final ArticleMapper articleMapper;
+    private final CategoryService categoryService;
+    private final ArticleService articleService;
+
+    // filter by category
+    @GetMapping(value = "/{cateId}",produces = "application/json")
+    public ResponseEntity<?> getArticlesListByCategory(@PathVariable("cateId") Long  cateId){
+        return new ResponseEntity<>( HttpStatus.OK);
+
+    }
 
 
 

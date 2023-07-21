@@ -11,6 +11,7 @@ import com.bird.common.entity.CategoryUseLog;
 import com.bird.common.entity.Tags;
 import com.bird.common.entity.TagsUseLog;
 import com.bird.common.repository.ArticleRepository;
+import com.bird.common.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -45,10 +46,8 @@ public class ArticleService {
     private final TagsMapper tagsMapper;
 
     public DetailArticleDTO createArticle(DetailArticleDTO detailArticleDTO) {
-
-//        SecurityUtil.getCurrentUserId() SecurityUtil.getCurrentUserLogin()
-        Long userId = -1L;
-        String username = "test";
+        Long userId = SecurityUtil.getCurrentUserId();
+        String username =  SecurityUtil.getCurrentUserLogin();
         Article article = articleMapper.toEntity(detailArticleDTO.getArticle());
         List<TagsUseLog> tagsUseLogList = new ArrayList<>();
         List<Tags> tagsList = new ArrayList<>();

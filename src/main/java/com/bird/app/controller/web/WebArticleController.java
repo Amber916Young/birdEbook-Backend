@@ -23,6 +23,8 @@ public class WebArticleController {
         return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
+
+
     @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<?> getArticleAndAllDetails(@PathVariable("id") Long articleId) {
         DetailArticleDTO detailPageDTO = articleService.getArticleAndAllDetails(articleId);

@@ -3,6 +3,7 @@ package com.bird.app.dto;
 import com.bird.common.entity.*;
 import com.bird.common.enums.ArticleStatus;
 import com.bird.common.enums.ArticleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -27,6 +28,7 @@ import java.util.Set;
  * @Version: v1.0
  */
 @Data
+
 public class ArticleDTO {
     private Long id;
     private String title;
@@ -35,6 +37,7 @@ public class ArticleDTO {
     private Long diggCount;
     private Long commentCount;
     private Long collectCount;
+    @JsonIgnore
     private String content;
     private String coverImage;
     private ArticleType articleType;
