@@ -30,11 +30,7 @@ public class CategoryController {
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getAllCategoryTree() {
-        List<CategoryTreeDTO>  categoryTreeDTOS = categoryService.findAllCategoryAndChildren();
-
-
-
-        return new ResponseEntity<>(categoryTreeDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.findAllCategoryAndChildren(), HttpStatus.OK);
     }
 
     @PostMapping(produces = "application/json")

@@ -1,5 +1,6 @@
 package com.bird.app.controller.web;
 
+import com.bird.app.dto.CategoryTreeDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.mapper.CategoryMapper;
 import com.bird.app.service.ArticleService;
@@ -9,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author birdyyoung
@@ -35,6 +38,9 @@ public class WebCategoryController {
 
     }
 
-
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<?> getAllCategories(){
+        return new ResponseEntity<>( categoryService.findAllCategoryAndChildren(), HttpStatus.OK);
+    }
 
 }

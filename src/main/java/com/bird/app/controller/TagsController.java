@@ -27,16 +27,11 @@ public class TagsController {
     private final TagsMapper tagsMapper;
     private final TagsService tagsService;
 
-    // Create
     @PostMapping(produces = "application/json")
-    public ResponseEntity<TagsDTO> createTags(@RequestBody TagsDTO tagsDTO) {
-        return new ResponseEntity<>(tagsMapper.toDTO(tagsService.createTags(tagsMapper.toEntity(tagsDTO))), HttpStatus.CREATED);
+    public ResponseEntity<?> createTags(@RequestBody TagsDTO tagsDTO) {
+        return new ResponseEntity<>(tagsService.createTags(tagsMapper.toEntity(tagsDTO)), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/all",produces = "application/json")
-    public ResponseEntity<?> getAllTagsListWithoutPage() {
-        return new ResponseEntity<>(tagsMapper.toDTOList(tagsService.getAllTagsListWithoutPage()), HttpStatus.OK);
-    }
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getAllTagsList(@RequestParam("pageNumber") int pageNumber,
@@ -53,8 +48,8 @@ public class TagsController {
 
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<TagsDTO> getTagsById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(tagsMapper.toDTO(tagsService.getTagsById(id)), HttpStatus.OK);
+    public ResponseEntity<?> getTagsById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(tagsService.getTagsById(id), HttpStatus.OK);
     }
 
 
