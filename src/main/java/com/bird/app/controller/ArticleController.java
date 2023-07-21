@@ -30,8 +30,8 @@ public class ArticleController {
 
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createArticle(@RequestBody DetailArticleDTO detailArticleDTO) {
-        DetailArticleDTO article = articleService.createArticle(detailArticleDTO);
-        return new ResponseEntity<>(article, HttpStatus.OK);
+        articleService.createArticle(detailArticleDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

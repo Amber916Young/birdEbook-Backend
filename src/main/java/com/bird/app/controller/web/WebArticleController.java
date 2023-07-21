@@ -19,8 +19,8 @@ public class WebArticleController {
     // Create a new article by frontend user
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createArticle(@RequestBody  DetailArticleDTO detailArticleDTO) {
-        DetailArticleDTO article = articleService.createArticle(detailArticleDTO);
-        return new ResponseEntity<>(article, HttpStatus.OK);
+        articleService.createArticle(detailArticleDTO);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
 

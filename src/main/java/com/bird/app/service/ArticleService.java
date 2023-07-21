@@ -45,7 +45,7 @@ public class ArticleService {
     private final CategoryMapper categoryMapper;
     private final TagsMapper tagsMapper;
 
-    public DetailArticleDTO createArticle(DetailArticleDTO detailArticleDTO) {
+    public void createArticle(DetailArticleDTO detailArticleDTO) {
         Long userId = SecurityUtil.getCurrentUserId();
         String username =  SecurityUtil.getCurrentUserLogin();
         Article article = articleMapper.toEntity(detailArticleDTO.getArticle());
@@ -60,13 +60,12 @@ public class ArticleService {
         article.setUserId(userId);
         Article newArticle = articleRepository.save(article);
 
-        DetailArticleDTO articleDTO = new DetailArticleDTO();
-        articleDTO.setArticle(articleMapper.toDTO(newArticle));
-        articleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
-        articleDTO.setCategory(categoryMapper.toDTO(categoryService.getCategoryTypeById(cateId)));
+//        DetailArticleDTO articleDTO = new DetailArticleDTO();
+//        articleDTO.setArticle(articleMapper.toDTO(newArticle));
+//        articleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
+//        articleDTO.setCategory(categoryMapper.toDTO(categoryService.getCategoryTypeById(cateId)));
 
 
-        return articleDTO;
     }
 
 
