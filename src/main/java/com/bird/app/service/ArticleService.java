@@ -14,6 +14,7 @@ import com.bird.common.repository.ArticleRepository;
 import com.bird.common.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -45,21 +46,18 @@ public class ArticleService {
     private final CategoryMapper categoryMapper;
     private final TagsMapper tagsMapper;
 
-    public void createArticle(DetailArticleDTO detailArticleDTO) {
+    public void createArticle(Article article) {
         Long userId = SecurityUtil.getCurrentUserId();
-        String username =  SecurityUtil.getCurrentUserLogin();
-        Article article = articleMapper.toEntity(detailArticleDTO.getArticle());
-        List<TagsUseLog> tagsUseLogList = new ArrayList<>();
-        List<Tags> tagsList = new ArrayList<>();
-        CreateAndSaveArticle(detailArticleDTO,article,tagsUseLogList,tagsList);
-
-        Long cateId = detailArticleDTO.getCategory().getId();
-
+        String username = SecurityUtil.getCurrentUserLogin();
+        article.getTagsUseLogList().forEach(tagsUseLog -> {
+            tagsUseLog.setArticle(article);
+        });
         article.getCategoryUseLog().setArticle(article);
         article.setCreatedBy(username);
         article.setUserId(userId);
-        Article newArticle = articleRepository.save(article);
-
+        articleRepository.save(article);
+//        List<TagsUseLog> tagsUseLogList = new ArrayList<>();
+//        List<Tags> tagsList = new ArrayList<>();
 //        DetailArticleDTO articleDTO = new DetailArticleDTO();
 //        articleDTO.setArticle(articleMapper.toDTO(newArticle));
 //        articleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
@@ -69,8 +67,7 @@ public class ArticleService {
     }
 
 
-    public DetailArticleDTO updateArticleById(DetailArticleDTO detailArticleDTO) {
-        Article article = articleMapper.toEntity(detailArticleDTO.getArticle());
+    public void updateArticleById(Article article) {
         Long articleId = article.getId();
         /**
          * Delete
@@ -80,28 +77,17 @@ public class ArticleService {
 
         Article articleInDB = getArticleById(articleId);
 
-        List<TagsUseLog> tagsUseLogList = new ArrayList<>();
-        List<Tags> tagsList = new ArrayList<>();
-        CreateAndSaveArticle(detailArticleDTO,article,tagsUseLogList,tagsList);
-
-
-        Long cateId = detailArticleDTO.getCategory().getId();
-
+        article.getTagsUseLogList().forEach(tagsUseLog -> {
+            tagsUseLog.setArticle(articleInDB);
+        });
         article.getCategoryUseLog().setArticle(articleInDB);
         article.setCreatedBy(articleInDB.getCreatedBy());
         article.setUserId(articleInDB.getUserId());
         article.setCreateTime(articleInDB.getCreateTime());
         article.setModifyTime(ZonedDateTime.now());
 
-        Article updateArticle = articleRepository.save(article);
+        articleRepository.save(article);
 
-        DetailArticleDTO articleDTO = new DetailArticleDTO();
-        articleDTO.setArticle(articleMapper.toDTO(updateArticle));
-        articleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
-        articleDTO.setCategory(categoryMapper.toDTO(categoryService.getCategoryTypeById(cateId)));
-
-
-        return articleDTO;
     }
 
     public void deleteArticleById(Long id) {

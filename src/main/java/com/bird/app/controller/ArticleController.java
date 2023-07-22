@@ -29,16 +29,16 @@ public class ArticleController {
 
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createArticle(@RequestBody DetailArticleDTO detailArticleDTO) {
-        articleService.createArticle(detailArticleDTO);
+    public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
+        articleService.createArticle(articleMapper.toEntity(articleDTO));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getAllArticlesList(@RequestParam("pageNumber") int pageNumber,
-                                                   @RequestParam("pageSize") int pageSize,
-                                                   @RequestParam("queryStr") String queryStr) {
+                                                @RequestParam("pageSize") int pageSize,
+                                                @RequestParam("queryStr") String queryStr) {
 
 
         Page<Article> articles = articleService.getAllArticlesList(pageNumber, pageSize, queryStr);
@@ -53,10 +53,9 @@ public class ArticleController {
 
     // Update an existing article
     @PutMapping(produces = "application/json")
-    public ResponseEntity<?> updateArticle(@RequestBody DetailArticleDTO detailArticleDTO) {
-        DetailArticleDTO article = articleService.updateArticleById(detailArticleDTO);
-        return ResponseEntity.ok(article);
-
+    public ResponseEntity<?> updateArticle(@RequestBody ArticleDTO articleDTO) {
+        articleService.updateArticleById(articleMapper.toEntity(articleDTO));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // Delete an article by ID

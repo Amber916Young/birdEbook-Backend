@@ -47,4 +47,8 @@ public class ArticleDTO {
     private Long userId;
     private ZonedDateTime createTime;
     private ZonedDateTime modifyTime;
+    @JsonIgnore
+    private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
+    @JsonIgnore
+    private CategoryUseLog categoryUseLog;
 }
