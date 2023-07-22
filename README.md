@@ -6,12 +6,40 @@ DROP   SCHEMA witchtalk;
 CREATE SCHEMA witchtalk DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ```
+git 基本命令
 
+```shell
+// 添加所有修改文件
+git add .
 
+// 提交信息
+git commit -m "comment"
 
+//上传
+git push
 
+// 拉取 主要是同步
+git pull
 
+// 创建新的分支
+git checkout -b branch_name
 
+// 切换到某分支
+git checkout branch_name
+
+// 查看目前的分支
+git branch
+
+```
+
+如果工作branch是f1，那么如果想要同步masterbranch的内容
+
+```shell
+
+git checkout master
+git pull
+
+```
 
 # 百科
 
@@ -155,6 +183,8 @@ NEW 🆕 Needs新的需求
 
 新增文章只需要返回200
 更改文章也只需要返回200
+
+###  22/07/2023
 
 
 
