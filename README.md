@@ -32,10 +32,14 @@ git branch
 
 ```
 
+如果工作branch是f1，那么如果想要同步masterbranch的内容
 
+```shell
 
+git checkout master
+git pull
 
-
+```
 
 # 百科
 
