@@ -1,6 +1,7 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.DetailArticleDTO;
+import com.bird.app.dto.PageDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.mapper.CategoryMapper;
 import com.bird.app.mapper.TagsMapper;
@@ -127,12 +128,19 @@ public class ArticleService {
         }
     }
 
+
+    public List<DetailArticleDTO> getArticleByPageDTO(PageDTO pageDTO) {
+
+
+    }
+
+
     public DetailArticleDTO getArticleAndAllDetails(Long articleId) {
 
         return null;
     }
 
-    private void CreateAndSaveArticle(DetailArticleDTO detailArticleDTO, Article article, List<TagsUseLog> tagsUseLogList,
+    private void createAndSaveArticle(DetailArticleDTO detailArticleDTO, Article article, List<TagsUseLog> tagsUseLogList,
                                       List<Tags> tagsList) {
         /**
          * Tags
