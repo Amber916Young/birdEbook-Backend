@@ -1,24 +1,25 @@
-package com.bird.app.dto;
+package com.bird.app.dto.web;
 
-import com.bird.common.entity.*;
+import com.bird.common.entity.CategoryUseLog;
+import com.bird.common.entity.TagsUseLog;
 import com.bird.common.enums.ArticleStatus;
 import com.bird.common.enums.ArticleType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * @ClassName:WikiArticleDTO
- * @Author: yyj
+ * @ClassName:WebArticleDTO
+ * @Auther: yyj
  * @Description:
- * @Date: 01/07/2023 20:41
+ * @Date: 22/07/2023 13:53
  * @Version: v1.0
  */
 @Data
-public class ArticleDTO {
+public class WebArticleDTO {
     private Long id;
     private String title;
     private String description;
@@ -26,18 +27,11 @@ public class ArticleDTO {
     private Long diggCount;
     private Long commentCount;
     private Long collectCount;
-    @JsonIgnore
-    private String content;
     private String coverImage;
     private ArticleType articleType;
     private ArticleStatus status;
-    private Long version;
     private String createdBy;
     private Long userId;
     private ZonedDateTime createTime;
     private ZonedDateTime modifyTime;
-    @JsonIgnore
-    private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
-    @JsonIgnore
-    private CategoryUseLog categoryUseLog;
 }

@@ -21,11 +21,10 @@ public class UserLikeController {
     private final UserLikeMapper userLikeMapper;
 
 
-    @PostMapping
+    @PostMapping(produces = "application/json")
     public ResponseEntity<LikeDTO> saveOrCancelLike(@RequestBody LikeDTO likeDTO) {
         userLikeService.createOrCancelLikesWIKI(userLikeMapper.toEntity(likeDTO));
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
 
