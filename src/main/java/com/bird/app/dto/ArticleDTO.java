@@ -26,7 +26,6 @@ public class ArticleDTO {
     private Long diggCount;
     private Long commentCount;
     private Long collectCount;
-    @JsonIgnore
     private String content;
     private String coverImage;
     private ArticleType articleType;
@@ -36,8 +35,6 @@ public class ArticleDTO {
     private Long userId;
     private ZonedDateTime createTime;
     private ZonedDateTime modifyTime;
-    @JsonIgnore
     private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
-    @JsonIgnore
     private CategoryUseLog categoryUseLog;
 }

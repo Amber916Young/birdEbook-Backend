@@ -12,9 +12,10 @@
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="article_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
+            <column name="article_id" type="BIGINT"/>
+            <column name="ip" type="VARCHAR(100)" />
+            <column name="method" type="VARCHAR(200)" />
+            <column name="params" type="LONGTEXT" />
             <column name="created_by" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>

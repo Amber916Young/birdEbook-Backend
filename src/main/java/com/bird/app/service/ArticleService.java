@@ -47,7 +47,7 @@ public class ArticleService {
     private final CategoryMapper categoryMapper;
     private final TagsMapper tagsMapper;
 
-    public void createArticle(Article article) {
+    public Article createArticle(Article article) {
         Long userId = SecurityUtil.getCurrentUserId();
         String username = SecurityUtil.getCurrentUserLogin();
         article.getTagsUseLogList().forEach(tagsUseLog -> {
@@ -56,7 +56,7 @@ public class ArticleService {
         article.getCategoryUseLog().setArticle(article);
         article.setCreatedBy(username);
         article.setUserId(userId);
-        articleRepository.save(article);
+       return articleRepository.save(article);
 //        List<TagsUseLog> tagsUseLogList = new ArrayList<>();
 //        List<Tags> tagsList = new ArrayList<>();
 //        DetailArticleDTO articleDTO = new DetailArticleDTO();
@@ -130,8 +130,7 @@ public class ArticleService {
 
 
     public List<DetailArticleDTO> getArticleByPageDTO(PageDTO pageDTO) {
-
-
+        return null;
     }
 
 

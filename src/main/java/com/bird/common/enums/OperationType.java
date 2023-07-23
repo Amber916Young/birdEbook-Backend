@@ -8,6 +8,8 @@ public enum OperationType {
     EXPORT("Export"),
     SELECT("Select"),
     LOGON("Login"),
+    QUERY("Query"),
+    QUERYALL("QueryALL"),
     OTHER("Other");
     private String label;
 

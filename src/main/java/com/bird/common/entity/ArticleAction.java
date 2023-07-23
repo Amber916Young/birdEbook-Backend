@@ -33,16 +33,16 @@ public class ArticleAction {
     @NotNull
     private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_id")
-    @EqualsAndHashCode.Exclude
-    @JsonIgnore
-    private Article article;
-
-
     @NotNull
     @Column
     private String createdBy;
+
+    @Column
+    private String ip;
+    @Column
+    private String method;
+    @Column
+    private String params;
 
     @Enumerated(EnumType.STRING)
     @NotNull

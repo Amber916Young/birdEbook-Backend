@@ -42,6 +42,8 @@ public class Tags {
     private String name;
 
     @Column
+    private String color;
+    @Column
     private Long cateId;
 
     @Column

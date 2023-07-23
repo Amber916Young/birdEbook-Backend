@@ -42,7 +42,8 @@ public class Category implements Persistable<Long> {
 
     @Column
     private String icon;
-
+    @Column
+    private String color;
     @Column
     private String description;
 

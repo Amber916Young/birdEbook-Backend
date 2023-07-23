@@ -15,13 +15,15 @@ public class SecurityUtil {
 
     public static String getCurrentUserName() {
         UserDetailsImpl springSecurityUser = getCurrentUserDetails();
-        return springSecurityUser.getUsername();
+//        return springSecurityUser.getUsername();
+        return "testUser";
     }
 
 
     public static Long getCurrentUserId() {
         UserDetailsImpl springSecurityUser = getCurrentUserDetails();
-        return springSecurityUser.getId();
+        return  -1L;
+//        return springSecurityUser.getId();
     }
 
     private static UserDetailsImpl getCurrentUserDetails() {
