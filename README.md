@@ -188,7 +188,7 @@ NEW 🆕 Needs新的需求
 
 逻辑更新
 更新文章的时候，考虑到多用户更新的情况，创建draftarticle表来存储更新的文章（需要review）
-
+![img.png](img.png)
 
 ## 参考
 
