@@ -38,3 +38,4 @@ public class ArticleDTO {
     private List<TagsUseLog> tagsUseLogList = new ArrayList<>();
     private CategoryUseLog categoryUseLog;
 }
+
