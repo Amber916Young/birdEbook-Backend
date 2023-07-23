@@ -1,8 +1,10 @@
 package com.bird.app.controller.web;
 
 import com.bird.app.dto.ArticleDTO;
+import com.bird.app.dto.ArticleDraftDTO;
 import com.bird.app.dto.DetailArticleDTO;
 import com.bird.app.dto.PageDTO;
+import com.bird.app.mapper.ArticleDraftMapper;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class WebArticleController {
 
     private final ArticleService articleService;
     private final ArticleMapper articleMapper;
+    private final ArticleDraftMapper articleDraftMapper;
 
     // Create a new article by frontend user
     @PostMapping(produces = "application/json")
@@ -32,10 +35,21 @@ public class WebArticleController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getArticleList(@RequestBody PageDTO pageDTO) {
         List<DetailArticleDTO> detailPageDTO = articleService.getArticleByPageDTO(pageDTO);
-
         return new ResponseEntity<>(detailPageDTO, HttpStatus.OK);
     }
 
+    // Update
+    @PutMapping(produces = "application/json")
+    public ResponseEntity<?> updateArticle(@RequestBody ArticleDraftDTO articleDraftDTO) {
+        articleService.singleUpdateArticle(articleDraftMapper.toEntity(articleDraftDTO));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/draft/{id}",produces = "application/json")
+    public ResponseEntity<?> deleteDraftArticle(@PathVariable("id") Long id) {
+        articleService.deleteArticleDraftById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<?> getArticleAndAllDetails(@PathVariable("id") Long articleId) {

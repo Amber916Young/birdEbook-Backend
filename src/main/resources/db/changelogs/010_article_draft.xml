@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="bird" id="10">
+        <createTable tableName="article_draft">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="articleId" type="BIGINT"  >
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_image" type="VARCHAR(300)"/>
+            <column name="title" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="article_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(500)"/>
+
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cate_id" type="BIGINT" />
+            <column name="tag_ids" type="VARCHAR(200)" />
+
+            <column name="content" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_by" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(100)"  defaultValue="DEACTIVATE"/>
+            <column name="auditsType" type="VARCHAR(100)"  defaultValue="DEACTIVATE"/>
+            <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="modify_time" type="datetime" defaultValue="CURRENT_TIMESTAMP"
+                    defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <modifySql dbms="mysql">
+            <regExpReplace replace="'CURRENT_TIMESTAMP'" with="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"/>
+            <append value=" engine innodb"/>
+        </modifySql>
+    </changeSet>
+</databaseChangeLog>

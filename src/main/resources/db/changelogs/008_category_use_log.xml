@@ -11,6 +11,9 @@
             </column>
             <column name="cate_id" type="BIGINT"/>
             <column name="article_id" type="BIGINT"/>
+            <column name="article_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
             <column name="create_time" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
 

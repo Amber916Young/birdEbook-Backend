@@ -36,6 +36,10 @@ public class CategoryUseLog {
     private Article article;
 
     @Column
+    @Enumerated(EnumType.STRING)
+    private ArticleType articleType;
+
+    @Column
     @CreationTimestamp
     private ZonedDateTime createTime;
 }

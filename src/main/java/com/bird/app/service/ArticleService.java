@@ -7,15 +7,13 @@ import com.bird.app.mapper.CategoryMapper;
 import com.bird.app.mapper.TagsMapper;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
-import com.bird.common.entity.Article;
-import com.bird.common.entity.CategoryUseLog;
-import com.bird.common.entity.Tags;
-import com.bird.common.entity.TagsUseLog;
+import com.bird.common.entity.*;
+import com.bird.common.enums.ArticleType;
+import com.bird.common.repository.ArticleDraftRepository;
 import com.bird.common.repository.ArticleRepository;
 import com.bird.common.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +23,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +35,7 @@ import java.util.List;
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final ArticleDraftRepository articleDraftRepository;
     private final ArticleActionService articleActionService;
     private final TagsUseLogService tagsUseLogService;
     private final TagsService tagsService;
@@ -52,7 +50,9 @@ public class ArticleService {
         String username = SecurityUtil.getCurrentUserLogin();
         article.getTagsUseLogList().forEach(tagsUseLog -> {
             tagsUseLog.setArticle(article);
+            tagsUseLog.setArticleType(ArticleType.WIKI);
         });
+        article.getCategoryUseLog().setArticleType(ArticleType.WIKI);
         article.getCategoryUseLog().setArticle(article);
         article.setCreatedBy(username);
         article.setUserId(userId);
@@ -80,7 +80,9 @@ public class ArticleService {
 
         article.getTagsUseLogList().forEach(tagsUseLog -> {
             tagsUseLog.setArticle(articleInDB);
+            tagsUseLog.setArticleType(ArticleType.WIKI);
         });
+        article.getCategoryUseLog().setArticleType(ArticleType.WIKI);
         article.getCategoryUseLog().setArticle(articleInDB);
         article.setCreatedBy(articleInDB.getCreatedBy());
         article.setUserId(articleInDB.getUserId());
@@ -128,6 +130,20 @@ public class ArticleService {
         }
     }
 
+
+    // draft
+    public void singleUpdateArticle(ArticleDraft articleDraft) {
+        Long userId = SecurityUtil.getCurrentUserId();
+        String username = SecurityUtil.getCurrentUserLogin();
+        articleDraft.setCreatedBy(username);
+        articleDraft.setUserId(userId);
+        articleDraftRepository.save(articleDraft);
+    }
+
+
+    public void deleteArticleDraftById(Long id) {
+        articleDraftRepository.deleteById(id);
+    }
 
     public List<DetailArticleDTO> getArticleByPageDTO(PageDTO pageDTO) {
         return null;

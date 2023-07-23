@@ -9,7 +9,8 @@ package com.bird.common.enums;
  */
 public enum ArticleType {
     WIKI("Wiki"),
-    BLOG("Blog");
+    BLOG("Blog"),
+    DRAFTWIKI("DraftWiki");
 
     private String label;
 

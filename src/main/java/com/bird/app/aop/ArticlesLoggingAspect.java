@@ -6,23 +6,18 @@ import com.bird.common.enums.OperationType;
 import com.bird.common.utils.HttpContextUtils;
 import com.bird.common.utils.IPUtils;
 import com.bird.common.utils.SecurityUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.alibaba.fastjson.JSON;
 import lombok.SneakyThrows;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.*;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 @Aspect
 @Component

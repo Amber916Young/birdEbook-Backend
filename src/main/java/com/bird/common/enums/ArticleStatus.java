@@ -9,7 +9,8 @@ package com.bird.common.enums;
  */
 public enum ArticleStatus {
     ACTIVE("Active"),
-    DEACTIVATE("Deactivate");
+    DEACTIVATE("Deactivate"),
+    DRAFT("Draft");
 
     private String label;
 
