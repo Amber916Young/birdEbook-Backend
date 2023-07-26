@@ -1,10 +1,8 @@
-package com.bird.app.controller;/*
- */
+package com.bird.app.controller;
 
 import com.bird.app.dto.LikeDTO;
 import com.bird.app.mapper.UserLikeMapper;
 import com.bird.app.service.UserLikeService;
-import com.bird.common.enums.LikeStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

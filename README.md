@@ -190,6 +190,12 @@ NEW 🆕 Needs新的需求
 更新文章的时候，考虑到多用户更新的情况，创建draftarticle表来存储更新的文章（需要review）
 ![img.png](img.png)
 
+
+### 26/07/2023
+rate limit 
+
+https://www.freesion.com/article/2516653922/
+
 ## 参考
 
 https://app.diagrams.net/#G1jdlX2asUS-BzBRTVPpXyiAmUvajC_YsE

@@ -31,13 +31,6 @@ public class WebCategoryController {
     private final CategoryService categoryService;
     private final ArticleService articleService;
 
-    // filter by category
-    @GetMapping(value = "/{cateId}",produces = "application/json")
-    public ResponseEntity<?> getArticlesListByCategory(@PathVariable("cateId") Long  cateId){
-        return new ResponseEntity<>( HttpStatus.OK);
-
-    }
-
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> getAllCategories(){
         return new ResponseEntity<>( categoryService.findAllCategoryAndChildren(), HttpStatus.OK);
