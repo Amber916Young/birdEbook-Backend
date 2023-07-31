@@ -1,14 +1,13 @@
 package com.bird.app.controller.web;
 
-import com.bird.app.dto.ArticleDTO;
-import com.bird.app.dto.ArticleDraftDTO;
-import com.bird.app.dto.DetailArticleDTO;
-import com.bird.app.dto.PageDTO;
+import com.bird.app.dto.*;
 import com.bird.app.mapper.ArticleDraftMapper;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,6 +57,12 @@ public class WebArticleController {
         return new ResponseEntity<>(detailPageDTO, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/postlist",produces = "application/json")
+    public ResponseEntity<?> getListPosts(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "9") int pageSize) {
+        return new ResponseEntity<>( articleService.getPageListPost(page, pageSize),HttpStatus.OK);
+    }
 
 
 }

@@ -1,15 +1,10 @@
 package com.bird.app.dto.web;
 
-import com.bird.common.entity.CategoryUseLog;
-import com.bird.common.entity.TagsUseLog;
 import com.bird.common.enums.ArticleStatus;
 import com.bird.common.enums.ArticleType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @ClassName:WebArticleDTO

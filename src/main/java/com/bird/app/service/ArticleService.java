@@ -1,7 +1,9 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.DetailArticleDTO;
+import com.bird.app.dto.ListPostDTO;
 import com.bird.app.dto.PageDTO;
+import com.bird.app.dto.web.HomeListArticlesDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.mapper.CategoryMapper;
 import com.bird.app.mapper.TagsMapper;
@@ -17,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +59,7 @@ public class ArticleService {
         article.getCategoryUseLog().setArticle(article);
         article.setCreatedBy(username);
         article.setUserId(userId);
-       return articleRepository.save(article);
+        return articleRepository.save(article);
 //        List<TagsUseLog> tagsUseLogList = new ArrayList<>();
 //        List<Tags> tagsList = new ArrayList<>();
 //        DetailArticleDTO articleDTO = new DetailArticleDTO();
@@ -105,11 +108,11 @@ public class ArticleService {
     public Page<Article> getAllArticlesList(int pageNumber,
                                             int pageSize,
                                             String queryStr) {
-//        Sort = new Sort(Sort.Direction.ASC, "id");
+        Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
+
         int pageNo = pageNumber == 0 ? 0 : pageNumber - 1;
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Pageable pageable = PageRequest.of(pageNo, pageSize,sort);
         if (queryStr != null && !queryStr.isEmpty()) {
-            // Create a specification for the keyword query
             Specification<Article> keywordSpec = (root, query, criteriaBuilder) -> {
                 Predicate predicate = criteriaBuilder.disjunction(); // Using 'or' operator
 
@@ -183,4 +186,18 @@ public class ArticleService {
     }
 
 
+    public Page<HomeListArticlesDTO> getPageListPost(int pageNumber,
+                                                     int pageSize) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
+        pageNumber = pageNumber <= 0 ? 0 : pageNumber - 1;
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Article> listPostPage = articleRepository.findAll(pageable);
+
+        listPostPage.forEach(article -> {
+
+
+
+        });
+
+    }
 }
