@@ -1,8 +1,6 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.DetailArticleDTO;
-import com.bird.app.dto.ListPostDTO;
-import com.bird.app.dto.PageDTO;
 import com.bird.app.dto.web.HomeArticlesDTO;
 import com.bird.app.dto.web.HomeListArticlesDTO;
 import com.bird.app.mapper.ArticleMapper;
@@ -15,6 +13,7 @@ import com.bird.common.enums.ArticleType;
 import com.bird.common.repository.ArticleDraftRepository;
 import com.bird.common.repository.ArticleRepository;
 import com.bird.common.utils.SecurityUtil;
+import com.bird.common.utils.page.PageResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -149,9 +148,6 @@ public class ArticleService {
         articleDraftRepository.deleteById(id);
     }
 
-    public List<DetailArticleDTO> getArticleByPageDTO(PageDTO pageDTO) {
-        return null;
-    }
 
 
     public DetailArticleDTO getArticleAndAllDetails(Long articleId) {
@@ -187,8 +183,8 @@ public class ArticleService {
     }
 
 
-    public Page<HomeListArticlesDTO> getPageListPost(int pageNumber,
-                                                     int pageSize) {
+    public PageResult getPageListPost(int pageNumber,
+                                      int pageSize) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
         pageNumber = pageNumber <= 0 ? 0 : pageNumber - 1;
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
@@ -196,7 +192,20 @@ public class ArticleService {
         Map<Long, Tags> tagsMap = new HashMap<>();
         Map<Long, Category> categoryMap = new HashMap<>();
 
-        return listPostPage.map(article -> {
+        PageResult pageResult = new PageResult();
+        pageResult.setPageSize(pageSize);
+        pageResult.setPageNum(pageNumber);
+        long totalsize = articleRepository.count();
+        long totalno = totalsize;
+        if (totalsize % pageSize == 0) {
+            totalno = totalsize / pageSize;
+        } else {
+            totalno = totalsize / pageSize + 1;
+        }
+        pageResult.setTotalPages(totalno);
+        pageResult.setTotalSize(totalsize);
+        List<HomeListArticlesDTO> homeListArticlesDTOS = new ArrayList<>();
+        listPostPage.forEach(article -> {
             HomeListArticlesDTO dto = new HomeListArticlesDTO();
             HomeArticlesDTO homeArticlesDTO = new HomeArticlesDTO();
             Long cateId = article.getCategoryUseLog().getId();
@@ -218,12 +227,13 @@ public class ArticleService {
                 }
                 tagsList.add(tags);
             });
-
             homeArticlesDTO.setArticle(articleMapper.toWebDTO(article));
             homeArticlesDTO.setTagsList(tagsMapper.toDTOList(tagsList));
             dto.setArticles(Collections.singletonList(homeArticlesDTO));
             dto.setCategory(categoryMapper.toDTO(category));
-            return dto;
+            homeListArticlesDTOS.add(dto);
         });
+        pageResult.setContent(homeListArticlesDTOS);
+        return pageResult;
     }
 }
