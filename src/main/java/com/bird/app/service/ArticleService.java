@@ -27,9 +27,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author birdyyoung
@@ -114,7 +112,7 @@ public class ArticleService {
         Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
 
         int pageNo = pageNumber == 0 ? 0 : pageNumber - 1;
-        Pageable pageable = PageRequest.of(pageNo, pageSize,sort);
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         if (queryStr != null && !queryStr.isEmpty()) {
             Specification<Article> keywordSpec = (root, query, criteriaBuilder) -> {
                 Predicate predicate = criteriaBuilder.disjunction(); // Using 'or' operator
@@ -195,20 +193,36 @@ public class ArticleService {
         pageNumber = pageNumber <= 0 ? 0 : pageNumber - 1;
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
         Page<Article> listPostPage = articleRepository.findAll(pageable);
+        Map<Long, Tags> tagsMap = new HashMap<>();
+        Map<Long, Category> categoryMap = new HashMap<>();
 
         return listPostPage.map(article -> {
             HomeListArticlesDTO dto = new HomeListArticlesDTO();
             HomeArticlesDTO homeArticlesDTO = new HomeArticlesDTO();
-            Long cateId= article.getCategoryUseLog().getId();
+            Long cateId = article.getCategoryUseLog().getId();
+            Category category = new Category();
+            if (categoryMap.containsKey(cateId)) {
+                category = categoryMap.get(cateId);
+            } else {
+                category = categoryService.getCategoryTypeById(cateId)
+            }
+
             List<Tags> tagsList = new ArrayList<>();
             article.getTagsUseLogList().forEach(tagsUseLog -> {
-                Tags tags = tagsService.getTagsById(tagsUseLog.getTagId());
+                Long tagId = tagsUseLog.getTagId();
+                Tags tags = new Tags();
+                if (tagsMap.containsKey(tagId)) {
+                    tags = tagsMap.get(tagId);
+                } else {
+                    tags = tagsService.getTagsById(tagId);
+                }
                 tagsList.add(tags);
             });
+
             homeArticlesDTO.setArticle(articleMapper.toWebDTO(article));
             homeArticlesDTO.setTagsList(tagsMapper.toDTOList(tagsList));
             dto.setArticles(Collections.singletonList(homeArticlesDTO));
-            dto.setCategory(categoryMapper.toDTO(categoryService.getCategoryTypeById(cateId)));
+            dto.setCategory(categoryMapper.toDTO(category));
             return dto;
         });
     }
