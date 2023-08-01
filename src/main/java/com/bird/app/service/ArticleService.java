@@ -3,6 +3,7 @@ package com.bird.app.service;
 import com.bird.app.dto.DetailArticleDTO;
 import com.bird.app.dto.ListPostDTO;
 import com.bird.app.dto.PageDTO;
+import com.bird.app.dto.web.HomeArticlesDTO;
 import com.bird.app.dto.web.HomeListArticlesDTO;
 import com.bird.app.mapper.ArticleMapper;
 import com.bird.app.mapper.CategoryMapper;
@@ -26,6 +27,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -193,11 +196,20 @@ public class ArticleService {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
         Page<Article> listPostPage = articleRepository.findAll(pageable);
 
-        listPostPage.forEach(article -> {
-
-
-
+        return listPostPage.map(article -> {
+            HomeListArticlesDTO dto = new HomeListArticlesDTO();
+            HomeArticlesDTO homeArticlesDTO = new HomeArticlesDTO();
+            Long cateId= article.getCategoryUseLog().getId();
+            List<Tags> tagsList = new ArrayList<>();
+            article.getTagsUseLogList().forEach(tagsUseLog -> {
+                Tags tags = tagsService.getTagsById(tagsUseLog.getTagId());
+                tagsList.add(tags);
+            });
+            homeArticlesDTO.setArticle(articleMapper.toWebDTO(article));
+            homeArticlesDTO.setTagsList(tagsMapper.toDTOList(tagsList));
+            dto.setArticles(Collections.singletonList(homeArticlesDTO));
+            dto.setCategory(categoryMapper.toDTO(categoryService.getCategoryTypeById(cateId)));
+            return dto;
         });
-
     }
 }
