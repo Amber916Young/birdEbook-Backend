@@ -1,6 +1,7 @@
 package com.bird.common.repository;
 
 import com.bird.common.entity.Article;
+import com.bird.common.enums.ArticleType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -27,4 +28,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Page<Article> findAllByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 
 
+    long countByArticleType(ArticleType wiki);
 }

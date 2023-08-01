@@ -1,5 +1,6 @@
 package com.bird.app.mapper;
 
+import com.bird.app.dto.AdminArticleDTO;
 import com.bird.app.dto.ArticleDTO;
 import com.bird.app.dto.web.WebArticleDTO;
 import com.bird.common.entity.Article;
@@ -25,4 +26,6 @@ public interface ArticleMapper {
     WebArticleDTO toWebDTO(Article article);
 
     Article toWebEntity(WebArticleDTO webArticleDTO);
+
+    AdminArticleDTO toAdminDTO(Article article);
 }

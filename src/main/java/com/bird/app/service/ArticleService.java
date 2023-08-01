@@ -1,5 +1,6 @@
 package com.bird.app.service;
 
+import com.bird.app.dto.AdminArticleDTO;
 import com.bird.app.dto.DetailArticleDTO;
 import com.bird.app.dto.web.HomeArticlesDTO;
 import com.bird.app.dto.web.HomeListArticlesDTO;
@@ -106,9 +107,9 @@ public class ArticleService {
                 new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
     }
 
-    public Page<Article> getAllArticlesList(int pageNumber,
-                                            int pageSize,
-                                            String queryStr) {
+    public PageResult getAllArticlesList(int pageNumber,
+                                         int pageSize,
+                                         String queryStr) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
 
         int pageNo = pageNumber == 0 ? 0 : pageNumber - 1;
@@ -116,7 +117,6 @@ public class ArticleService {
         if (queryStr != null && !queryStr.isEmpty()) {
             Specification<Article> keywordSpec = (root, query, criteriaBuilder) -> {
                 Predicate predicate = criteriaBuilder.disjunction(); // Using 'or' operator
-
                 predicate = criteriaBuilder.or(
                         criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), "%" + queryStr.toLowerCase() + "%"),
                         criteriaBuilder.like(criteriaBuilder.lower(root.get("description")), "%" + queryStr.toLowerCase() + "%"),
@@ -124,14 +124,43 @@ public class ArticleService {
                         criteriaBuilder.like(criteriaBuilder.lower(root.get("status")), "%" + queryStr.toLowerCase() + "%"),
                         criteriaBuilder.like(criteriaBuilder.lower(root.get("createdBy")), "%" + queryStr.toLowerCase() + "%")
                 );
-
                 return predicate;
             };
-            // Apply the keyword specification to the repository query
-            return articleRepository.findAll(keywordSpec, pageable);
+            Page<Article> articles = articleRepository.findAll(keywordSpec, pageable);
+            return articleAdminList(articles, pageNumber, pageSize);
         } else {
-            return articleRepository.findAll(pageable);
+
+            return articleAdminList(articleRepository.findAll(pageable), pageNumber, pageSize);
+
         }
+    }
+
+    PageResult articleAdminList(Page<Article> articles, int pageNumber,
+                                int pageSize) {
+        Map<Long, Tags> tagsMap = new HashMap<>();
+        Map<Long, Category> categoryMap = new HashMap<>();
+
+        List<AdminArticleDTO> articlesWithTags = articles.stream()
+                .map(article -> {
+                    AdminArticleDTO articleDTO = articleMapper.toAdminDTO(article);
+                    List<Tags> tagsList = article.getTagsUseLogList().stream()
+                            .map(tagsUseLog -> {
+                                Long tagId = tagsUseLog.getTagId();
+                                return tagsMap.computeIfAbsent(tagId, tagsService::getTagsById);
+                            }).collect(Collectors.toList());
+                    Long categoryId = article.getCategoryUseLog().getCateId();
+                    articleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
+                    articleDTO.setCategory(categoryMapper.toDTO(categoryMap.computeIfAbsent(categoryId, categoryService::getCategoryTypeById)));
+                    return articleDTO;
+                }).collect(Collectors.toList());
+        long totalsize = articleRepository.countByArticleType(ArticleType.WIKI);
+
+        PageResult pageResult = new PageResult();
+        pageResult.setPageSize(pageSize);
+        pageResult.setPageNum(pageNumber);
+        pageResult.setContent(articlesWithTags);
+        pageResult.setTotalPages(totalsize);
+        return pageResult;
     }
 
 
@@ -148,7 +177,6 @@ public class ArticleService {
     public void deleteArticleDraftById(Long id) {
         articleDraftRepository.deleteById(id);
     }
-
 
 
     public DetailArticleDTO getArticleAndAllDetails(Long articleId) {
@@ -185,24 +213,24 @@ public class ArticleService {
 
 
     public PageResult getPageListPost(int pageNumber,
-                                      int pageSize,Long categoryId) {
+                                      int pageSize, Long categoryId) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
         pageNumber = pageNumber <= 0 ? 0 : pageNumber - 1;
 
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
 
-        Page<Article> articlePage ;
+        Page<Article> articlePage;
         Category category = new Category();
-        if(categoryId == 0){
+        if (categoryId == 0) {
             category.setId(0L);
             category.setName("全部");
             articlePage = articleRepository.findAll(pageable);
-        }else {
+        } else {
             category = categoryService.getCategoryTypeById(categoryId);
             sort = Sort.by(Sort.Direction.DESC, "create_time");
             pageable = PageRequest.of(pageNumber, pageSize, sort);
-            articlePage = articleRepository.findAllByCategoryId(categoryId,pageable);
+            articlePage = articleRepository.findAllByCategoryId(categoryId, pageable);
         }
 
 

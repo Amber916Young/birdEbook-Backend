@@ -39,10 +39,7 @@ public class ArticleController {
     public ResponseEntity<?> getAllArticlesList(@RequestParam("pageNumber") int pageNumber,
                                                 @RequestParam("pageSize") int pageSize,
                                                 @RequestParam("queryStr") String queryStr) {
-
-
-        Page<Article> articles = articleService.getAllArticlesList(pageNumber, pageSize, queryStr);
-        return new ResponseEntity<>(articles, HttpStatus.OK);
+        return new ResponseEntity<>(articleService.getAllArticlesList(pageNumber, pageSize, queryStr), HttpStatus.OK);
     }
 
     // Read an article by ID
