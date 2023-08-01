@@ -54,11 +54,11 @@ public class WebArticleController {
         return new ResponseEntity<>(detailPageDTO, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/postlist",produces = "application/json")
+    @GetMapping(value = "/postlist/{pageNo}/{pageSize}/{categoryId}",produces = "application/json")
     public ResponseEntity<?> getListPosts(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "9") int pageSize) {
-        return new ResponseEntity<>( articleService.getPageListPost(page, pageSize),HttpStatus.OK);
+            @PathVariable(value = "pageNo") int pageNo,
+            @PathVariable(value = "pageSize") int pageSize,  @PathVariable(value = "categoryId") Long categoryId) {
+        return new ResponseEntity<>( articleService.getPageListPost(pageNo, pageSize,categoryId),HttpStatus.OK);
     }
 
 

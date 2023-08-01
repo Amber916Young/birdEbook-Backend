@@ -81,7 +81,7 @@ public class Article{
     @Column
     @NotNull
     private Long userId;
-    @Column
+    @Column(name = "create_time")
     @CreationTimestamp
     private ZonedDateTime createTime;
 

@@ -1,8 +1,5 @@
 package com.bird.common.utils.page;
-
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * @ClassName:PageDTO
@@ -25,7 +22,7 @@ public class PageResult {
     /**
      * 分页数据
      */
-    private List<?> content;
+    private Object content;
 
     public void setTotalPages(long totalSize) {
         long totalno = totalSize;

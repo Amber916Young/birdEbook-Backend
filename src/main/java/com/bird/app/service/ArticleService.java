@@ -27,6 +27,7 @@ import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author birdyyoung
@@ -184,50 +185,58 @@ public class ArticleService {
 
 
     public PageResult getPageListPost(int pageNumber,
-                                      int pageSize) {
+                                      int pageSize,Long categoryId) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
         pageNumber = pageNumber <= 0 ? 0 : pageNumber - 1;
+
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
-        Page<Article> listPostPage = articleRepository.findAll(pageable);
+
+
+        Page<Article> articlePage ;
+        Category category = new Category();
+        if(categoryId == 0){
+            category.setId(0L);
+            category.setName("全部");
+            articlePage = articleRepository.findAll(pageable);
+        }else {
+            category = categoryService.getCategoryTypeById(categoryId);
+            sort = Sort.by(Sort.Direction.DESC, "create_time");
+            pageable = PageRequest.of(pageNumber, pageSize, sort);
+            articlePage = articleRepository.findAllByCategoryId(categoryId,pageable);
+        }
+
+
+        long totalsize = categoryUseLogService.findCountCategoryUseLogByCategoryId(categoryId);
+
         Map<Long, Tags> tagsMap = new HashMap<>();
-        Map<Long, Category> categoryMap = new HashMap<>();
+        List<Article> articles = articlePage.getContent();
+
+        List<HomeArticlesDTO> articlesWithTags = articles.stream()
+                .map(article -> {
+                    List<Tags> tagsList = article.getTagsUseLogList().stream()
+                            .map(tagsUseLog -> {
+                                Long tagId = tagsUseLog.getTagId();
+                                return tagsMap.computeIfAbsent(tagId, tagsService::getTagsById);
+                            })
+                            .collect(Collectors.toList());
+
+                    HomeArticlesDTO homeArticlesDTO = new HomeArticlesDTO();
+                    homeArticlesDTO.setTagsList(tagsMapper.toDTOList(tagsList));
+                    homeArticlesDTO.setArticle(articleMapper.toWebDTO(article));
+                    return homeArticlesDTO;
+                })
+                .collect(Collectors.toList());
+
+        HomeListArticlesDTO listArticles = new HomeListArticlesDTO();
+        listArticles.setArticles(articlesWithTags);
+        listArticles.setCategory(categoryMapper.toDTO(category));
 
         PageResult pageResult = new PageResult();
         pageResult.setPageSize(pageSize);
         pageResult.setPageNum(pageNumber);
-        long totalsize = listPostPage.getTotalPages();
+        pageResult.setContent(listArticles);
         pageResult.setTotalPages(totalsize);
 
-        List<HomeListArticlesDTO> homeListArticlesDTOS = new ArrayList<>();
-        listPostPage.forEach(article -> {
-            HomeListArticlesDTO dto = new HomeListArticlesDTO();
-            HomeArticlesDTO homeArticlesDTO = new HomeArticlesDTO();
-            Long cateId = article.getCategoryUseLog().getId();
-            Category category = new Category();
-            if (categoryMap.containsKey(cateId)) {
-                category = categoryMap.get(cateId);
-            } else {
-                category = categoryService.getCategoryTypeById(cateId);
-            }
-
-            List<Tags> tagsList = new ArrayList<>();
-            article.getTagsUseLogList().forEach(tagsUseLog -> {
-                Long tagId = tagsUseLog.getTagId();
-                Tags tags = new Tags();
-                if (tagsMap.containsKey(tagId)) {
-                    tags = tagsMap.get(tagId);
-                } else {
-                    tags = tagsService.getTagsById(tagId);
-                }
-                tagsList.add(tags);
-            });
-            homeArticlesDTO.setArticle(articleMapper.toWebDTO(article));
-            homeArticlesDTO.setTagsList(tagsMapper.toDTOList(tagsList));
-            dto.setArticles(Collections.singletonList(homeArticlesDTO));
-            dto.setCategory(categoryMapper.toDTO(category));
-            homeListArticlesDTOS.add(dto);
-        });
-        pageResult.setContent(homeListArticlesDTOS);
         return pageResult;
     }
 }

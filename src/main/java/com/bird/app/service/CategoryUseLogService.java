@@ -34,4 +34,11 @@ public class CategoryUseLogService {
     public void deleteCategoryTypeUseLogByArticleId(Long articleId) {
         categoryTypeUseLogRepository.deleteByArticleId(articleId);
     }
+
+    public long findCountCategoryUseLogByCategoryId(Long categoryId) {
+        if(categoryId == 0 ){
+            return categoryTypeUseLogRepository.countByArticleType(ArticleType.WIKI);
+        }
+        return categoryTypeUseLogRepository.countByCateIdAndArticleType(categoryId,ArticleType.WIKI);
+    }
 }
