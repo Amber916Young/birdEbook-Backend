@@ -38,7 +38,6 @@ public class WebArticleController {
     // Update
     @PutMapping(produces = "application/json")
     public ResponseEntity<?> updateArticle(@RequestBody ArticleDraftDTO articleDraftDTO) {
-        articleService.singleUpdateArticle(articleDraftMapper.toEntity(articleDraftDTO));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -195,15 +195,9 @@ public class ArticleService {
         PageResult pageResult = new PageResult();
         pageResult.setPageSize(pageSize);
         pageResult.setPageNum(pageNumber);
-        long totalsize = articleRepository.count();
-        long totalno = totalsize;
-        if (totalsize % pageSize == 0) {
-            totalno = totalsize / pageSize;
-        } else {
-            totalno = totalsize / pageSize + 1;
-        }
-        pageResult.setTotalPages(totalno);
-        pageResult.setTotalSize(totalsize);
+        long totalsize = listPostPage.getTotalPages();
+        pageResult.setTotalPages(totalsize);
+
         List<HomeListArticlesDTO> homeListArticlesDTOS = new ArrayList<>();
         listPostPage.forEach(article -> {
             HomeListArticlesDTO dto = new HomeListArticlesDTO();

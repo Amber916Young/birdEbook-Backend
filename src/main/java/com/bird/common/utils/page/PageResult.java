@@ -21,16 +21,19 @@ public class PageResult {
      * 每页数量
      */
     private int pageSize;
-    /**
-     * 记录总数
-     */
-    private long totalSize;
-    /**
-     * 页码总数
-     */
     private long totalPages;
     /**
      * 分页数据
      */
     private List<?> content;
+
+    public void setTotalPages(long totalSize) {
+        long totalno = totalSize;
+        if (totalSize % pageSize == 0) {
+            totalno = totalSize / pageSize;
+        } else {
+            totalno = totalSize / pageSize + 1;
+        }
+        this.totalPages = totalno;
+    }
 }
