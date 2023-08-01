@@ -204,7 +204,7 @@ public class ArticleService {
             if (categoryMap.containsKey(cateId)) {
                 category = categoryMap.get(cateId);
             } else {
-                category = categoryService.getCategoryTypeById(cateId)
+                category = categoryService.getCategoryTypeById(cateId);
             }
 
             List<Tags> tagsList = new ArrayList<>();
