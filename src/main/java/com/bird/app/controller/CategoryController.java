@@ -47,6 +47,11 @@ public class CategoryController {
      * 删除category
      * 需要注意  category 属于树形结构 跟节点删除后，孩子节点作为根结点
      *    Tree 数据结构 深度优先算法
-     *
      * */
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTags(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(categoryService.generateCategoryTreeAndDelete(id),HttpStatus.OK);
+    }
+
 }

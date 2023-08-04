@@ -57,6 +57,69 @@ public class CategoryService {
 
     }
 
+
+
+    public List<CategoryTreeDTO> generateCategoryTreeAndDelete(Long categoryIdToDelete) {
+        List<Category> categories = categoryRepository.findAll();
+        Map<Long, CategoryTreeDTO> categoryMap = new HashMap<>();
+        categories.forEach(category -> {
+            categoryMap.put(category.getId(), categoryMapper.toDTO(category));
+        });
+
+        List<CategoryTreeDTO> categoryTree = new ArrayList<>();
+        List<CategoryTreeDTO> newRoots = new ArrayList<>();
+
+        categories.forEach(category -> {
+            CategoryTreeDTO categoryDTO = categoryMap.get(category.getId());
+            if (category.getPid() == 0) {
+                categoryTree.add(categoryDTO);
+            } else {
+                CategoryTreeDTO parentCategory = categoryMap.get(category.getPid());
+                if (parentCategory != null) {
+                    parentCategory.getChildren().add(categoryDTO);
+                } else {
+                    newRoots.add(categoryDTO);
+                }
+            }
+        });
+
+        CategoryTreeDTO categoryToDelete = categoryMap.get(categoryIdToDelete);
+        if (categoryToDelete != null) {
+            deleteCategoryRecursive(categoryToDelete, categoryMap);
+        }
+
+        categoryTree.addAll(newRoots);
+
+        updateDatabase(categoryMap);
+
+        return categoryTree;
+
+    }
+
+    private void deleteCategoryRecursive(CategoryTreeDTO category, Map<Long, CategoryTreeDTO> categoryMap) {
+        List<CategoryTreeDTO> children = new ArrayList<>(category.getChildren());
+        for (CategoryTreeDTO child : children) {
+            deleteCategoryRecursive(child, categoryMap);
+        }
+
+        CategoryTreeDTO parentCategory = categoryMap.get(category.getPid());
+        if (parentCategory != null) {
+            parentCategory.getChildren().remove(category);
+        } else {
+            // If the deleted node is the root, remove it from the root list
+            categoryMap.remove(category.getId());
+        }
+    }
+
+
+    private void updateDatabase(CategoryTreeDTO category) {
+    }
+
+    private void updateDatabase(Map<Long, CategoryTreeDTO> categoryMap) {
+        for (CategoryTreeDTO category : categoryMap.values()) {
+            updateDatabase(category);
+        }
+    }
     public Category createCategory(Category category) {
         return categoryRepository.save(category);
     }
