@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/web/articles")
 @RequiredArgsConstructor
@@ -28,16 +26,11 @@ public class WebArticleController {
         articleService.createArticle(articleMapper.toEntity(articleDTO));
         return new ResponseEntity<>( HttpStatus.OK);
     }
-        /***
-    @GetMapping(produces = "application/json")
-    public ResponseEntity<?> getArticleList(@RequestBody PageDTO pageDTO) {
-        List<DetailArticleDTO> detailPageDTO = articleService.getArticleByPageDTO(pageDTO);
-        return new ResponseEntity<>(detailPageDTO, HttpStatus.OK);
-    }
-       ***/
+
     // Update
     @PutMapping(produces = "application/json")
     public ResponseEntity<?> updateArticle(@RequestBody ArticleDraftDTO articleDraftDTO) {
+        articleService.singleUpdateArticle(articleDraftMapper.toEntity(articleDraftDTO));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

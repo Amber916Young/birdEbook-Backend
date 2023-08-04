@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ArticleDraftRepository extends JpaRepository<ArticleDraft, Long> {
+    void findByArticleId(Long articleId);
+    boolean isFindByArticleId(Long articleId);
 }
