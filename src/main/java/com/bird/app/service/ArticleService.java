@@ -2,6 +2,7 @@ package com.bird.app.service;
 
 import com.bird.app.dto.AdminArticleDTO;
 import com.bird.app.dto.DetailArticleDTO;
+import com.bird.app.dto.TagsDTO;
 import com.bird.app.dto.web.HomeArticlesDTO;
 import com.bird.app.dto.web.HomeListArticlesDTO;
 import com.bird.app.mapper.ArticleMapper;
@@ -183,8 +184,29 @@ public class ArticleService {
 
 
     public DetailArticleDTO getArticleAndAllDetails(Long articleId) {
+        Article article = getArticleById(articleId);
+        List<Tags> tagsList = new ArrayList<>();
 
-        return null;
+        /**
+         * Tags
+         * **/
+        article.getTagsUseLogList().forEach(tag -> {
+            Long tagId = tag.getTagId();
+            Tags tags = tagsService.getTagsById(tagId);
+            tagsList.add(tags);
+        });
+        /**
+         * Category
+         * **/
+        Long cateId = article.getCategoryUseLog().getCateId();
+        Category category  = categoryService.getCategoryTypeById(cateId);
+
+        DetailArticleDTO detailArticleDTO = new DetailArticleDTO();
+        detailArticleDTO.setArticle(articleMapper.toDTO(article));
+        detailArticleDTO.setCategory(categoryMapper.toDTO(category));
+        detailArticleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
+
+        return detailArticleDTO;
     }
 
     private void createAndSaveArticle(DetailArticleDTO detailArticleDTO, Article article, List<TagsUseLog> tagsUseLogList,
