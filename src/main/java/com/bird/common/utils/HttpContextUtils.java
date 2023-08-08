@@ -12,8 +12,19 @@ import java.util.Objects;
  */
 
 public class HttpContextUtils {
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+
     public static HttpServletRequest getHttpServletRequest() {
         return ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
     }
+
+    public static String getTokenFromRequest(HttpServletRequest request) {
+        String token = request.getHeader(AUTHORIZATION_HEADER);
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // 去掉前缀 "Bearer "
+        }
+        return token;
+    }
 }
+
 

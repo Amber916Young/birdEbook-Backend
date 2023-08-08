@@ -10,8 +10,32 @@
             VALUES( 0, '默认', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f')
         </sql>
         <sql>
+            INSERT INTO tags (cate_id, name, icon, color)
+            VALUES( 0, '测试tag1', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f')
+        </sql>
+        <sql>
+            INSERT INTO tags (cate_id, name, icon, color)
+            VALUES( 0, '测试tag2', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f')
+        </sql>
+        <sql>
+            INSERT INTO tags (cate_id, name, icon, color)
+            VALUES( 0, '测试tag3', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f')
+        </sql>
+        <sql>
             INSERT INTO category ( pid, name, icon, color,description)
             VALUES( 0, '默认', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f',"默认分类")
+        </sql>
+        <sql>
+            INSERT INTO category ( pid, name, icon, color,description)
+            VALUES( 0, '测试分类1', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f',"测试分类1")
+        </sql>
+        <sql>
+            INSERT INTO category ( pid, name, icon, color,description)
+            VALUES( 0, '测试分类2', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f',"测试分类2")
+        </sql>
+        <sql>
+            INSERT INTO category ( pid, name, icon, color,description)
+            VALUES( 0, '测试分类3', 'fa-solid fa-wand-magic-sparkles', '#6a5a8f',"测试分类3")
         </sql>
     </changeSet>
 </databaseChangeLog>

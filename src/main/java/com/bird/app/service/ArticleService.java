@@ -167,9 +167,9 @@ public class ArticleService {
 
     // draft
     public void singleUpdateArticle(ArticleDraft articleDraft) {
-        if (articleDraftRepository.isFindByArticleId(articleDraft.getArticleId())) {
-            throw new NotFoundRequestException(ErrorReasonCode.Article_Cannot_Update);
-        }
+//        if (articleDraftRepository.isExistByArticleId(articleDraft.getArticleId())) {
+//            throw new NotFoundRequestException(ErrorReasonCode.Article_Cannot_Update);
+//        }
         Long userId = SecurityUtil.getCurrentUserId();
         String username = SecurityUtil.getCurrentUserLogin();
         articleDraft.setCreatedBy(username);

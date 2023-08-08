@@ -2,6 +2,7 @@ package com.bird.app.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.bird.app.service.ArticleActionService;
+import com.bird.app.service.ArticleService;
 import com.bird.common.entity.ArticleAction;
 import com.bird.common.enums.OperationType;
 import com.bird.common.utils.HttpContextUtils;
@@ -30,7 +31,7 @@ public class ArticlesPublicCatchAspect {
 
 
     @Autowired
-    private ArticleActionService articleActionService;
+    private ArticleService articleService;
 
 
     @Pointcut("execution( * com.bird.app.controller.WebArticleController*.*(..))")
@@ -48,28 +49,22 @@ public class ArticlesPublicCatchAspect {
     // TODO
     @SneakyThrows
     @AfterReturning("pointcutAOP()")
-    public void afterReturnArticlesAOP(JoinPoint joinPoint){
-        ArticleAction articleAction = new ArticleAction();
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
-        String className = joinPoint.getTarget().getClass().getName();
-        String methodName = method.getName();
+    public void afterReturnAOP(JoinPoint joinPoint){
+//        String token = HttpContextUtils.getTokenFromRequest(HttpContextUtils.getHttpServletRequest());
+//
+//        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+//        Method method = signature.getMethod();
+//        String className = joinPoint.getTarget().getClass().getName();
+//        String methodName = method.getName();
+//
+//        if("getArticleAndAllDetails".equals(methodName)){
+//        }
+//        Object[] args = joinPoint.getArgs();
+//        String params = JSON.toJSONString(args);
+//        String userName=  SecurityUtil.getCurrentUserLogin();
+//        Long userId=  SecurityUtil.getCurrentUserId();
 
-        if("getArticleAndAllDetails".equals(methodName)){
-            articleAction.setOperationType(OperationType.INSERT);
-        }
-        Object[] args = joinPoint.getArgs();
-        String params = JSON.toJSONString(args);
-        String userName=  SecurityUtil.getCurrentUserLogin();
-        Long userId=  SecurityUtil.getCurrentUserId();
-        HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
-        articleAction.setCreatedBy(userName);
-        articleAction.setUserId(userId);
-        articleAction.setIp(IPUtils.getIpAddr(request));
-        articleAction.setMethod(methodName);
-        articleAction.setParams(params);
 
-        articleActionService.createWikiAction(articleAction);
     }
 
 
