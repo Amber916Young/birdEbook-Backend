@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-@Configuration
+//@Configuration
 public class ThymeleafConfiguration {
 
     @Bean
