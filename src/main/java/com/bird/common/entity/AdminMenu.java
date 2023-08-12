@@ -2,7 +2,8 @@ package com.bird.common.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 
 @Entity
@@ -11,11 +12,17 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-public class Menu {
+public class AdminMenu {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
+    @Column
     private Long pid;
+    @Column
     private String name;
+    @Column
     private String link;
+    @Column
     private String icon;
-    private List<Menu> children;
 }

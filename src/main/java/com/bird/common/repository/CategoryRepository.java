@@ -12,6 +12,5 @@ import org.springframework.stereotype.Repository;
  * @Version: v1.0
  */
 @Repository
-
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 }
