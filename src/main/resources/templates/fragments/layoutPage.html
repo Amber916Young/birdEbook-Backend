@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header(title)">
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta id="viewport" name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title th:text="${title}"></title>
+</head>
+<body x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+      x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+      :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
+<div th:fragment="sidebarMenu">
+    <div th:replace="fragments/sidebarPage :: sidebarPage"></div>
+</div>
+
+<div th:fragment="footer">
+    <div th:replace="fragments/basePage :: basePage"></div>
+</div>
+</body>
+
+</html>

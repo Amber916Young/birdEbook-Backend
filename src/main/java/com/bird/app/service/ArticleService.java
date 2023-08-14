@@ -69,8 +69,6 @@ public class ArticleService {
 //        articleDTO.setArticle(articleMapper.toDTO(newArticle));
 //        articleDTO.setTagsList(tagsMapper.toDTOList(tagsList));
 //        articleDTO.setCategory(categoryMapper.toDTO(categoryService.getCategoryTypeById(cateId)));
-
-
     }
 
 

@@ -1,7 +1,25 @@
+
+
+.Post-actions {
+    z-index:9999
+}
+
+@media (min-width: 992px){
+    .TagsPage .sideNav {
+        margin-top: 5em;
+    }
+}
+body .item-discussion-views{
+    margin-left: 1em;
+    margin-right: 0;
+
+}
+
+
 @media (max-width: 767.98px) {
     .DiscussionListItem-author .Avatar {
         --size: 35px;
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     .DiscussionListItem {
@@ -32,7 +50,18 @@
         margin: 10px -10px;
     }
 
-
-
 }
 
+.IndexPage-toolbar .item-search{
+    display: none;
+}
+
+.item-tag24{
+    display: none;
+}
+.item-tag25{
+    display: none;
+}
+.item-tag30{
+    display: none;
+}
