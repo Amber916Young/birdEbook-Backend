@@ -105,6 +105,49 @@ function transfer(button) {
     }
 }
 
+
+var imageAvatar = ""
+var htmlModel =`
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+</head>
+<main class="w-68 m-20 flex justify-center ">
+    <div
+            id="content"
+            class=" block w-[25rem]  rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+        <div class="relative overflow-hidden bg-cover bg-no-repeat">
+            <div class="text-center flex justify-center  mt-2">
+                <img id="avatar"
+                        src="`+imageAvatar+`"
+                        class="mr-2 mb-4 w-24 rounded-full"
+                        alt="Avatar"/>
+                <div class="mt-4">
+                    <h5 class="mb-2  text-xl font-medium leading-tight">`+ waterMarkUsername+`</h5>
+                    <p class="text-neutral-500 dark:text-neutral-400">`+ username+`</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="Post-body">`+ username+`</div>
+        </div>
+    </div>
+</main>
+`
+
+
+
 function __canvasWM({
                         container = document.body,
                         width = '200px',

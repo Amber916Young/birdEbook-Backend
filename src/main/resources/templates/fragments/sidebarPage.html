@@ -1,14 +1,230 @@
-<header th:fragment="sidebarPage" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="sidebarPage" xmlns:th="http://www.thymeleaf.org">
+
+
+    <!-- Navbar -->
+    <nav class=" xl:pl-60 sticky left-0 top-0 z-50 w-full bg-white shadow dark:bg-neutral-800">
+        <div class="px-3">
+            <div class="relative flex h-[58px] items-center justify-between">
+                <div class="flex flex-1 items-center sm:items-stretch sm:justify-start">
+                    <div class="flex flex-shrink-0 items-center">
+                        <div id="hamburger" class="
+              xl:hidden
+             mr-4 flex text-neutral-400" data-te-sidenav-toggle-ref="" data-te-target="#sidenav-main">
+                            <a href="#" class="text-neutral-400">
+                                <svg fill="hsl(224, 7.2%, 40%)" viewBox="0 0 100 80" width="20" height="20">
+                                    <rect width="80" height="14"></rect>
+                                    <rect y="30" width="80" height="14"></rect>
+                                    <rect y="60" width="80" height="14"></rect>
+                                </svg>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div id="te-search-container" class="relative hidden lg:flex lg:items-center">
+                        <form class="relative mb-0 flex flex-wrap items-stretch">
+                            <style>
+              #te-search-input:focus-within {
+                box-shadow: inset 0 0 0 1px #3b71ca;
+              }
+
+                            </style>
+                            <input id="te-search-input" autocomplete="off" type="search"
+                                   class="focus:shadow-te-blue relative m-0 inline-block w-[1%] min-w-[225px] flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1 text-base font-normal text-gray-700 outline-none transition duration-300 ease-in-out focus:border-blue-600 focus:text-gray-700 dark:border-neutral-600 dark:text-gray-200 dark:placeholder:text-gray-200"
+                                   placeholder="Search (ctrl + &quot;/&quot; to focus)">
+                            <span class="flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-gray-700 dark:text-gray-200">
+              <span class="text-neutral-400" id="te-search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                     stroke="currentColor" class="h-5 w-5">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                </svg>
+              </span>
+            </span>
+                        </form>
+                        <div id="te-search-dropdown"
+                             class="lpy-2 absolute top-[36px] z-[999999] hidden w-full overflow-hidden rounded bg-white shadow-md dark:bg-neutral-700">
+                            <ul id="te-search-list"
+                                class="relative max-h-[265px] w-full overflow-y-scroll pt-0 [&amp;::-webkit-scrollbar]:hidden perfect-scrollbar group/ps overflow-hidden [overflow-anchor:none] touch-none">
+                                <div class="ps__rail-x group/x absolute bottom-0 h-[0.9375rem] hidden opacity-0 transition-[background-color,_opacity] duration-200 ease-linear motion-reduce:transition-none z-[1035] group-[&amp;.ps--active-x]/ps:block group-hover/ps:opacity-60 group-focus/ps:opacity-60 group-[&amp;.ps--scrolling-x]/ps:opacity-60 hover:!opacity-90 focus:!opacity-90 [&amp;.ps--clicking]:!opacity-90 outline-none group-[&amp;.ps--active-x]/ps:bg-transparent hover:!bg-[#eee] focus:!bg-[#eee] [&amp;.ps--clicking]:!bg-[#eee] dark:hover:!bg-[#555] dark:focus:!bg-[#555] dark:[&amp;.ps--clicking]:!bg-[#555]"
+                                     style="left: 0px; top: 0px; transform: translateY(calc(-100% + 0px));">
+                                    <div class="ps__thumb-x absolute bottom-0.5 rounded-md h-1.5 group-focus/ps:opacity-100 group-active/ps:opacity-100 [transition:background-color_.2s_linear,_height_.2s_ease-in-out] group-hover/x:h-[11px] group-focus/x:h-[0.6875rem] group-[&amp;.ps--clicking]/x:bg-[#999] group-[&amp;.ps--clicking]/x:h-[11px] outline-none bg-[#aaa] group-hover/x:bg-[#999] group-focus/x:bg-[#999]"
+                                         tabindex="0" style="left: 0px; width: 0px;"></div>
+                                </div>
+                                <div class="ps__rail-y group/y absolute right-0 w-[0.9375rem] hidden opacity-0 transition-[background-color,_opacity] duration-200 ease-linear motion-reduce:transition-none z-[1035] group-[&amp;.ps--active-y]/ps:block group-hover/ps:opacity-60 group-focus/ps:opacity-60 group-[&amp;.ps--scrolling-y]/ps:opacity-60 hover:!opacity-90 focus:!opacity-90 [&amp;.ps--clicking]:!opacity-90 outline-none group-[&amp;.ps--active-y]/ps:bg-transparent hover:!bg-[#eee] focus:!bg-[#eee] [&amp;.ps--clicking]:!bg-[#eee] dark:hover:!bg-[#555] dark:focus:!bg-[#555] dark:[&amp;.ps--clicking]:!bg-[#555]"
+                                     style="top: 0px; left: 0px; transform: translateX(calc(-100% + 0px));">
+                                    <div class="ps__thumb-y absolute right-0.5 rounded-md w-1.5 group-focus/ps:opacity-100 group-active/ps:opacity-100 [transition:background-color_.2s_linear,_width_.2s_ease-in-out,_opacity] group-hover/y:w-[11px] group-focus/y:w-[0.6875rem] group-[&amp;.ps--clicking]/y:w-[11px] outline-none bg-[#aaa] group-hover/y:bg-[#999] group-focus/y:bg-[#999] group-[&amp;.ps--clicking]/y:bg-[#999]"
+                                         tabindex="0" style="top: 0px; height: 0px;"></div>
+                                </div>
+                            </ul>
+                            <hr class="my-0 dark:border-neutral-600">
+                            <p class="my-4 mr-4 text-end text-xs text-neutral-600 dark:text-neutral-100">
+                                search results: <strong id="te-search-count"></strong>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="ml-auto hidden items-center sm:flex">
+                        <div class="flex">
+
+
+                            <div class="relative" data-te-dropdown-ref="">
+                                <button class="hidden items-center py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:flex sm:px-3 [&amp;.active]:text-black/90 dark:[&amp;.active]:text-zinc-400"
+                                        type="button" id="dropdownMenuButton1" data-te-dropdown-toggle-ref=""
+                                        aria-expanded="false">
+                                    Docs
+                                    <span class="w-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                    <path fill-rule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clip-rule="evenodd"></path>
+                  </svg>
+                </span>
+                                </button>
+                                <ul class="absolute z-[1000] float-left m-0 hidden min-w-[180px] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&amp;[data-te-dropdown-show]]:block"
+                                    aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref="">
+                                    <li>
+                                        <a class="flex w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                           href="/" data-te-dropdown-item-ref="">
+                                            <img src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/content/en/_mdb5/_assets/img/icons/javascript.webp"
+                                                 alt="" class="mr-2 h-4 w-4">
+                                            Standard</a>
+                                    </li>
+                                    <li>
+                                        <a class="flex w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                           href="/docs/react" data-te-dropdown-item-ref="">
+                                            <img src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/content/en/_mdb5/_assets/img/icons/react.webp"
+                                                 alt="" class="mr-2 h-4 w-4">
+                                            React</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <a href="/license/"
+                               class="hidden py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:block sm:px-2 [&amp;.active]:text-black/90 dark:[&amp;.active]:text-zinc-400">License</a>
+
+                            <a target="_blank" href="https://mdbgo.com/"
+                               class="hidden py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:block lg:px-2 [&amp;.active]:text-black/90 dark:[&amp;.active]:text-zinc-400">Free
+                                hosting</a>
+
+                            <a href="/learn/te-foundations/basics/introduction/"
+                               class="hidden py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:block sm:px-2 [&amp;.active]:text-black/90 dark:[&amp;.active]:text-zinc-400">Learn</a>
+
+                            <a target="_blank" href="https://mdbootstrap.com/services/"
+                               class="hidden py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 xl:block [&amp;.active]:text-black/90 dark:[&amp;.active]:text-zinc-400">Services</a>
+
+                            <a href="https://github.com/mdbootstrap/Tailwind-Elements/discussions"
+                               class="hidden py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:block sm:px-2 [&amp;.active]:text-black/90 dark:[&amp;.active]:text-zinc-400">Community</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute inset-y-0 right-0 flex items-center pr-0 sm:static sm:inset-auto sm:ml-4">
+
+                    <div id="theme-switcher" class="w-8">
+                        <button class="rounded-2 flex items-center justify-center whitespace-nowrap px-1.5 py-2 uppercase text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:p-2"
+                                type="button" id="themeSwitcher" data-te-dropdown-toggle-ref=""
+                                data-te-dropdown-position="dropend" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                 class="inline-block h-5 w-5">
+                                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"></path>
+                            </svg>
+                        </button>
+                        <ul class="absolute z-[1000] float-left m-0 hidden w-[120px] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-800 [&amp;[data-te-dropdown-show]]:block"
+                            aria-labelledby="themeSwitcher" data-te-dropdown-menu-ref="">
+                            <li class="text flex scale-[0.8] items-center justify-center py-1 font-bold text-gray-400">
+                                <svg class="-ml-1 fill-gray-400" xmlns="http://www.w3.org/2000/svg" height="20"
+                                     width="20">
+                                    <path d="M7 17v-5.792H3L10 2l7 9.208h-4V17Zm1.5-1.5h3V9.708h2.438L10 4.438l-3.938 5.27H8.5ZM10 9.708Z"></path>
+                                </svg>
+                                <span class="ml-1 mr-2">+</span>
+                                <span>D</span>
+                            </li>
+
+                            <li></li>
+                            <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-3 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 focus:bg-neutral-200 focus:outline-none active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-100 dark:hover:bg-neutral-600 focus:dark:bg-neutral-600"
+                                   href="#" data-theme="light" data-te-dropdown-item-ref="">
+                                    <div class="pointer-events-none">
+                                        <div class="inline-block w-[24px] text-center align-middle"
+                                             data-theme-icon="light">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                 fill="currentColor" class="inline-block h-5 w-5">
+                                                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"></path>
+                                            </svg>
+                                        </div>
+                                        <span data-theme-name="light">Light</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-3 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 focus:bg-neutral-200 focus:outline-none active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-100 dark:hover:bg-neutral-600 focus:dark:bg-neutral-600"
+                                   href="#" data-theme="dark" data-te-dropdown-item-ref="">
+                                    <div class="pointer-events-none">
+                                        <div class="-mt-1 inline-block w-[24px] text-center align-middle"
+                                             data-theme-icon="dark">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                 fill="currentColor" class="inline-block h-4 w-4">
+                                                <path fill-rule="evenodd"
+                                                      d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                                                      clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <span data-theme-name="dark">Dark</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-3 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 focus:bg-neutral-200 focus:outline-none active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-100 dark:hover:bg-neutral-600 focus:dark:bg-neutral-600"
+                                   href="#" data-theme="system" data-te-dropdown-item-ref="">
+                                    <div class="pointer-events-none">
+                                        <div class="inline-block w-[24px] text-center text-primary-500"
+                                             data-theme-icon="system">
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
+                                                 class="inline-block w-4" role="img" viewBox="0 0 640 512">
+                                                <path fill="currentColor"
+                                                      d="M128 32C92.7 32 64 60.7 64 96V352h64V96H512V352h64V96c0-35.3-28.7-64-64-64H128zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480H563.2c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2H19.2z"></path>
+                                            </svg>
+                                        </div>
+                                        <span data-theme-name="system" class="text-primary-500">System</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <a href="https://twitter.com/TailwindElement/" target="_blank"
+                       class="rounded-md px-1.5 py-2 text-sm font-medium text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+                        </svg>
+                    </a>
+
+
+                    <a href="https://github.com/mdbootstrap/Tailwind-Elements/" target="_blank"
+                       class="rounded-md px-1.5 py-2 text-sm font-medium text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+
     <!-- Sidenav -->
     <nav
-            id="sidenav"
-            class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] dark:bg-zinc-800 xl:data-[te-sidenav-hidden='false']:translate-x-0"
-            data-te-sidenav-init
-            data-te-sidenav-hidden="false"
-            data-te-sidenav-mode-breakpoint-over="0"
-            data-te-sidenav-mode-breakpoint-side="xl"
-            data-te-sidenav-content="#content"
-            data-te-sidenav-accordion="true">
+            id="sidenav-main"
+            class="fixed left-0 top-0 z-[1036] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] dark:bg-neutral-800 xl:data-[te-sidenav-hidden='false']:translate-x-0 sidenav-primary perfect-scrollbar ps--active-y group/ps [overflow-anchor:none] touch-none"
+            data-te-sidenav-init="" data-te-sidenav-mode-breakpoint-over="0" data-te-sidenav-mode-breakpoint-side="xl"
+            data-te-sidenav-hidden="false" data-te-sidenav-mode="side" data-te-sidenav-content="#page-content"
+            data-te-sidenav-accordion="true"
+            style="width: 240px; height: 100vh; position: fixed; transition: all 0.3s linear 0s;">
         <a
                 class="mb-3 flex items-center justify-center py-6 outline-none"
                 href="#!"
@@ -76,332 +292,4 @@
     </nav>
     <!-- Sidenav -->
 
-    <!-- Navbar -->
-    <nav
-            id="main-navbar"
-            class="fixed left-0 right-0 top-0 flex w-full flex-nowrap items-center justify-between bg-white py-[0.6rem] text-gray-500 shadow-lg hover:text-gray-700 focus:text-gray-700 dark:bg-zinc-700 lg:flex-wrap lg:justify-start xl:pl-60"
-            data-te-navbar-ref>
-        <!-- Container wrapper -->
-        <div
-                class="flex w-full flex-wrap items-center justify-between px-4">
-            <!-- Toggler -->
-            <button
-                    data-te-sidenav-toggle-ref
-                    data-te-target="#sidenav"
-                    class="block border-0 bg-transparent px-2.5 text-gray-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 xl:hidden"
-                    aria-controls="#sidenav"
-                    aria-haspopup="true">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-
-            <!-- Search form -->
-            <form
-                    class="relative ml-4 mr-auto flex flex-wrap items-stretch xl:mx-0">
-                <input
-                        autocomplete="off"
-                        type="search"
-                        class="relative m-0 inline-block w-[1%] min-w-[225px] flex-auto rounded border border-solid border-gray-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition duration-300 ease-in-out focus:border-primary-600 focus:text-gray-700 focus:shadow-te-primary focus:outline-none dark:text-gray-200 dark:placeholder:text-gray-200"
-                        placeholder='Search (ctrl + "/" to focus)'/>
-                <span
-                        class="flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-gray-700 dark:text-gray-200 [&>svg]:w-4"
-                        id="basic-addon2">
-                <i class="fa-solid fa-bars"></i>
-                </span>
-            </form>
-
-            <!-- Right links -->
-            <ul class="relative flex items-center">
-                <!-- Notification dropdown -->
-                <li class="relative" data-te-dropdown-ref>
-                    <a
-                            class="mr-4 flex items-center text-gray-500 hover:text-gray-700 focus:text-gray-700"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-te-dropdown-toggle-ref
-                            aria-expanded="false">
-              <span class="dark:text-gray-200 [&>svg]:w-3.5">
-                <svg
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="bell"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512">
-                  <path
-                          fill="currentColor"
-                          d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"></path>
-                </svg>
-              </span>
-                        <span
-                                class="absolute -mt-2.5 ml-2 rounded-full bg-red-600 px-1.5 py-[1px] text-[0.6rem] text-white"
-                        >1</span
-                        >
-                    </a>
-                    <ul
-                            class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-[10rem] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-zinc-700 [&[data-te-dropdown-show]]:block"
-                            aria-labelledby="navbarDropdownMenuLink"
-                            data-te-dropdown-menu-ref>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref
-                            >Some news</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref
-                            >Another news</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref
-                            >Something else here</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Icon -->
-                <li class="mr-4">
-                    <a href="#">
-              <span
-                      class="fill-gray-500 hover:fill-gray-700 focus:fill-gray-700 dark:fill-gray-200 [&>svg]:w-4">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 576 512">
-                  <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                          d="M41.4 9.4C53.9-3.1 74.1-3.1 86.6 9.4L168 90.7l53.1-53.1c28.1-28.1 73.7-28.1 101.8 0L474.3 189.1c28.1 28.1 28.1 73.7 0 101.8L283.9 481.4c-37.5 37.5-98.3 37.5-135.8 0L30.6 363.9c-37.5-37.5-37.5-98.3 0-135.8L122.7 136 41.4 54.6c-12.5-12.5-12.5-32.8 0-45.3zm176 221.3L168 181.3 75.9 273.4c-4.2 4.2-7 9.3-8.4 14.6H386.7l42.3-42.3c3.1-3.1 3.1-8.2 0-11.3L277.7 82.9c-3.1-3.1-8.2-3.1-11.3 0L213.3 136l49.4 49.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0zM512 512c-35.3 0-64-28.7-64-64c0-25.2 32.6-79.6 51.2-108.7c6-9.4 19.5-9.4 25.5 0C543.4 368.4 576 422.8 576 448c0 35.3-28.7 64-64 64z"/>
-                </svg>
-              </span>
-                    </a>
-                </li>
-                <!-- Icon -->
-                <li class="mr-4">
-                    <a href="#">
-              <span
-                      class="fill-gray-500 hover:fill-gray-700 focus:fill-gray-700 dark:fill-gray-200 [&>svg]:w-4">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 496 512">
-                  <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                          d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
-                </svg>
-              </span>
-                    </a>
-                </li>
-
-                <!-- Icon dropdown -->
-                <li class="relative" data-te-dropdown-ref>
-                    <a
-                            class="mr-4 flex items-center text-gray-500 hover:text-gray-700 focus:text-gray-700"
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-te-dropdown-toggle-ref
-                            aria-expanded="false">
-              <span
-                      class="relative inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                <span
-                        class="inline-block h-[11px] w-4 content-[''] [background-position:-36px_-26px_!important] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px]"></span>
-              </span>
-                    </a>
-                    <ul
-                            class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-[10rem] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-zinc-700 [&[data-te-dropdown-show]]:block"
-                            aria-labelledby="navbarDropdown"
-                            data-te-dropdown-menu-ref>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background-position:-36px_-26px_!important] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px]"></span>
-                  </span>
-                                <span class="mr-4">English</span>
-                                <span
-                                        class="inline-block fill-green-600 dark:fill-gray-200 [&>svg]:h-3.5 [&>svg]:w-3.5">
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512">
-                      <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                      <path
-                              d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
-                    </svg>
-                  </span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="my-2"/>
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:-72px_-572px_!important]"></span>
-                  </span>
-                                Polski</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:0px_-1196px_!important]"></span>
-                  </span>
-                                中文</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:-36px_-910px_!important]"></span>
-                  </span>
-                                日本語</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:0px_-1430px_!important]"></span>
-                  </span>
-                                Deutsch</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:0px_-1976px_!important]"></span>
-                  </span>
-                                Français</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:-0px_-1742px_!important]"></span>
-                  </span>
-                                Español</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:-72px_-884px_!important]"></span>
-                  </span>
-                                Русский</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref>
-                  <span
-                          class="relative mr-2 inline-block h-[11px] w-4 overflow-hidden bg-gray-200 leading-[11px] decoration-inherit">
-                    <span
-                            class="inline-block h-[11px] w-4 content-[''] [background:url(https://tecdn.b-cdn.net/img/svg/flags.png)_no-repeat_-108px_-1976px] [background-position:-72px_-702px_!important]"></span>
-                  </span>
-                                Português</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Avatar -->
-                <li class="relative" data-te-dropdown-ref>
-                    <a
-                            class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-te-dropdown-toggle-ref
-                            aria-expanded="false">
-                        <img
-                                src="https://tecdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                                class="rounded-full"
-                                style="height: 22px; width: 22px"
-                                alt="Avatar"
-                                loading="lazy"/>
-                    </a>
-                    <ul
-                            class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-[10rem] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-zinc-700 [&[data-te-dropdown-show]]:block"
-                            aria-labelledby="dropdownMenuButton2"
-                            data-te-dropdown-menu-ref>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref
-                            >My profile</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref
-                            >Settings</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                    class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                                    href="#"
-                                    data-te-dropdown-item-ref
-                            >Logout</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-</header>
+</th:block>

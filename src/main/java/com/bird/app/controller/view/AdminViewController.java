@@ -17,4 +17,11 @@ public class AdminViewController {
     synchronized public String dashboard() {
         return "/admin/dashboard/index";
     }
+
+
+    @SneakyThrows
+    @GetMapping( "/article")
+    synchronized public String article() {
+        return "/admin/article/index";
+    }
 }

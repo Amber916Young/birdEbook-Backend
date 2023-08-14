@@ -14,7 +14,6 @@
 </head>
 <style>
 
-
     :root {
         --primary-color: #6444c9;
         --secondary-color: #ffdb52;
@@ -240,8 +239,11 @@
     }
 </style>
 <body>
-<img class="myImage"></img>
 
+<div id="myModal" class="modal"></div>
+<button id="myBtn">Open Modal</button>
+
+<img class="myImage"/>
 <main class="w-68 m-20 flex justify-center ">
     <div
             id="content"
@@ -260,37 +262,24 @@
             </div>
         </div>
         <div class="p-6">
-            <div class="Post-body"><p>在好友的推荐下，玩家6237486购入了一款名为《女神录》的女性向游戏。<br>
-                但她没想到，自己会穿进这个游戏中，成为女主莉莉丝。<br>
-                成功攻略男主后，莉莉丝并没有回到现实。<br>
-                为了离开游戏，莉莉丝不得不攻略全部的路线，为此她一轮一轮地重复游戏，攻略所有男主，达成所有的好结局和无数的坏结局。<br>
-                终于到了最后一轮，她可以选择最终的命运。</p>
-                <h3>可是她开始厌烦了。</h3>
-                <p>厌烦了攻略男主，厌烦了被人保护，厌烦了迎合他们。<br>
-                    于是，她打碎了选项。<br>
-                    游戏中的神质问她——</p>
-
-                <blockquote class="uncited"><div><p>【我给了你获得荣华富贵与爱情的机会，你可以在这一世获得最美好的结局，可你却打碎了选项？】<br>
-                    【你为什么愤怒？】</p></div></blockquote>
-
-                <p>这个世界是一个沼泽，你可以闭上眼，幸福沉沦，也可以睁开眼，痛苦挣扎。<br>
-                    莉莉丝选择了后者。<br>
-                    我可以暂时掩去锋芒，也可以暂时掩饰愤怒。<br>
-                    但是所有的一切都在我心中堆积。<br>
-                    倘若看不见真实与苦痛，那么选择毫无意义。<br>
-                    即使满身泥泞，即使伤痕累累。<br>
-                    我也会站起来！<br>
-                    “我叫莉莉丝！”斗兽场上，莉莉丝高举手中的剑，“记住我的名字，莉莉丝！”<br>
-                    那些曾杀死我的，必定会让我更强大。<br>
-                    这一轮，我会活下来！<br>
-                    改变一切。</p></div>
-
+            <div class="Post-body"></div>
         </div>
     </div>
 </main>
 <a id="dl-hidden" style="display:none;"></a>
 <script src="/js/html2canvas.js"></script>
 <script>
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
     function __canvasWM({
                             container = document.getElementById("content"),

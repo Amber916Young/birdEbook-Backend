@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layoutPage :: header(article)"></head>
+
+<body class="transition-colors duration-500 dark:bg-neutral-800">
+<th:block th:include="fragments/layoutPage :: sidebarMenu"></th:block>
+
+<div id="page-content" class="mt-10 " style="margin-right: 0px; transition: all 0s ease 0s;" >
+    <nav  class="w-full bg-neutral-100 px-5 py-3 dark:bg-neutral-600">
+        <ol class="list-reset flex">
+            <li>
+                <a
+                        href="#"
+                        class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                >Home</a
+                >
+            </li>
+            <li>
+                <span class="mx-2 text-neutral-500 dark:text-neutral-300">/</span>
+            </li>
+            <li>
+                <a
+                        href="#"
+                        class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                >Library</a
+                >
+            </li>
+            <li>
+                <span class="mx-2 text-neutral-500 dark:text-neutral-300">/</span>
+            </li>
+            <li class="text-neutral-500 dark:text-neutral-300">Data</li>
+        </ol>
+    </nav>
+    <div class=" p-6">
+        <div class="relative mb-4 flex w-full flex-wrap items-stretch">
+            <input
+                    id="advanced-search-input"
+                    type="search"
+                    class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="button-addon1" />
+
+            <!--Search button-->
+            <button
+                    class="relative z-[2] flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+                    type="button"
+                    id="advanced-search-button"
+                    data-te-ripple-init
+                    data-te-ripple-color="light">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        class="h-5 w-5">
+                    <path
+                            fill-rule="evenodd"
+                            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                            clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
+    dark:bg-neutral-700 max-w-[540px] sm:max-w-[604px] md:max-w-[720px] lg:max-w-[972px]  xl:max-w-full xl:px-12 2xl:max-w-[1400px] mx-auto  ">
+
+            <div
+                    id="datatable"
+                    class="w-full"
+                    data-te-selectable="true"
+                    data-te-max-height="600"
+                    data-te-multi="true"
+                    data-te-fixed-header="true"></div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+<th:block th:replace="fragments/layoutPage :: footer"></th:block>
+
+<script>
+
+
+    const basicData = {
+    columns: ['Name', 'Position', 'Office', 'Age', 'Start date', 'Salary'],
+    rows: [
+      ["Tiger Nixon", "System Architect", "Edinburgh", "61", "2011/04/25", "$320,800"],
+      ["Garrett Winters", "Accountant", "Tokyo", "63", "2011/07/25", "$170,750"],
+      ["Ashton Cox", "Junior Technical Author", "San Francisco", "66", "2009/01/12", "$86,000"],
+      ["Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "22", "2012/03/29", "$433,060"],
+      ["Airi Satou", "Accountant", "Tokyo", "33", "2008/11/28", "$162,700"],
+      ["Brielle Williamson", "Integration Specialist", "New York", "61", "2012/12/02", "$372,000"],
+      ["Herrod Chandler", "Sales Assistant", "San Francisco", "59", "2012/08/06", "$137,500"],
+      ["Rhona Davidson", "Integration Specialist", "Tokyo", "55", "2010/10/14", "$327,900"],
+      ["Colleen Hurst", "Javascript Developer", "San Francisco", "39", "2009/09/15", "$205,500"],
+      ["Sonya Frost", "Software Engineer", "Edinburgh", "23", "2008/12/13", "$103,600"],
+      ["Jena Gaines", "Office Manager", "London", "30", "2008/12/19", "$90,560"],
+      ["Quinn Flynn", "Support Lead", "Edinburgh", "22", "2013/03/03", "$342,000"],
+      ["Charde Marshall", "Regional Director", "San Francisco", "36", "2008/10/16", "$470,600"],
+      ["Haley Kennedy", "Senior Marketing Designer", "London", "43", "2012/12/18", "$313,500"]
+    ],
+  };
+
+const datatable = document.getElementById('datatable');
+
+new te.Datatable(datatable, basicData);
+</script>
+
+</body>
+
+</html>

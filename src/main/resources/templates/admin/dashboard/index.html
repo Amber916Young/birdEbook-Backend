@@ -2,14 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/layoutPage :: header(dashboard)"></head>
 
-<body>
-<div th:include="fragments/layoutPage :: sidebarMenu"></div>
+<body class="transition-colors duration-500 dark:bg-neutral-800">
+<th:block th:include="fragments/layoutPage :: sidebarMenu"></th:block>
 
-<main id="slim-content" style="margin-top: 58px">
-    <div class="container"></div>
-</main>
+<div id="page-content" class="mt-10" style="padding-left: 240px; margin-right: 0px; transition: all 0s ease 0s;" >
+    <div class="max-w-[540px] sm:max-w-[604px] md:max-w-[720px] lg:max-w-[972px]  xl:max-w-full xl:px-12 2xl:max-w-[1400px] mx-auto  flex">
 
-<div th:replace="fragments/layoutPage :: footer"></div>
+
+
+
+    </div>
+</div>
+<th:block th:replace="fragments/layoutPage :: footer"></th:block>
 
 </body>
 
