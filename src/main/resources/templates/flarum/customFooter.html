@@ -1,0 +1,741 @@
+<style>
+    footer {
+        background-color: #fff;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        box-shadow: 0 -2px 8px #eee;
+    }
+    .bg-white{
+        background: white;
+    }
+
+    .footer-content {
+        width: 800px;
+        margin: 0 auto;
+        padding: 50px 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .site-info {
+        text-align: left;
+        line-height: 100%;
+        padding-right: 20px;
+    }
+
+    .site-info, .cc-footer-license {
+        width: 3800px;
+        color: #aaabab;
+    }
+    .flex {
+        display: flex;
+    }
+    .justify-center {
+        justify-content: center;
+    }
+    .m-20 {
+        margin: 5rem;
+    }
+
+    .text-neutral-500 {
+        --tw-text-opacity: 1;
+        color: rgb(115 115 115/var(--tw-text-opacity));
+    }
+    .text-xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+    .mt-4 {
+        margin-top: 1rem;
+    }
+    .leading-tight {
+        line-height: 1.25;
+    }
+    .font-medium {
+        font-weight: 500;
+    }
+    .p-6 {
+        padding: 1.5rem;
+    }
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+    .mt-2 {
+        margin-top: 0.5rem;
+    }
+    :root {
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-color: 0 0 #0000;
+    }
+    .w-24 {
+        width: 6rem;
+        height: 6rem;
+    }
+    .mb-2{
+        margin-bottom: 0.5rem;
+    }
+    .mr-2 {
+        margin-right: 0.5rem;
+    }
+
+    .mt-0{
+        margin-top: 0;
+    }
+    .mb-4 {
+        margin-bottom: 1rem;
+    }
+     .rounded-full {
+        border-radius: 9999px;
+    }
+    .block {
+        display: block;
+    }
+    .shadow-\[0_2px_15px_-3px_rgba\(0\,0\,0\,0\.07\)\,0_10px_20px_-2px_rgba\(0\,0\,0\,0\.04\)\] {
+        --tw-shadow: 0 2px 15px -3px #00000012,0 10px 20px -2px #0000000a;
+        --tw-shadow-colored: 0 2px 15px -3px var(--tw-shadow-color),0 10px 20px -2px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)),var(--tw-shadow);
+    }
+    .text-center{
+        text-align: center;
+    }
+</style>
+<div id="myModal" class="modal">
+    <div class="modal-content" id="modal-content">
+    </div>
+</div>
+<a id="dl-hidden" style="display:none;"></a>
+
+<footer class="bottomFooter">
+    <div class="footer-content">
+        <div class="site-info">
+            <p>Build with by Witchat | Proudly used <a href="https://flarum.org" target="_blank">Flarum</a></p>
+            <p>
+               <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv" style="display: inline;">
+            TotalView&nbsp;
+            <span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+          </span>
+
+            </p>
+            <p>
+                <img src="https://i.imgur.com/k3YTzQE.png" width="100"/>
+                <img src="https://i.imgur.com/zHnVmA2.png" width="100"/>
+                <img src="https://i.imgur.com/PrwitJD.png" width="100"/>
+            </p>
+            <p>
+                <span id="runtime_span"></span>
+            </p>
+            <p class="cpright">Copyright © 2023 Witchat. All Rights Reserved.</p>
+        </div>
+        <div class="column cc-footer-license">
+
+            <aside>
+                <div xmlns:cc="https://creativecommons.org/ns#" about="https://creativecommons.org">
+                    <p>所有非Witchat创作的文章和讨论的版权归原作者所有。</p>
+                    <p>Copyrights for all articles and discussions not created by Witchat remain with their original
+                        authors.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function show_runtime() {
+        window.setTimeout("show_runtime()", 1000);
+        X = new
+        Date("06/06/2023 08:07:48");
+        Y = new Date();
+        T = (Y.getTime() - X.getTime());
+        M = 24 * 60 * 60 * 1000;
+        a = T / M;
+        A = Math.floor(a);
+        b = (a - A) * 24;
+        B = Math.floor(b);
+        c = (b - B) * 60;
+        C = Math.floor((b - B) * 60);
+        D = Math.floor((c - C) * 60);
+        runtime_span.innerHTML = "论坛已运行 " + A + "天" + B + "小时" + C + "分" + D + "秒"
+    }
+
+
+    function __canvasWM({
+                            container = document.body,
+                            width = '200px',
+                            height = '150px',
+                            textAlign = 'center',
+                            textBaseline = 'middle',
+                            font = "20px microsoft yahei",
+                            fillStyle = 'rgba(184,184,184,0.06)',
+                            content = '请勿外传',
+                            rotate = '30',
+                            zIndex = 1000
+                        } = {}) {
+        var args = arguments[0];
+        var canvas = document.createElement('canvas');
+
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        var ctx = canvas.getContext("2d");
+
+        ctx.textAlign = textAlign;
+        ctx.textBaseline = textBaseline;
+        ctx.font = font;
+        ctx.fillStyle = fillStyle;
+        ctx.rotate(Math.PI / 180 * rotate);
+        ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 2);
+
+        var base64Url = canvas.toDataURL();
+        const watermarkDiv = document.createElement("div");
+        watermarkDiv.setAttribute('style', `
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          z-index:${zIndex};
+          pointer-events:none;
+          background-repeat:repeat;
+          background-image:url('${base64Url}')`);
+        container.style.position = 'relative';
+        container.insertBefore(watermarkDiv, container.firstChild);
+    }
+
+    window.__canvasWM = __canvasWM;
+
+    function generalTransferDom() {
+        var firstPostActionContent = `
+  <li class="Dropdown-separator"></li>  <li class="item-transfer">
+        <button onclick="transfer(this)"  class="hasIcon"  type="button">
+            <i aria-hidden="true" class="icon fas fa-share Button-icon"></i>
+            <span class="Button-label">转发</span>
+        </button>
+    </li>
+`;
+        var postActionsLists = document.querySelectorAll('.Post-controls ul');
+        postActionsLists.forEach(function (ulElement) {
+            var existingTransferButton = ulElement.querySelector('.item-transfer');
+            if (!existingTransferButton) {
+                ulElement.insertAdjacentHTML('beforeend', firstPostActionContent);
+            }
+        });
+
+    }
+
+    function handleDropdownClick(event) {
+        generalTransferDom();
+    }
+
+    var waterMarkUsername = "visitor"
+    document.addEventListener('DOMContentLoaded', function () {
+        waterMarkUsername = document.getElementsByClassName("username")[0].innerHTML;
+        __canvasWM({
+            content: waterMarkUsername
+        })
+        show_runtime();
+    });
+
+    // Add event delegation to a parent element that is already present when the page loads
+    document.body.addEventListener('click', function (event) {
+        var target = event.target;
+        if ((target.classList.contains('Dropdown-toggle')
+            && target.classList.contains('Button')
+            && target.classList.contains('Button--icon')
+            && target.classList.contains('Button--flat')
+        ) || (target.classList.contains('icon')
+            && target.classList.contains('fas')
+            && target.classList.contains('fa-ellipsis-h')
+            && target.classList.contains('Button-icon')
+        )) {
+            handleDropdownClick(event);
+        }
+    });
+
+    function convertImageToBase64(imageUrl, callback) {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                callback(reader.result);
+            };
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open("GET", imageUrl);
+        xhr.responseType = "blob";
+        xhr.send();
+    }
+    function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n)
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n)
+        }
+        return new Blob([u8arr], { type: mime })
+    }
+    function downloadBase64(dataUrl, filename) {
+        var imageFile, href
+        var downloadLink = document.getElementById('dl-hidden')
+        try {
+            var blob = dataURLtoBlob(dataUrl)
+            var href = window.URL.createObjectURL(blob)
+            downloadLink.download = filename
+            downloadLink.href = href
+            downloadLink.click()
+        } catch (err) {
+        } finally {
+            if (href) {
+                window.URL.revokeObjectURL(href)
+            }
+            // downloadLink.remove()
+        }
+    }
+    function generateImage() {
+        var shareContent = document.getElementById('contentGenerate');//需要截图的包裹的（原生的）DOM 对象
+        var width = shareContent.offsetWidth; //获取dom 宽度
+        var height = shareContent.offsetHeight; //获取dom 高度
+        var canvas = document.createElement("canvas"); //创建一个canvas节点
+        var scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.getContext("2d").scale(scale,scale); //获取context,设置scale
+
+        var opts = {
+            scale:scale, // 添加的scale 参数
+            canvas:canvas, //自定义 canvas
+            logging: true, //日志开关
+            width:width, //dom 原始宽度
+            height:height, //dom 原始高度
+            backgroundColor: 'transparent',
+        };
+        html2canvas(shareContent, opts).then(function (canvas) {
+            IMAGE_URL = canvas.toDataURL("image/png");
+            downloadBase64(IMAGE_URL,"filename.png")
+        })
+    }
+
+
+function transfer(button) {
+        var postElement = button.closest('.Post');
+        if (postElement) {
+            var postBody = postElement.querySelector('.Post-body');
+            if (postBody) {
+                var postContent = postBody.innerHTML.trim();
+                var authorNameElement = postElement.querySelector('.username');
+                var authorName = authorNameElement ? authorNameElement.textContent : null;
+                var avatarImg = postElement.querySelector('.PostUser-avatar');
+                var avatarUrl = avatarImg ? avatarImg.getAttribute('src') : null;
+                var postDateElement = postElement.querySelector('time');
+                var titleAttribute = postDateElement ? postDateElement.getAttribute('title') : null;
+                console.log("Post Content:", postContent);
+                console.log("Author:", authorName);
+                console.log("Avatar URL:", avatarUrl);
+                console.log("postDate:", titleAttribute);
+                convertImageToBase64(avatarUrl, function (base64Image) {
+                    var htmlModel = `
+
+                    <img class="myImage"/>
+<main class="w-68 m-20 flex justify-center ">
+    <div
+            id="content"
+            class=" block w-[25rem]  rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+        <div class="relative overflow-hidden bg-cover bg-no-repeat">
+            <div class="text-center flex justify-center  mt-2">
+                <img id="avatar"
+                        src="`+base64Image+`"
+                        class="mr-2 mb-4 w-24 rounded-full"
+                        alt="Avatar"/>
+                <div class="mt-4">
+                    <h5 class="mb-2  text-xl font-medium leading-tight">`+authorName+`</h5>
+                    <p class="text-neutral-500 dark:text-neutral-400">`+titleAttribute+`</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="Post-body"></div>
+        </div>
+    </div>
+</main>
+<a id="dl-hidden" style="display:none;"></a>
+
+`
+                    generateAndOpenHTML(htmlModel)
+
+
+                    var newWindow = window.open();
+                    newWindow.document.write(htmlModel);
+                    // $('#myModal').html(htmlModel);
+
+                    // console.info(htmlModel)
+                    modal.style.display = "block";
+                    __canvasWM({
+                        content: waterMarkUsername
+                    })
+                    generateImage()
+                });
+
+            }
+        }
+    }
+
+
+    function generateAndOpenHTML(htmlContent) {
+        // Define the HTML, CSS, and JavaScript separately
+        var htmlContent = htmlContent;
+
+        var cssStyles = `
+    :root {
+        --primary-color: #6444c9;
+        --secondary-color: #ffdb52;
+        --body-bg: #fff;
+        --body-bg-shaded: #f7f7f7;
+        --body-bg-light: #fff;
+        --body-bg-faded: rgba(255,255,255,0.93);
+        --text-color: #111;
+        --link-color: #5e38d5;
+        --heading-color: #111;
+        --muted-color: #998f66;
+        --muted-color-light: #ada585;
+        --muted-color-dark: #000;
+        --shadow-color: rgba(0,0,0,0.35);
+        --control-bg: #f6f3e4;
+        --control-bg-light: #faf8f0;
+        --control-bg-shaded: #f1ebd5;
+        --control-color: #998f66;
+        --error-color: #d83e3e;
+        --text-on-dark: #fff;
+        --text-on-light: #1f1d14;
+        --yiq-threshold: 150;
+        --header-bg: #fff;
+        --header-color: #6444c9;
+        --header-control-bg: #f6f3e4;
+        --header-control-color: #998f66;
+        --overlay-bg: rgba(255,219,82,0.9);
+        --code-bg: #f7f7f7;
+        --code-color: #5e5e5e;
+        --alert-bg: #fff2ae;
+        --alert-color: #ad6c00;
+        --alert-error-bg: #d83e3e;
+        --alert-error-color: #fff;
+        --alert-success-bg: #b4f1af;
+        --alert-success-color: #33722d;
+        --switch-on-color: #58a400;
+        --switch-off-color: #d0021b;
+        --enabled-color: #2ECC40;
+        --disabled-color: #FF4136;
+        --validation-error-color: #d83e3e;
+        --avatar-bg: var(--control-bg);
+        --badge-bg: var(--muted-color);
+        --badge-color: #fff;
+        --badge-hidden-bg: #888;
+        --usercard-bg: var(--control-bg);
+        --hero-bg: #f6f3e4;
+        --hero-color: #998f66;
+        --tooltip-bg: rgba(0,0,0,0.9);
+        --tooltip-color: #fff;
+        --online-user-circle-color: #7fba00;
+        --discussion-title-color: #7c7c7c;
+        --discussion-list-item-bg-hover: #fbf9f2;
+        --button-color: #998f66;
+        --button-bg: #f6f3e4;
+        --button-bg-hover: #f0ead1;
+        --button-bg-active: #e9e1be;
+        --button-bg-disabled: #f6f3e4;
+        --button-primary-color: #fff;
+        --button-primary-bg: #6444c9;
+        --button-primary-bg-hover: #5737bd;
+        --button-primary-bg-active: #4e31a9;
+        --button-primary-bg-disabled: #6444c9;
+        --control-danger-color: #d66;
+        --control-danger-bg: #fdd;
+        --control-danger-bg-hover: #ffc3c3;
+        --control-danger-bg-active: #faa;
+        --control-danger-bg-disabled: #fdd;
+        --muted-more-color: #aaa;
+        --muted-more-bg: rgba(170,170,170,0.3);
+        --muted-more-bg-hover: rgba(157,157,157,0.35);
+        --muted-more-bg-active: rgba(145,145,145,0.4);
+        --muted-more-bg-disabled: rgba(170,170,170,0.3);
+        --button-inverted-color: #998f66;
+        --button-inverted-bg: #fff;
+        --button-inverted-bg-hover: #f2f2f2;
+        --button-inverted-bg-active: #e6e6e6;
+        --button-inverted-bg-disabled: #fff;
+        --light-content-color: #fff;
+        --light-content-control-color: #fff;
+        --light-content-control-bg: rgba(0,0,0,0.1);
+        --light-content-control-bg-shaded: rgba(0,0,0,0.2);
+        --light-content-control-bg-fadedin: rgba(0,0,0,0.15);
+        --header-colored-color: #6444c9;
+        --header-colored-control-color: #998f66;
+        --header-colored-control-bg: #f6f3e4;
+        --header-colored-control-bg-shaded: #f0ead1;
+        --header-colored-control-bg-fadedin: #f6f3e4;
+        --border-radius: 4px;
+        --drawer-width: 270px;
+        --pane-width: 400px;
+        --header-height: 52px;
+        --header-height-phone: 46px;
+        --zindex-header: 1000;
+        --zindex-pane: 1010;
+        --zindex-composer: 1020;
+        --zindex-dropdown: 1030;
+        --zindex-modal-background: 1040;
+        --zindex-modal: 1050;
+        --zindex-alerts: 1060;
+        --zindex-tooltip: 1070;
+        --flarum-screen: none;
+        --screen-phone-max: 767.98px;
+        --screen-tablet: 768px;
+        --screen-tablet-max: 991.98px;
+        --screen-desktop: 992px;
+        --screen-desktop-max: 1099.98px;
+        --screen-desktop-hd: 1100px
+    }
+    .Post-body {
+        font-size: 14px;
+        line-height: 1.7;
+        position: relative;
+        overflow: auto;
+        overflow-wrap: break-word;
+    }
+
+
+    .Post-body {
+        font-size: 14px;
+        line-height: 1.7;
+        position: relative;
+        overflow: auto;
+        overflow-wrap: break-word
+    }
+
+    .Post-body p,.Post-body ul,.Post-body ol,.Post-body blockquote {
+        margin-bottom: 1em
+    }
+
+    .Post-body a {
+        border-bottom: 1px solid var(--control-bg);
+        font-weight: 600
+    }
+
+    .Post-body a:hover,.Post-body a:focus,.Post-body a:active {
+        text-decoration: none;
+        border-color: var(--link-color)
+    }
+
+    .Post-body blockquote {
+        font-size: inherit;
+        border: 0;
+        background: var(--control-bg);
+        color: var(--control-color);
+        border-radius: var(--border-radius);
+        padding: 8px 15px;
+        border-top: 2px dotted var(--body-bg);
+        border-bottom: 2px dotted var(--body-bg);
+        margin: 1em 0
+    }
+
+    .Post-body code {
+        font-family: source-code-pro,Monaco,Consolas,"Courier New",monospace;
+        padding: 5px;
+        background: var(--code-bg);
+        color: var(--code-color);
+        line-height: 1.3;
+        font-size: 90%;
+        border-radius: 4px
+    }
+
+    .Post-body pre {
+        border: 0;
+        padding: 0;
+        background: var(--code-bg);
+        color: var(--code-color);
+        font-size: 90%;
+        border-radius: var(--border-radius);
+        overflow-wrap: normal
+    }
+
+    .Post-body pre code {
+        padding: 1em;
+        background: none;
+        color: inherit;
+        line-height: inherit;
+        font-size: 100%;
+        border-radius: 0;
+        display: block;
+        overflow-x: auto;
+        max-height: 50vh;
+        max-height: max(50vh, 250px)
+    }
+
+    .Post-body h1,.Post-body h2,.Post-body h3,.Post-body h4,.Post-body h5,.Post-body h6 {
+        margin-top: 1em;
+        margin-bottom: 16px;
+        font-weight: bold
+    }
+
+    .Post-body h1 {
+        font-size: 225%
+    }
+
+    .Post-body h2 {
+        font-size: 175%
+    }
+
+    .Post-body h3 {
+        font-size: 150%
+    }
+
+    .Post-body h4 {
+        font-size: 125%
+    }
+
+    .Post-body h5,.Post-body h6 {
+        font-size: 100%
+    }
+    Post-body
+    .Post-body h6 {
+        color: var(--muted-more-color)
+    }
+    img.emoji { height: 1.5em; margin: 0px 0.1em; vertical-align: -0.3em; }
+
+    .Post-body img,.Post-body iframe {
+        max-width: 100%
+    }
+
+    .Post-body>*:first-child,.Post-preview>*:first-child {
+        margin-top: 0 !important
+    }
+        `;
+        var jsCode = ` function __canvasWM({
+                            container = document.getElementById("content"),
+                            width = '200px',
+                            height = '150px',
+                            textAlign = 'center',
+                            textBaseline = 'middle',
+                            font = "20px microsoft yahei",
+                            fillStyle = 'rgba(231,12,12,0.6)',
+                            content = '请勿外传',
+                            rotate = '30',
+                            zIndex = 1000
+                        } = {}) {
+        var args = arguments[0];
+        var canvas = document.createElement('canvas');
+
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        var ctx = canvas.getContext("2d");
+
+        ctx.textAlign = textAlign;
+        ctx.textBaseline = textBaseline;
+        ctx.font = font;
+        ctx.fillStyle = fillStyle;
+        ctx.rotate(Math.PI / 180 * rotate);
+        ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 5);
+
+        var base64Url = canvas.toDataURL();
+        const watermarkDiv = document.createElement("div");
+        watermarkDiv.setAttribute('style', \`
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          z-index:1000;
+          pointer-events:none;
+          background-repeat:repeat;
+          background-image:url('${base64Url}')\`);
+        container.style.position = 'relative';
+        container.insertBefore(watermarkDiv, container.firstChild);
+    }
+
+    window.__canvasWM = __canvasWM;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        __canvasWM({
+            content: waterMarkUsername
+        })
+        generateImage()
+    });
+
+
+    function generateImage() {
+        var shareContent = document.getElementById('content');//需要截图的包裹的（原生的）DOM 对象
+        var width = shareContent.offsetWidth; //获取dom 宽度
+        var height = shareContent.offsetHeight; //获取dom 高度
+        var canvas = document.createElement("canvas"); //创建一个canvas节点
+        var scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.getContext("2d").scale(scale,scale); //获取context,设置scale
+
+        var opts = {
+            scale:scale, // 添加的scale 参数
+            canvas:canvas, //自定义 canvas
+            logging: true, //日志开关
+            width:width, //dom 原始宽度
+            height:height, //dom 原始高度
+            backgroundColor: 'transparent',
+        };
+        html2canvas(shareContent, opts).then(function (canvas) {
+            IMAGE_URL = canvas.toDataURL("image/png");
+            // $('.myImage').attr('src',IMAGE_URL);
+            // console.info(IMAGE_URL)
+            downloadBase64(IMAGE_URL,"filename.png")
+        })
+    }
+    function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n)
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n)
+        }
+        return new Blob([u8arr], { type: mime })
+    }
+    function downloadBase64(dataUrl, filename) {
+        var imageFile, href
+        var downloadLink = document.getElementById('dl-hidden')
+        try {
+            var blob = dataURLtoBlob(dataUrl)
+            var href = window.URL.createObjectURL(blob)
+            downloadLink.download = filename
+            downloadLink.href = href
+            downloadLink.click()
+        } catch (err) {
+        } finally {
+            if (href) {
+                window.URL.revokeObjectURL(href)
+            }
+            // downloadLink.remove()
+        }
+    }
+
+        `;
+
+        // Combine everything into the final template literal
+        var finalHTML = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <style>${cssStyles}</style>
+        </head>
+        <body> ${htmlContent}  <!-- Include your JavaScript code here -->
+            <script >
+                `+jsCode+`</script>
+        </body></html>`;
+
+}
+</script>
+
