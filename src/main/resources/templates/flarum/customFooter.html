@@ -6,7 +6,8 @@
         width: 100%;
         box-shadow: 0 -2px 8px #eee;
     }
-    .bg-white{
+
+    .bg-white {
         background: white;
     }
 
@@ -29,12 +30,15 @@
         width: 3800px;
         color: #aaabab;
     }
+
     .flex {
         display: flex;
     }
+
     .justify-center {
         justify-content: center;
     }
+
     .m-20 {
         margin: 5rem;
     }
@@ -43,62 +47,78 @@
         --tw-text-opacity: 1;
         color: rgb(115 115 115/var(--tw-text-opacity));
     }
+
     .text-xl {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
+
     .mt-4 {
         margin-top: 1rem;
     }
+
     .leading-tight {
         line-height: 1.25;
     }
+
     .font-medium {
         font-weight: 500;
     }
+
     .p-6 {
         padding: 1.5rem;
     }
+
     .rounded-lg {
         border-radius: 0.5rem;
     }
+
     .mt-2 {
         margin-top: 0.5rem;
     }
+
     :root {
         --tw-ring-shadow: 0 0 #0000;
         --tw-shadow: 0 0 #0000;
         --tw-shadow-color: 0 0 #0000;
     }
+
     .w-24 {
         width: 6rem;
         height: 6rem;
     }
-    .mb-2{
+
+    .mb-2 {
         margin-bottom: 0.5rem;
     }
+
     .mr-2 {
         margin-right: 0.5rem;
     }
 
-    .mt-0{
+    .mt-0 {
         margin-top: 0;
     }
+
     .mb-4 {
         margin-bottom: 1rem;
     }
-     .rounded-full {
+
+    .rounded-full {
         border-radius: 9999px;
     }
+
     .block {
         display: block;
     }
+
     .shadow-\[0_2px_15px_-3px_rgba\(0\,0\,0\,0\.07\)\,0_10px_20px_-2px_rgba\(0\,0\,0\,0\.04\)\] {
-        --tw-shadow: 0 2px 15px -3px #00000012,0 10px 20px -2px #0000000a;
-        --tw-shadow-colored: 0 2px 15px -3px var(--tw-shadow-color),0 10px 20px -2px var(--tw-shadow-color);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)),var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)),var(--tw-shadow);
+        --tw-shadow: 0 2px 15px -3px #00000012, 0 10px 20px -2px #0000000a;
+        --tw-shadow-colored: 0 2px 15px -3px var(--tw-shadow-color), 0 10px 20px -2px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
     }
-    .text-center{
+
+    .text-center {
         text-align: center;
     }
 </style>
@@ -163,6 +183,7 @@
         runtime_span.innerHTML = "论坛已运行 " + A + "天" + B + "小时" + C + "分" + D + "秒"
     }
 
+    var base64Url = ""
 
     function __canvasWM({
                             container = document.body,
@@ -190,7 +211,7 @@
         ctx.rotate(Math.PI / 180 * rotate);
         ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 2);
 
-        var base64Url = canvas.toDataURL();
+        base64Url = canvas.toDataURL();
         const watermarkDiv = document.createElement("div");
         watermarkDiv.setAttribute('style', `
           position:absolute;
@@ -269,6 +290,7 @@
         xhr.responseType = "blob";
         xhr.send();
     }
+
     function dataURLtoBlob(dataurl) {
         var arr = dataurl.split(','),
             mime = arr[0].match(/:(.*?);/)[1],
@@ -278,8 +300,9 @@
         while (n--) {
             u8arr[n] = bstr.charCodeAt(n)
         }
-        return new Blob([u8arr], { type: mime })
+        return new Blob([u8arr], {type: mime})
     }
+
     function downloadBase64(dataUrl, filename) {
         var imageFile, href
         var downloadLink = document.getElementById('dl-hidden')
@@ -297,6 +320,7 @@
             // downloadLink.remove()
         }
     }
+
     function generateImage() {
         var shareContent = document.getElementById('contentGenerate');//需要截图的包裹的（原生的）DOM 对象
         var width = shareContent.offsetWidth; //获取dom 宽度
@@ -305,24 +329,24 @@
         var scale = 2; //定义任意放大倍数 支持小数
         canvas.width = width * scale; //定义canvas 宽度 * 缩放
         canvas.height = height * scale; //定义canvas高度 *缩放
-        canvas.getContext("2d").scale(scale,scale); //获取context,设置scale
+        canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
 
         var opts = {
-            scale:scale, // 添加的scale 参数
-            canvas:canvas, //自定义 canvas
+            scale: scale, // 添加的scale 参数
+            canvas: canvas, //自定义 canvas
             logging: true, //日志开关
-            width:width, //dom 原始宽度
-            height:height, //dom 原始高度
+            width: width, //dom 原始宽度
+            height: height, //dom 原始高度
             backgroundColor: 'transparent',
         };
         html2canvas(shareContent, opts).then(function (canvas) {
             IMAGE_URL = canvas.toDataURL("image/png");
-            downloadBase64(IMAGE_URL,"filename.png")
+            downloadBase64(IMAGE_URL, "filename.png")
         })
     }
 
 
-function transfer(button) {
+    function transfer(button) {
         var postElement = button.closest('.Post');
         if (postElement) {
             var postBody = postElement.querySelector('.Post-body');
@@ -341,45 +365,37 @@ function transfer(button) {
                 convertImageToBase64(avatarUrl, function (base64Image) {
                     var htmlModel = `
 
-                    <img class="myImage"/>
 <main class="w-68 m-20 flex justify-center ">
     <div
-            id="content"
+            id="contentGenerate"
             class=" block w-[25rem]  rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
         <div class="relative overflow-hidden bg-cover bg-no-repeat">
             <div class="text-center flex justify-center  mt-2">
                 <img id="avatar"
-                        src="`+base64Image+`"
+                        src="${base64Image}"
                         class="mr-2 mb-4 w-24 rounded-full"
                         alt="Avatar"/>
                 <div class="mt-4">
-                    <h5 class="mb-2  text-xl font-medium leading-tight">`+authorName+`</h5>
-                    <p class="text-neutral-500 dark:text-neutral-400">`+titleAttribute+`</p>
+                    <h5 class="mb-2  text-xl font-medium leading-tight">${authorName}</h5>
+                    <p class="text-neutral-500 dark:text-neutral-400">${titleAttribute}</p>
                 </div>
 
             </div>
         </div>
         <div class="p-6">
-            <div class="Post-body"></div>
+            <div class="Post-body">${postContent}</div>
         </div>
     </div>
 </main>
 <a id="dl-hidden" style="display:none;"></a>
 
 `
-                    generateAndOpenHTML(htmlModel)
-
-
+                    var final = generateAndOpenHTML(htmlModel)
                     var newWindow = window.open();
-                    newWindow.document.write(htmlModel);
-                    // $('#myModal').html(htmlModel);
-
-                    // console.info(htmlModel)
-                    modal.style.display = "block";
-                    __canvasWM({
-                        content: waterMarkUsername
-                    })
-                    generateImage()
+                    newWindow.document.write(final);
+                    setTimeout(function () {
+                        newWindow.close();
+                    }, 2000);
                 });
 
             }
@@ -388,9 +404,7 @@ function transfer(button) {
 
 
     function generateAndOpenHTML(htmlContent) {
-        // Define the HTML, CSS, and JavaScript separately
         var htmlContent = htmlContent;
-
         var cssStyles = `
     :root {
         --primary-color: #6444c9;
@@ -615,14 +629,15 @@ function transfer(button) {
         margin-top: 0 !important
     }
         `;
-        var jsCode = ` function __canvasWM({
-                            container = document.getElementById("content"),
+        var jsCode = `
+        function __canvasWM({
+                            container = document.getElementById("contentGenerate"),
                             width = '200px',
                             height = '150px',
                             textAlign = 'center',
                             textBaseline = 'middle',
                             font = "20px microsoft yahei",
-                            fillStyle = 'rgba(231,12,12,0.6)',
+                            fillStyle = 'rgba(184,184,184,0.06)',
                             content = '请勿外传',
                             rotate = '30',
                             zIndex = 1000
@@ -640,8 +655,6 @@ function transfer(button) {
         ctx.fillStyle = fillStyle;
         ctx.rotate(Math.PI / 180 * rotate);
         ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 5);
-
-        var base64Url = canvas.toDataURL();
         const watermarkDiv = document.createElement("div");
         watermarkDiv.setAttribute('style', \`
           position:absolute;
@@ -659,16 +672,24 @@ function transfer(button) {
 
     window.__canvasWM = __canvasWM;
 
-    document.addEventListener('DOMContentLoaded', function () {
-        __canvasWM({
-            content: waterMarkUsername
+
+   function stateChange() {
+    setTimeout(function () {
+          __canvasWM({
+            content: '${waterMarkUsername}'
         })
+        debugger
         generateImage()
-    });
+    }, 2000);
+}
+ stateChange()
 
 
     function generateImage() {
-        var shareContent = document.getElementById('content');//需要截图的包裹的（原生的）DOM 对象
+         __canvasWM({
+            content: '${waterMarkUsername}'
+        })
+        var shareContent = document.getElementById('contentGenerate');//需要截图的包裹的（原生的）DOM 对象
         var width = shareContent.offsetWidth; //获取dom 宽度
         var height = shareContent.offsetHeight; //获取dom 高度
         var canvas = document.createElement("canvas"); //创建一个canvas节点
@@ -687,8 +708,6 @@ function transfer(button) {
         };
         html2canvas(shareContent, opts).then(function (canvas) {
             IMAGE_URL = canvas.toDataURL("image/png");
-            // $('.myImage').attr('src',IMAGE_URL);
-            // console.info(IMAGE_URL)
             downloadBase64(IMAGE_URL,"filename.png")
         })
     }
@@ -702,6 +721,9 @@ function transfer(button) {
             u8arr[n] = bstr.charCodeAt(n)
         }
         return new Blob([u8arr], { type: mime })
+    }
+    function dowmload(){
+     generateImage()
     }
     function downloadBase64(dataUrl, filename) {
         var imageFile, href
@@ -723,6 +745,17 @@ function transfer(button) {
 
         `;
 
+        var js = `
+          <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"><\/script>
+        <script src="https://cdn.tailwindcss.com/3.3.0"><\/script>
+        <script async="" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-alpha.12/dist/html2canvas.min.js"><\/script>
+        <script>${jsCode}<\/script>`
+
         // Combine everything into the final template literal
         var finalHTML = `
         <!DOCTYPE html>
@@ -731,11 +764,10 @@ function transfer(button) {
         <meta charset="UTF-8">
         <style>${cssStyles}</style>
         </head>
-        <body> ${htmlContent}  <!-- Include your JavaScript code here -->
-            <script >
-                `+jsCode+`</script>
-        </body></html>`;
+        <body>${htmlContent}${js} </body></html>`;
 
-}
+        return finalHTML;
+
+    }
 </script>
 
