@@ -24,16 +24,35 @@
           preflight: false,
         },
       };
-        document.addEventListener('DOMContentLoaded', function() {
-            // Code to handle activation of elements goes here
 
-            // Example: Activate the search input field on click
-            const searchInput = document.getElementById('te-search-input');
-            const searchIcon = document.getElementById('te-search-icon');
 
-            searchIcon.addEventListener('click', function() {
-                searchInput.focus();
-            });
-        });
+
+    $(function () {
+            console.log("ItemId=" + ItemId);
+            if(ItemId==null){
+                return;
+            }
+            if(ItemId.indexOf("ItemId")>-1){
+              var arr = ItemId.split("-")
+              $("#ItemId-"+arr[1]).addClass("bg-[rgba(18,102,241,0.05)]")
+              if(arr.length > 2)  $("#"+ItemId).addClass("bg-[rgba(18,102,241,0.05)]")
+
+
+            }
+
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
     </script>
 </div>
