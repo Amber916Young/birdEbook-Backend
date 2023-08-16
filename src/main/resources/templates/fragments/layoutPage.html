@@ -18,9 +18,11 @@
 <th:block th:fragment="sidebarMenu">
     <th:block th:replace="fragments/sidebarPage :: sidebarPage"></th:block>
 </th:block>
-
-<th:block th:fragment="footer">
+<th:block th:fragment="basePage">
     <th:block th:replace="fragments/basePage :: basePage"></th:block>
+</th:block>
+<th:block th:fragment="footer">
+    <th:block th:replace="fragments/footerPage :: footerPage"></th:block>
 </th:block>
 
 

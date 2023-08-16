@@ -20,7 +20,7 @@ public class AdminViewController {
 
 
     @SneakyThrows
-    @GetMapping( "/article")
+    @GetMapping( "/article/index")
     synchronized public String article() {
         return "/admin/article/index";
     }

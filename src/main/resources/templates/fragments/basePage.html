@@ -1,6 +1,5 @@
 <div th:fragment="basePage" xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css"/>
-    <!--    <link rel="stylesheet" href="/static/layui/css/layui.css"/>-->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -25,6 +24,16 @@
           preflight: false,
         },
       };
+        document.addEventListener('DOMContentLoaded', function() {
+            // Code to handle activation of elements goes here
 
+            // Example: Activate the search input field on click
+            const searchInput = document.getElementById('te-search-input');
+            const searchIcon = document.getElementById('te-search-icon');
+
+            searchIcon.addEventListener('click', function() {
+                searchInput.focus();
+            });
+        });
     </script>
 </div>
