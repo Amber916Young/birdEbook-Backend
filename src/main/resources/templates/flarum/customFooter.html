@@ -164,8 +164,23 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+eval(function(c,g,a,b,d,e){d=String;if(!"".replace(/^/,String)){for(;a--;)e[a]=b[a]||a;b=[function(f){return e[f]}];d=function(){return"\\w+"};a=1}for(;a--;)b[a]&&(c=c.replace(new RegExp("\\b"+d(a)+"\\b","g"),b[a]));return c}('(()=>{1 0(){2(()=>{3("4")()},5)}6{0()}7(8){}})();',9,9,"block function setInterval Function debugger 50 try catch err".split(" "),0,{}));
+
+
+document.onkeydown = document.onkeyup = document.onkeypress = function (event) {
+	var e = event || window.event || arguments.callee.caller.arguments[0];
+	if (e && e.keyCode == 123) {
+		e.returnValue = false;
+		return (false);
+	}
+}
+
+document.oncontextmenu = function () { return false; };
+
+
+
+
     function show_runtime() {
         window.setTimeout("show_runtime()", 1000);
         X = new
