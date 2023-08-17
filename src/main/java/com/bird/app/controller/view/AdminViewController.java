@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class AdminViewController {
     @SneakyThrows
-    @GetMapping( "/dashboard")
+    @GetMapping( "/dashboard/index")
     synchronized public String dashboard() {
         return "/admin/dashboard/index";
     }
@@ -23,5 +23,12 @@ public class AdminViewController {
     @GetMapping( "/article/index")
     synchronized public String article() {
         return "/admin/article/index";
+    }
+
+
+    @SneakyThrows
+    @GetMapping( "/tags/index")
+    synchronized public String tags() {
+        return "/admin/tags/index";
     }
 }
