@@ -28,12 +28,20 @@ const setActions = () => {
 };
 
 customDatatable.addEventListener("render.te.datatable", setActions);
-
-const formatStatus = (cell, value) => {
+const formatTime = (cell, value) => {
   const date = new Date(value);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
+};
+const formatStatus = (cell, value) => {
+    `<button
+                   type="button"
+                   data-te-ripple-init
+                   data-te-ripple-color="dark"
+                   class="call-btn inline-block rounded-full border border-primary p-1.5 mr-1 uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                       <i class="fa-regular fa-pen-to-square"></i>
+                 </button>`
 };
 
 new te.Datatable(
@@ -52,8 +60,8 @@ new te.Datatable(
       { label: "状态", field: "status" ,width:150,format: formatStatus },
       { label: "创建者", field: "createdBy",width:100 },
       { label: "创建者id", field: "userId",width:100 },
-      { label: "创建时间", field: "createTime" ,width:200},
-      { label: "修改时间", field: "modifyTime" ,width:200},
+      { label: "创建时间", field: "createTime" ,width:200,format: formatTime },
+      { label: "修改时间", field: "modifyTime" ,width:200,format: formatTime },
       { label: "操作", field: "actions", sort: false ,width:150, fixed: 'right'},
     ],
     rows: data.content.map((row) => {
