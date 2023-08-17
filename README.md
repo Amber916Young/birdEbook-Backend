@@ -196,6 +196,13 @@ rate limit
 
 https://www.freesion.com/article/2516653922/
 
+
+### 17/08/2023
+tailwind css dashboard ing
+use templates
+
+
+
 ## 参考
 
 https://app.diagrams.net/#G1jdlX2asUS-BzBRTVPpXyiAmUvajC_YsE
@@ -208,3 +215,6 @@ https://github.com/themesberg/flowbite-admin-dashboard
 
 TOC 
 https://finsweet.com/attributes/table-of-contents#the-best-part-about-h2-elements
+
+react 
+https://www.youtube.com/watch?v=f55qeKGgB_M

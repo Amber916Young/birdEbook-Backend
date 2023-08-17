@@ -1,7 +1,10 @@
 /**
  * ajax 方法
  */
-
+var commonHeader = {
+ 	"Accept": "application/json",
+ 	"Authorization": "Bear " + "..."
+ }
 function richTest(content){
     // 去除 富文本格式
     var data =content;
