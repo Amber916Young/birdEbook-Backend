@@ -17,7 +17,6 @@ function richTest(content){
 
 }
 function ajax(url, params, method, callBack) {
-    var loadingIndex=null;
     $.ajax({
         url : url,
         type : method,
@@ -27,10 +26,8 @@ function ajax(url, params, method, callBack) {
         },
         dataType : "json",
         beforeSend : function() {
-            loadingIndex = layer.msg('处理中', {icon: 16});
         },
         success : function(json) {
-            layer.close(loadingIndex);
             callBack(json);
         },
         error : function(json) {

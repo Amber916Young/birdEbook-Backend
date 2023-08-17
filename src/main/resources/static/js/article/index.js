@@ -1,17 +1,16 @@
 function requestTableData(){
-  var url = ""
-  ajaxPost(url, JSON.stringify(jsonData), function (data) {
-            if (data.code == 0) {
+  var url = adminArticle
+  ajaxGet(url,  "", function (data) {
+      console.info(data)
+      formTables(data)
 
 
-            }else {
-                layer.msg(data.msg, {time: 3000, icon: 5});
-            }
-        });
+
+  });
 }
 
-function formTables(){
-const customDatatable = $("#datatable");
+function formTables(data){
+const customDatatable =   document.getElementById("datatable");
 const setActions = () => {
   document.querySelectorAll(".call-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -30,37 +29,37 @@ const setActions = () => {
 
 customDatatable.addEventListener("render.te.datatable", setActions);
 
+const formatStatus = (cell, value) => {
+  const date = new Date(value);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+};
+
 new te.Datatable(
   customDatatable,
   {
     columns: [
-      { label: "Name", field: "name" },
-      { label: "Position", field: "position" },
-      { label: "Office", field: "office" },
-      { label: "Office", field: "office" },
-      { label: "Office", field: "office" },
-      { label: "Contact", field: "contact", sort: false },
+      { label: "id", field: "id", fixed: 'left' },
+      { label: "标题", field: "title" },
+      { label: "简介", field: "description" ,width:200},
+      { label: "浏览量", field: "viewCount" ,width:100},
+      { label: "点赞量", field: "diggCount",width:100 },
+      { label: "评论数", field: "commentCount" ,width:100},
+      { label: "收藏量", field: "collectCount" ,width:100},
+      { label: "封面", field: "coverImage" ,width:200},
+      { label: "类型", field: "articleType" ,width:150},
+      { label: "状态", field: "status" ,width:150,format: formatStatus },
+      { label: "创建者", field: "createdBy",width:100 },
+      { label: "创建者id", field: "userId",width:100 },
+      { label: "创建时间", field: "createTime" ,width:200},
+      { label: "修改时间", field: "modifyTime" ,width:200},
+      { label: "操作", field: "actions", sort: false ,width:150, fixed: 'right'},
     ],
-    rows: [
-      {
-        name: "Tiger Nixon",
-        position: "System Architect",
-        office: "Edinburgh",
-      },
-      {
-        name: "Sonya Frost",
-        position: "Software Engineer",
-        office: "Edinburgh",
-      },
-      {
-        name: "Tatyana Fitzpatrick",
-        position: "Regional Director",
-        office: "London",
-      },
-    ].map((row) => {
+    rows: data.content.map((row) => {
       return {
         ...row,
-        contact: `
+        actions: `
             <button
               type="button"
               data-te-ripple-init
@@ -85,7 +84,7 @@ new te.Datatable(
       };
     }),
   },
-  { hover: true }
+  { loading: false }
 );
 
 }

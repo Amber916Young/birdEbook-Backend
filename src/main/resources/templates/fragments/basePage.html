@@ -8,6 +8,9 @@
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <script type="text/javascript" th:href="@{/js/ajaxRequest.js}" src="/js/ajaxRequest.js"></script>
+
+    <script type="text/javascript" th:href="@{/js/api.js}" src="/js/api.js"></script>
     <script type="text/javascript" th:href="@{/js/menu.js}" src="/js/menu.js"></script>
 
     <script>
@@ -28,25 +31,15 @@
 
 
     $(function () {
-            console.log("ItemId=" + ItemId);
-            if(ItemId==null){
-                return;
-            }
-            if(ItemId.indexOf("ItemId")>-1){
-              var arr = ItemId.split("-")
-              $("#ItemId-"+arr[1]).addClass("bg-[rgba(18,102,241,0.05)]")
-              if(arr.length > 2)  $("#"+ItemId).addClass("bg-[rgba(18,102,241,0.05)]")
-
-
-            }
-
-
-
-
-
-
-
-
+        console.log("ItemId=" + ItemId);
+        if(ItemId==null){
+            return;
+        }
+        if(ItemId.indexOf("ItemId")>-1){
+          var arr = ItemId.split("-")
+          $("#ItemId-"+arr[1]).addClass("bg-[rgba(18,102,241,0.05)]")
+          if(arr.length > 2)  $("#"+ItemId).addClass("bg-[rgba(18,102,241,0.05)]")
+        }
     })
 
 

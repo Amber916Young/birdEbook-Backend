@@ -5,9 +5,8 @@
 <body class="transition-colors duration-500 dark:bg-neutral-800">
 <th:block th:include="fragments/layoutPage :: sidebarMenu"></th:block>
 
-<div id="page-content" class="mt-10 h-screen	 " style="margin-right: 0px; transition: all 0s ease 0s;" >
+<div id="page-content" class="mt-10 h-screen" style="margin-right: 0px; transition: all 0s ease 0s;" >
 
-    </div>
     <nav  class="w-full bg-neutral-100 px-5 py-3 dark:bg-neutral-600">
         <ol class="list-reset flex">
             <li>
@@ -77,6 +76,9 @@
                     data-te-selectable="true"
                     data-te-max-height="600"
                     data-te-multi="true"
+                    data-te-edit="true"
+                    data-te-loading="true"
+                    data-te-hover="true"
                     data-te-fixed-header="true"></div>
 
 
@@ -89,19 +91,11 @@
 
 <th:block th:replace="fragments/layoutPage :: basePage"></th:block>
 <th:block th:replace="fragments/layoutPage :: footer"></th:block>
+<script type="text/javascript"  th:href="@{/js/article/index.js}" src="/js/article/index.js"></script>
 
 <script>
-
-
-
     var ItemId = "ItemId-1-0";
-
-
-
-
-
-
-
+    requestTableData();
 </script>
 
 </body>
