@@ -5,16 +5,16 @@
 <body class="transition-colors duration-500 dark:bg-neutral-800">
 <th:block th:include="fragments/layoutPage :: sidebarMenu"></th:block>
 
-<div id="page-content" class="mt-10" style="padding-left: 240px; margin-right: 0px; transition: all 0s ease 0s;" >
+<div id="page-content" class="mt-10 h-screen" style="padding-left: 240px; margin-right: 0px; transition: all 0s ease 0s;" >
     <div class="max-w-[540px] sm:max-w-[604px] md:max-w-[720px] lg:max-w-[972px]  xl:max-w-full xl:px-12 2xl:max-w-[1400px] mx-auto  flex">
 
 
 
     </div>
 </div>
-<th:block th:replace="fragments/layoutPage :: footer"></th:block>
 
 <th:block th:replace="fragments/layoutPage :: basePage"></th:block>
+<th:block th:replace="fragments/layoutPage :: footer"></th:block>
 
 <script>
 
