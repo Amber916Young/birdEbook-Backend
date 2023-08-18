@@ -2,17 +2,24 @@ package com.bird.common.entity;
 
 import com.bird.common.enums.ArticleType;
 import com.bird.common.enums.CollectType;
-import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.ZonedDateTime;
+import com.sun.istack.NotNull;
 
-/*
+import javax.persistence.*;
 
-收藏表
+
+/**
+ * @Author: YY
+ * @Date: 2023/8/14 15:12
+ * @Version 1.0
  */
+
 @Entity
 @Getter
 @Setter
@@ -31,15 +38,11 @@ public class UserCollect {
 
     @NotNull
     @Column
-    private String collectName;
-
-    @NotNull
-    @Column
     private Long articleId;
 
     @NotNull
     @Column
-    private ArticleType articleType;
+    private String collectName;
 
     @NotNull
     @Column
@@ -52,6 +55,8 @@ public class UserCollect {
     @Column
     @CreationTimestamp
     private ZonedDateTime modifyTime;
+
+
 }
 
 

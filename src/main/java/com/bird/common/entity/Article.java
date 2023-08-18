@@ -38,6 +38,10 @@ public class Article{
     private Long id;
 
     @NotNull
+    @Column
+    private Long userId;
+
+    @NotNull
     @Size(min = 1, max = 100)
     @Column(length = 100, nullable = false)
     private String title;
@@ -78,9 +82,8 @@ public class Article{
     @Column
     @NotNull
     private String createdBy;
-    @Column
-    @NotNull
-    private Long userId;
+
+
     @Column(name = "create_time")
     @CreationTimestamp
     private ZonedDateTime createTime;

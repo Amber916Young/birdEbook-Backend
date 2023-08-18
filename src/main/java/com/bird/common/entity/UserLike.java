@@ -41,7 +41,7 @@ public class UserLike {
 
     @Column
     @CreationTimestamp
-    private ZonedDateTime createTime;
+    private ZonedDateTime articleTime;
 
     @Column
     @CreationTimestamp

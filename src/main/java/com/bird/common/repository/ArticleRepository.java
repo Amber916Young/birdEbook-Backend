@@ -29,4 +29,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 
     long countByArticleType(ArticleType wiki);
+
+    List<Article> findAll(Long articleId);
 }

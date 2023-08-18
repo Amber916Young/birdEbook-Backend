@@ -1,6 +1,5 @@
 package com.bird.common.utils;
 
-import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.bird.common.config.exception.BadRequestException;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,14 +15,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
