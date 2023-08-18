@@ -77,13 +77,7 @@ const instance = new te.Datatable(
   { loading: false }
 );
 
-
-
-
-
-
-
-const advancedSearchInput = document.getElementById('search-input');
+const searchInput = document.getElementById('search-input');
 
   const search = (value) => {
     let [phrase, columns] = value.split(" in:").map((str) => str.trim());
@@ -98,10 +92,10 @@ const advancedSearchInput = document.getElementById('search-input');
   document
     .getElementById("search-button")
     .addEventListener("click", (e) => {
-      search(advancedSearchInput.value);
+      search(searchInput.value);
     });
 
-  advancedSearchInput.addEventListener("keydown", (e) => {
+  searchInput.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {
       search(e.target.value);
     }
