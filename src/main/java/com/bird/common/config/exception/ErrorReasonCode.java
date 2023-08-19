@@ -26,4 +26,7 @@ public enum ErrorReasonCode {
     ACCESS_Denied,
     Upload_Image_invalid,
     Not_File,
+
+    Duplicated_Collect_Name,
+    Collect_Not_Found,
 }
