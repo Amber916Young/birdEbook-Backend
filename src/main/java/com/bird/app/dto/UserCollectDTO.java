@@ -22,6 +22,4 @@ public class UserCollectDTO {
     private String collectName;
     private ArticleType articleType;
     private CollectType collectType;
-    private ZonedDateTime createTime;
-    private ZonedDateTime modifyTime;
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: YY
@@ -20,9 +21,11 @@ import java.util.List;
 @Repository
 public interface UserCollectRepository extends JpaRepository<UserCollect, Long> {
 
-    List<UserCollect>  findByUserIdAndCollectName(Long userId, String collectName);
+    Optional<UserCollect> findByUserIdAndCollectName(Long userId, String collectName);
 
-    UserCollect findByUserIdAndId(Long userId, Long id);
+    Optional<UserCollect> findByUserIdAndId(Long userId, Long id);
 
     List<UserCollect> findByUserId(Long userId);
+
+    List<UserCollect> findByUserIdAndCollectType(Long targetUserId, CollectType aPublic);
 }

@@ -1,9 +1,7 @@
 package com.bird.app.service;
 
 import com.bird.app.dto.UserCollectDTO;
-import com.bird.app.mapper.TagsMapper;
 import com.bird.app.mapper.UserCollectMapper;
-import com.bird.common.config.exception.ConflictRequestException;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
 import com.bird.common.entity.Article;
@@ -11,7 +9,7 @@ import com.bird.common.entity.UserCollect;
 import com.bird.common.enums.CollectType;
 import com.bird.common.repository.ArticleRepository;
 import com.bird.common.repository.UserCollectRepository;
-import com.bird.common.repository.UserRepository;
+import com.bird.common.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @Author: YY
@@ -41,40 +38,28 @@ public class UserCollectService {
 
 
     //增加
-    public UserCollect createUserCollect(Long userId, String collectName, Long collectId, Long articleId) {
-
-        List<UserCollect> userCollects =
+    public UserCollect createUserCollect(UserCollect userCollect) {
+        Long userId = SecurityUtil.getCurrentUserId();
+        String collectName = userCollect.getCollectName();
+        Optional<UserCollect> userCollects =
                 userCollectRepository.findByUserIdAndCollectName(userId, collectName);
-
-        for (UserCollect userCollect : userCollects) {
-            if (!userCollect.getId().equals(collectId)) {
-                throw new NotFoundRequestException(ErrorReasonCode.Duplicated_Collect_Name);
-            }
+        if (userCollects.isPresent()) {
+            throw new NotFoundRequestException(ErrorReasonCode.Duplicated_Collect_Name);
         }
-
-        Optional<Article> article = articleRepository.findById(articleId);
-        if (!article.isPresent()) {
-            throw new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity);
-        }
-
-        UserCollect userCollect = new UserCollect();
         userCollect.setUserId(userId);
-        userCollect.setArticleId(articleId);
         userCollect.setCollectName(collectName);
         userCollect.setCollectType(CollectType.PUBLIC);
-        userCollect.setCreateTime(ZonedDateTime.now());
         return userCollectRepository.save(userCollect);
 
     }
 
 
     //删
-    public void deleteUserCollect(Long id, Long userId) {
-
-        UserCollect userCollect = userCollectRepository.findByUserIdAndId(id, userId);
-        if (userCollect == null) {
-            throw new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity);
-        }
+    public void deleteUserCollect(Long id) {
+        Long userId = SecurityUtil.getCurrentUserId();
+        UserCollect userCollect = userCollectRepository
+                .findByUserIdAndId(id, userId).orElseThrow(() ->
+                        new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
 
         userCollectRepository.delete(userCollect);
     }
@@ -82,65 +67,46 @@ public class UserCollectService {
 
     //修改
     //修改收藏夹名称
-    public void updateCollectName(Long userId, String collectName, Long collectId) {
+    public void updateCollectName(UserCollect userCollect) {
+        Long userId = SecurityUtil.getCurrentUserId();
+        String collectName = userCollect.getCollectName();
 
-        List<UserCollect> userCollects =
+        Optional<UserCollect> userCollects =
                 userCollectRepository.findByUserIdAndCollectName(userId, collectName);
-
-        for (UserCollect userCollect : userCollects) {
-            if (!userCollect.getId().equals(collectId)) {
-                throw new NotFoundRequestException(ErrorReasonCode.Duplicated_Collect_Name);
-            }
-
-            userCollect.setCollectName(collectName);
-
-            userCollectRepository.save(userCollect);
+        if (userCollects.isPresent()) {
+            throw new NotFoundRequestException(ErrorReasonCode.Duplicated_Collect_Name);
         }
+        userCollect.setCollectName(collectName);
+        userCollect.setCreateTime(userCollects.get().getCreateTime());
+        userCollect.setModifyTime(ZonedDateTime.now());
+        userCollectRepository.save(userCollect);
 
     }
 
     //修改收藏夹类型
 
-    public void updateCollectType(Long userId, Long Id, CollectType collectType) {
-        UserCollect userCollect = userCollectRepository.findByUserIdAndId(userId, Id);
-        if (userCollect == null) {
-            throw new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity);
-        }
-        userCollect.setCollectType(collectType);
+    public void updateCollectType(UserCollect userCollect) {
+        Long userId = SecurityUtil.getCurrentUserId();
+        UserCollect preUserCollect= userCollectRepository
+                .findByUserIdAndId(userCollect.getId(), userId).orElseThrow(() ->
+                new NotFoundRequestException(ErrorReasonCode.Not_Found_Entity));
+
+        userCollect.setCreateTime(preUserCollect.getCreateTime());
+        userCollect.setModifyTime(ZonedDateTime.now());
         userCollectRepository.save(userCollect);
     }
 
     //查找
     //用户查询自己的收藏夹
-    public List<UserCollectDTO> getUserCollectsByUserId(Long userId, CollectType collectType) {
-
-        List<UserCollect> userCollects = userCollectRepository.findByUserId(userId);
-        List<UserCollectDTO> allCollects = new ArrayList<>();
-
-        for (UserCollect collect : userCollects) {
-            if (collect.getCollectType() == collectType) {
-                allCollects.add(userCollectMapper.toDTO(collect));
-            }
-        }
-
-        return allCollects;
+    public List<UserCollect> getUserCollectsByUserId() {
+        Long userId = SecurityUtil.getCurrentUserId();
+        return userCollectRepository.findByUserId(userId);
     }
 
     //用户查询别人公开的收藏夹
 
-    public List<UserCollectDTO> getPublicUserCollectsByUserId(Long userId, Long targetUserId) {
-
-        List<UserCollect> userCollects = userCollectRepository.findByUserId(targetUserId);
-
-        List<UserCollectDTO> publicCollects = new ArrayList<>();
-
-        for (UserCollect collect : userCollects) {
-            if (collect.getCollectType() == CollectType.PUBLIC) {
-                publicCollects.add(userCollectMapper.toDTO(collect));
-            }
-        }
-
-        return publicCollects;
+    public List<UserCollect> getPublicUserCollectsByUserId(Long targetUserId) {
+        return userCollectRepository.findByUserIdAndCollectType(targetUserId, CollectType.PUBLIC);
     }
 
 }
