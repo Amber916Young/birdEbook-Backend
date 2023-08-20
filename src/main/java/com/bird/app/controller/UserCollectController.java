@@ -24,27 +24,27 @@ public class UserCollectController {
     private UserCollectService userCollectService;
     private UserCollectMapper userCollectMapper;
 
-    @PostMapping(value = "/create", produces = "application/json")
+    @PostMapping(produces = "application/json")
     public ResponseEntity<?> createUserCollect(UserCollectDTO userCollectDTO) {
         userCollectService.createUserCollect(userCollectMapper.toEntity(userCollectDTO));
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
-    @DeleteMapping(value = "/delete/{id}", produces = "application/json")
-    public ResponseEntity<String> deleteUserCollect(@PathVariable("id") Long id) {
+
+    @DeleteMapping(value = "/{id}", produces = "application/json")
+    public ResponseEntity<?> deleteUserCollect(@PathVariable("id") Long id) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(value = "/updateName", produces = "application/json")
-    public ResponseEntity<String> updateCollectName(
+    public ResponseEntity<?> updateCollectName(
             UserCollectDTO userCollectDTO) {
         userCollectService.updateCollectName(userCollectMapper.toEntity(userCollectDTO));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(value = "/updateType", produces = "application/json")
-    public ResponseEntity<String> updateCollectType(
+    public ResponseEntity<?> updateCollectType(
             UserCollectDTO userCollectDTO) {
         userCollectService.updateCollectType(userCollectMapper.toEntity(userCollectDTO));
         return new ResponseEntity<>(HttpStatus.OK);
@@ -59,6 +59,6 @@ public class UserCollectController {
     public ResponseEntity<List<UserCollectDTO>> getPublicUserCollectsByUserId(
             @PathVariable("targetUserId") Long targetUserId) {
         return ResponseEntity.ok(userCollectMapper.toDTOList(userCollectService.getPublicUserCollectsByUserId(targetUserId)));
-
     }
+
 }
