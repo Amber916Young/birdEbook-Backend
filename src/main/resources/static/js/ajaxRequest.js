@@ -24,7 +24,8 @@ function ajax(url, params, method, callBack) {
         headers: {
             "Authorization": "Basic " + btoa("admin" + ":" + "698d51a19d8a121ce581499d7b701668")
         },
-        dataType : "json",
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
         beforeSend : function() {
         },
         success : function(json) {
@@ -54,7 +55,12 @@ function adminReq(admin,url, params, method, callBack){
 function ajaxPost(url, params, callBack) {
     ajax(url,params,"post",callBack);
 }
-
+function ajaxDelete(url, params, callBack) {
+    ajax(url,"","delete",callBack);
+}
+function ajaxPut(url, params, callBack) {
+    ajax(url,params,"put",callBack);
+}
 /**
  * get 方法
  */

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layoutPage :: header(tags)"></head>
+<head th:replace="fragments/layoutPage :: header(标签管理)"></head>
 <body class="transition-colors duration-500 dark:bg-neutral-800">
 <th:block th:include="fragments/layoutPage :: sidebarMenu"></th:block>
 
@@ -24,14 +24,31 @@
                        data-te-ripple-color="light">
                    <i class="fa-solid fa-magnifying-glass"></i>
                </button>
+
+
            </div>
             <div >
                 <button
                         type="button"
                         data-te-ripple-init
+                        data-te-toggle="modal"
                         data-te-ripple-color="light"
+                        data-te-target="#formPopCard"
                         class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                     新增
+                </button>
+
+                <button
+                        type="button"
+                        data-te-ripple-init
+                        data-te-ripple-color="light"
+                        data-te-toggle="popconfirm"
+                        data-te-message="是否删除"
+                        data-te-cancel-text="取消"
+                        data-te-ok-text="确认"
+                        data-te-popconfirm-mode="inline"
+                        class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    删除
                 </button>
             </div>
 
@@ -46,7 +63,7 @@
                     data-te-selectable="true"
                     data-te-max-height="600"
                     data-te-multi="true"
-                    data-te-edit="true"
+                    data-te-edit="false"
                     data-te-loading="true"
                     data-te-hover="true"
                     data-te-fixed-header="true"></div>
@@ -57,6 +74,8 @@
         </div>
     </div>
 
+    <th:block th:replace="admin/tags/form :: modelPage"></th:block>
+
 </div>
 
 <th:block th:replace="fragments/layoutPage :: basePage"></th:block>
@@ -64,7 +83,7 @@
 <script type="text/javascript"  th:href="@{/js/tags/index.js}" src="/js/tags/index.js"></script>
 
 <script>
-    var ItemId = "ItemId-1-1";
+    var ItemId = "ItemId-1-2";
     requestTableData();
 </script>
 

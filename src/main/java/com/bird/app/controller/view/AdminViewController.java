@@ -31,4 +31,10 @@ public class AdminViewController {
     synchronized public String tags() {
         return "/admin/tags/index";
     }
+
+    @SneakyThrows
+    @GetMapping( "/categories/index")
+    synchronized public String categories() {
+        return "/admin/categories/index";
+    }
 }
