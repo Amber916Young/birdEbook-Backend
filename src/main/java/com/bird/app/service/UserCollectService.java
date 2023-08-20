@@ -1,13 +1,9 @@
 package com.bird.app.service;
 
-import com.bird.app.dto.UserCollectDTO;
-import com.bird.app.mapper.UserCollectMapper;
 import com.bird.common.config.exception.ErrorReasonCode;
 import com.bird.common.config.exception.NotFoundRequestException;
-import com.bird.common.entity.Article;
 import com.bird.common.entity.UserCollect;
 import com.bird.common.enums.CollectType;
-import com.bird.common.repository.ArticleRepository;
 import com.bird.common.repository.UserCollectRepository;
 import com.bird.common.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +27,6 @@ import java.util.*;
 public class UserCollectService {
 
     private final UserCollectRepository userCollectRepository;
-
-    private final ArticleRepository articleRepository;
-
-    private final UserCollectMapper userCollectMapper;
-
 
     //增加
     public UserCollect createUserCollect(UserCollect userCollect) {

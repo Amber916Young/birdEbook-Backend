@@ -21,8 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UserCollectController {
-    private UserCollectService userCollectService;
-    private UserCollectMapper userCollectMapper;
+    private final UserCollectService userCollectService;
+    private final UserCollectMapper userCollectMapper;
 
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createUserCollect(UserCollectDTO userCollectDTO) {

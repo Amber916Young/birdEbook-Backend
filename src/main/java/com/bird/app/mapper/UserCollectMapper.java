@@ -11,7 +11,7 @@ import java.util.List;
  * @Date: 2023/8/11 17:35
  * @Version 1.0
  */
-@Mapper
+@Mapper(componentModel = "spring", uses = {})
 public interface UserCollectMapper {
 
     UserCollectDTO toDTO(UserCollect userCollect);
