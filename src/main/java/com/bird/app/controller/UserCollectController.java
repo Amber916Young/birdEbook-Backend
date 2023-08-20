@@ -33,6 +33,7 @@ public class UserCollectController {
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<?> deleteUserCollect(@PathVariable("id") Long id) {
+        userCollectService.deleteUserCollect(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
