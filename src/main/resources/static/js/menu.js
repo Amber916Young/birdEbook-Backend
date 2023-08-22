@@ -1,32 +1,12 @@
-
-
-//loadMenuJs();
-
-
+loadMenuJs();
 function loadMenuJs(){
-    const sidenav2 = document.getElementById("sidenav");
-    const sidenavInstance2 = te.Sidenav.getInstance(sidenav2);
+ document
+   .getElementById("slim-toggler")
+   .addEventListener("click", () => {
+     const instance = te.Sidenav.getInstance(
+       document.getElementById("sidenav-main")
+     );
+     instance.toggleSlim();
+   });
 
-    let innerWidth2 = null;
-
-    const setMode2 = (e) => {
-      // Check necessary for Android devices
-      if (window.innerWidth === innerWidth2) {
-        return;
-      }
-
-      innerWidth2 = window.innerWidth;
-
-      if (window.innerWidth < sidenavInstance2.getBreakpoint("xl")) {
-        sidenavInstance2.changeMode("over");
-        sidenavInstance2.hide();
-      } else {
-        sidenavInstance2.changeMode("side");
-        sidenavInstance2.show();
-      }
-    };
-    if (window.innerWidth < sidenavInstance2.getBreakpoint("sm")) {
-      setMode2();
-    }
-    window.addEventListener("resize", setMode2);
 }
