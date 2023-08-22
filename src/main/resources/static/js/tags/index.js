@@ -108,11 +108,11 @@ function formTables(data) {
         {
             columns: [
                 {label: "id", field: "id", fixed: 'left'},
-                {label: "名称", field: "name"},
-                {label: "图标", field: "icon", width: 100},
+                {label: "名称", field: "name", width: 200},
+                {label: "图标", field: "icon", width: 200},
                 {label: "颜色", field: "color"},
                 {label: "cateId", field: "cateId"},
-                {label: "创建时间", field: "createTime", width: 200, format: formatTime},
+                {label: "创建时间", field: "createTime", width: 250, format: formatTime},
                 {label: "操作", field: "actions", sort: false, width: 150, fixed: 'right'},
             ],
             rows: data.content.map((row) => {
