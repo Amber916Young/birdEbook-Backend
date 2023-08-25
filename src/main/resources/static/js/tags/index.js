@@ -2,12 +2,25 @@ const customDatatable = document.getElementById("datatable");
 const myModalEl = document.getElementById("formPopCard");
 const modalInstance = new te.Modal(myModalEl);
 var tagsAPI = tagsAPI
+var tagName = $("#tagName").val().trim();
+var tagIcon = $("#tagIcon").val().trim();
+var tagColor = $("#tagColor").val().trim();
+var tagId = $("#tagId").val().trim();
+
+function loadValue() {
+    tagName = $("#tagName").val().trim();
+    tagIcon = $("#tagIcon").val().trim();
+    tagColor = $("#tagColor").val().trim();
+    tagId = $("#tagId").val().trim();
+}
 
 function SaveOrUpdate() {
-    var tagName = $("#tagName").val();
-    var tagIcon = $("#tagIcon").val();
-    var tagColor = $("#tagColor").val();
-    var tagId = $("#tagId").val();
+    loadValue()
+    console.info(tagName);
+    if (tagName === "") {
+        alert("标签名不能空")
+        return;
+    }
     if (tagId === "-1" || tagId === -1) {
         var body = {
             "icon": tagIcon,
@@ -26,7 +39,6 @@ function SaveOrUpdate() {
         };
         ajaxPut(tagsAPI, JSON.stringify(body), function (data) {
             clear()
-
         });
     }
 }
